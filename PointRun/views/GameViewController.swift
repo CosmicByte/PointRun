@@ -59,13 +59,6 @@ class GameViewController: UIViewController, RMMapViewDelegate {
             timerImage.removeFromSuperview()
             timerLabel.removeFromSuperview()
         }
-        
-        // is this legal?
-        /*for subview: UIView in mapView.subviews as [UIView] {
-            if (subview is UIButton) {
-                subview.removeFromSuperview()
-            }
-        }*/
     }
     
     func decreaseTime() {
