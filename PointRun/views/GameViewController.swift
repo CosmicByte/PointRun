@@ -32,7 +32,7 @@ class GameViewController: UIViewController, RMMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         var nc = NSNotificationCenter.defaultCenter()
         nc.addObserver(self, selector: Selector("backButton"), name: backNotification, object: nil)
@@ -88,7 +88,7 @@ class GameViewController: UIViewController, RMMapViewDelegate {
     }
     
     func backButton() {
-        self.navigationController.popViewControllerAnimated(true)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     func mapChanged() {
