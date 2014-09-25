@@ -26,4 +26,5 @@ enum PRGameMode: Int {
     case Timed = 0
     case Endless = 1
     case Chance = 2
+    case Race = 3
 }

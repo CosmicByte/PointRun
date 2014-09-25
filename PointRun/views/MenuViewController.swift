@@ -15,6 +15,21 @@ class MenuViewController: UIViewController {
     @IBOutlet var singlePlayerImage: UIImageView!
     @IBOutlet var multiPlayerImage: UIImageView!
     
+    @IBOutlet var timedButtonBackground: UIButton!
+    @IBOutlet var timedButtonIcon: UIImageView!
+    @IBOutlet var timedButtonTitle: UILabel!
+    @IBOutlet var timedButtonDescription: UILabel!
+    
+    @IBOutlet var endlessButtonBackground: UIButton!
+    @IBOutlet var endlessButtonIcon: UIImageView!
+    @IBOutlet var endlessButtonTitle: UILabel!
+    @IBOutlet var endlessButtonDescription: UILabel!
+    
+    @IBOutlet var chanceButtonBackground: UIButton!
+    @IBOutlet var chanceButtonIcon: UIImageView!
+    @IBOutlet var chanceButtonTitle: UILabel!
+    @IBOutlet var chanceButtonDescription: UILabel!
+    
     var menuView: MenuView!
     
     var singlePlayer = true
@@ -56,6 +71,21 @@ class MenuViewController: UIViewController {
         multiPlayerImage.image = UIImage(named: "multiGreen.png")
         
         singlePlayer = true
+        
+        timedButtonIcon.image = UIImage(named: "gamemodeTimer.png")
+        timedButtonIcon.frame = CGRectMake(42, 183, 39, 36)
+        timedButtonTitle.text = "Timed"
+        timedButtonDescription.text = "You will be given 5 minutes to collect as many points as you can."
+        
+        endlessButtonBackground.alpha = 1.0
+        endlessButtonIcon.alpha = 1.0
+        endlessButtonTitle.alpha = 1.0
+        endlessButtonDescription.alpha = 1.0
+        
+        chanceButtonBackground.alpha = 1.0
+        chanceButtonIcon.alpha = 1.0
+        chanceButtonTitle.alpha = 1.0
+        chanceButtonDescription.alpha = 1.0
     }
     
     @IBAction func singlePlayerUpOutside(sender: AnyObject) {
@@ -96,6 +126,21 @@ class MenuViewController: UIViewController {
         singlePlayerImage.image = UIImage(named: "singleGreen.png")
         
         singlePlayer = false
+        
+        timedButtonIcon.image = UIImage(named: "gamemodeRace.png")
+        timedButtonIcon.frame = CGRectMake((timedButtonBackground.frame.size.height - timedButtonIcon.frame.size.height / 1.08108) / 2 + timedButtonBackground.frame.origin.y, timedButtonIcon.frame.origin.y, timedButtonIcon.frame.size.width, timedButtonIcon.frame.size.height / 1.08108)
+        timedButtonTitle.text = "Race"
+        timedButtonDescription.text = "Beat up to three other friends in a race to 100 points."
+        
+        endlessButtonBackground.alpha = 0.0
+        endlessButtonIcon.alpha = 0.0
+        endlessButtonTitle.alpha = 0.0
+        endlessButtonDescription.alpha = 0.0
+        
+        chanceButtonBackground.alpha = 0.0
+        chanceButtonIcon.alpha = 0.0
+        chanceButtonTitle.alpha = 0.0
+        chanceButtonDescription.alpha = 0.0
     }
     
     @IBAction func multiPlayerUpOutside(sender: AnyObject) {
@@ -125,8 +170,13 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction func timedButton(sender: AnyObject) {
-        gameMode = PRGameMode.Timed
-        self.performSegueWithIdentifier("gameSegue", sender: self)
+        if (singlePlayer) {
+            gameMode = PRGameMode.Timed
+            self.performSegueWithIdentifier("gameSegue", sender: self)
+        } else {
+            gameMode = PRGameMode.Race
+            self.performSegueWithIdentifier("multiplayerSegue", sender: self)
+        }
     }
     
     @IBAction func endlessButton(sender: AnyObject) {
@@ -140,7 +190,12 @@ class MenuViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        var gvc = segue.destinationViewController as GameViewController
-        gvc.sendGameMode(gameMode: gameMode, multiplayer: !singlePlayer)
+        if (segue.identifier == "gameSegue") {
+            var gvc = segue.destinationViewController as GameViewController
+            gvc.sendGameMode(gameMode: gameMode)
+        } else {
+            var mvc = segue.destinationViewController as MultiplayerViewController
+            mvc.sendGameMode(gameMode: gameMode)
+        }
     }
 }

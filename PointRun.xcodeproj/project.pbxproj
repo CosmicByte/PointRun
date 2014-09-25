@@ -55,7 +55,6 @@
 		EB3E3BA719A58F4500A768DD /* gamemodeTarget.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E3B5A19A58F4500A768DD /* gamemodeTarget.png */; };
 		EB3E3BA819A58F4500A768DD /* gamemodeTimer.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E3B5B19A58F4500A768DD /* gamemodeTimer.png */; };
 		EB3E3BA919A58F4500A768DD /* gamePlayer.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E3B5C19A58F4500A768DD /* gamePlayer.png */; };
-		EB3E3BAA19A58F4500A768DD /* gamePoint copy.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E3B5D19A58F4500A768DD /* gamePoint copy.png */; };
 		EB3E3BAB19A58F4500A768DD /* gamePoint.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E3B5E19A58F4500A768DD /* gamePoint.png */; };
 		EB3E3BAC19A58F4500A768DD /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E3B5F19A58F4500A768DD /* list.png */; };
 		EB3E3BAD19A58F4500A768DD /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E3B6019A58F4500A768DD /* logo.png */; };
@@ -80,6 +79,7 @@
 		EB3E3BC019A58F4500A768DD /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E3B7919A58F4500A768DD /* MenuView.swift */; };
 		EB3E3BC119A58F4500A768DD /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E3B7A19A58F4500A768DD /* MenuViewController.swift */; };
 		EB67142F19D46BD700E0EF63 /* MultiplayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67142E19D46BD700E0EF63 /* MultiplayerViewController.swift */; };
+		EB67143519D4746E00E0EF63 /* gamemodeRace.png in Resources */ = {isa = PBXBuildFile; fileRef = EB67143419D4746E00E0EF63 /* gamemodeRace.png */; };
 		EB67508B19A58DE4007D8EA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67508A19A58DE4007D8EA1 /* AppDelegate.swift */; };
 		EB67509019A58DE4007D8EA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB67508E19A58DE4007D8EA1 /* Main.storyboard */; };
 		EB67509219A58DE4007D8EA1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB67509119A58DE4007D8EA1 /* Images.xcassets */; };
@@ -149,7 +149,6 @@
 		EB3E3B5A19A58F4500A768DD /* gamemodeTarget.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamemodeTarget.png; sourceTree = "<group>"; };
 		EB3E3B5B19A58F4500A768DD /* gamemodeTimer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamemodeTimer.png; sourceTree = "<group>"; };
 		EB3E3B5C19A58F4500A768DD /* gamePlayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamePlayer.png; sourceTree = "<group>"; };
-		EB3E3B5D19A58F4500A768DD /* gamePoint copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gamePoint copy.png"; sourceTree = "<group>"; };
 		EB3E3B5E19A58F4500A768DD /* gamePoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamePoint.png; sourceTree = "<group>"; };
 		EB3E3B5F19A58F4500A768DD /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
 		EB3E3B6019A58F4500A768DD /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
@@ -177,6 +176,7 @@
 		EB3E3B7919A58F4500A768DD /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		EB3E3B7A19A58F4500A768DD /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		EB67142E19D46BD700E0EF63 /* MultiplayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerViewController.swift; sourceTree = "<group>"; };
+		EB67143419D4746E00E0EF63 /* gamemodeRace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamemodeRace.png; sourceTree = "<group>"; };
 		EB67508519A58DE4007D8EA1 /* PointRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB67508919A58DE4007D8EA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB67508A19A58DE4007D8EA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -289,10 +289,10 @@
 				EB3E3B5719A58F4500A768DD /* element23.png */,
 				EB3E3B5819A58F4500A768DD /* element24.png */,
 				EB3E3B5919A58F4500A768DD /* gamemodeEndless.png */,
+				EB67143419D4746E00E0EF63 /* gamemodeRace.png */,
 				EB3E3B5A19A58F4500A768DD /* gamemodeTarget.png */,
 				EB3E3B5B19A58F4500A768DD /* gamemodeTimer.png */,
 				EB3E3B5C19A58F4500A768DD /* gamePlayer.png */,
-				EB3E3B5D19A58F4500A768DD /* gamePoint copy.png */,
 				EB3E3B5E19A58F4500A768DD /* gamePoint.png */,
 				EB3E3B5F19A58F4500A768DD /* list.png */,
 				EB3E3B6019A58F4500A768DD /* logo.png */,
@@ -499,7 +499,6 @@
 				EB3E3B8A19A58F4500A768DD /* back.png in Resources */,
 				EB3E3B8319A58F4500A768DD /* 40.png in Resources */,
 				EB3E3BA219A58F4500A768DD /* element21.png in Resources */,
-				EB3E3BAA19A58F4500A768DD /* gamePoint copy.png in Resources */,
 				EB3E3B9D19A58F4500A768DD /* element16.png in Resources */,
 				EB3E3BB519A58F4500A768DD /* timerSmall.png in Resources */,
 				EB3E3B8219A58F4500A768DD /* 29.png in Resources */,
@@ -532,6 +531,7 @@
 				EB3E3B9919A58F4500A768DD /* element12.png in Resources */,
 				EB3E3B8019A58F4500A768DD /* 144.png in Resources */,
 				EB3E3BA019A58F4500A768DD /* element19.png in Resources */,
+				EB67143519D4746E00E0EF63 /* gamemodeRace.png in Resources */,
 				EB3E3BA919A58F4500A768DD /* gamePlayer.png in Resources */,
 				EB3E3B9F19A58F4500A768DD /* element18.png in Resources */,
 				EB3E3B8919A58F4500A768DD /* 80.png in Resources */,
