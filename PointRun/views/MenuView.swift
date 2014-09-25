@@ -11,6 +11,7 @@ import UIKit
 class MenuView: UIView {
 
     var opacityView: UIView!
+    var statusbarView: UIView!
     var menuView: UIView!
     
     var statisticsButton: UIButton!
@@ -35,7 +36,11 @@ class MenuView: UIView {
         opacityView.addGestureRecognizer(tgr)
         
         
-        menuView = UIView(frame: CGRectMake(-menuWidth, 0, menuWidth, device.height))
+        statusbarView = UIView(frame: CGRectMake(-device.width, 0, device.width, 20))
+        statusbarView.backgroundColor = UIColor(red: 0.09, green: 0.6, blue: 0.47, alpha: 1.00)
+        
+        
+        menuView = UIView(frame: CGRectMake(-menuWidth, 20, menuWidth, device.height))
         menuView.backgroundColor = UIColor.whiteColor()
         
         statisticsButton = UIButton(frame: CGRectMake(0, 0, 87, 64))
@@ -75,20 +80,23 @@ class MenuView: UIView {
         menuView.addSubview(leaderboardButton)
         
         self.addSubview(opacityView)
+        self.addSubview(statusbarView)
         self.addSubview(menuView)
     }
     
     func show() {
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.opacityView.alpha = 0.5
-            self.menuView.frame = CGRectMake(0, 0, menuWidth, self.menuView.frame.height)
+            self.statusbarView.frame = CGRectMake(0, 0, self.device.width, 20)
+            self.menuView.frame = CGRectMake(0, 20, menuWidth, self.menuView.frame.height - 20)
         })
     }
     
     func hide() {
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.opacityView.alpha = 0.0
-            self.menuView.frame = CGRectMake(-menuWidth, 0, menuWidth, self.menuView.frame.height)
+            self.statusbarView.frame = CGRectMake(-self.device.width, 0, self.device.width, 20)
+            self.menuView.frame = CGRectMake(-menuWidth, 20, menuWidth, self.menuView.frame.height - 20)
         }) { (Bool) -> Void in
             self.removeFromSuperview()
         }
@@ -311,10 +319,10 @@ class MenuView: UIView {
         }
         
         var resetHeight: CGFloat = 64
-        var resetImage = UIImageView(frame: CGRectMake(0, device.height - resetHeight, menuWidth, resetHeight))
+        var resetImage = UIImageView(frame: CGRectMake(0, device.height - 20 - resetHeight, menuWidth, resetHeight))
         resetImage.image = UIImage(named: "element13.png")
         
-        var resetButton = UIButton(frame: CGRectMake(10, device.height - resetHeight + 10, menuWidth - 20, resetHeight - 20))
+        var resetButton = UIButton(frame: CGRectMake(10, device.height - 20 - resetHeight + 10, menuWidth - 20, resetHeight - 20))
         resetButton.setImage(UIImage(named: "element08.png"), forState: UIControlState.Normal)
         resetButton.setImage(UIImage(named: "element20.png"), forState: UIControlState.Highlighted)
         resetButton.addTarget(self, action: Selector("resetStatistics"), forControlEvents: UIControlEvents.TouchUpInside)

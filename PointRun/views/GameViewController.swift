@@ -50,7 +50,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("decreaseTime"), userInfo: nil, repeats: true)
         
         if (CLLocationManager.locationServicesEnabled()) {
-            mapView = GMSMapView(frame: CGRectMake(0, 64, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height))
+            mapView = GMSMapView(frame: CGRectMake(0, 84, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height))
             mapView.delegate = self
             mapView.myLocationEnabled = true
             self.view.addSubview(mapView)
@@ -119,10 +119,6 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     func sendGameMode(gameMode gameType: PRGameMode, multiplayer mplayer: Bool) {
         gameMode = gameType
         multiplayer = mplayer
-    }
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {

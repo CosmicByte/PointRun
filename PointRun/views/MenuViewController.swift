@@ -23,7 +23,7 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.setNavigationBarHidden(true, animated: true);
+        //self.navigationController?.setNavigationBarHidden(true, animated: true);
         
         var nc = NSNotificationCenter.defaultCenter()
         nc.addObserver(self, selector: Selector("menuTab:"), name: statisticNotification, object: nil)
@@ -144,9 +144,5 @@ class MenuViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         var gvc = segue.destinationViewController as GameViewController
         gvc.sendGameMode(gameMode: gameMode, multiplayer: !singlePlayer)
-    }
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true;
     }
 }
