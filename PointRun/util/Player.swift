@@ -16,6 +16,6 @@ class Player: NSObject {
     var pid: String!
     var name: String!
     var mapPoint: GMSMarker!
-    var image: UIImageView!
-    var pointsLabel: UILabel!
+    var image = UIImageView()
+    var pointsLabel = UILabel()
 }

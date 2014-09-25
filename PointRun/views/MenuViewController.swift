@@ -23,8 +23,6 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //self.navigationController?.setNavigationBarHidden(true, animated: true);
-        
         var nc = NSNotificationCenter.defaultCenter()
         nc.addObserver(self, selector: Selector("menuTab:"), name: statisticNotification, object: nil)
         nc.addObserver(self, selector: Selector("menuTab:"), name: achievementNotification, object: nil)
