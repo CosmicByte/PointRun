@@ -179,6 +179,20 @@ class MenuView: UIView {
         
         hybridButton.addSubview(hybridLabel)
         
+        var terrainButton = UIButton(frame: CGRectMake(10, 336, menuWidth - 20, 42))
+        terrainButton.setImage(UIImage(named: "element22.png"), forState: UIControlState.Normal)
+        terrainButton.setImage(UIImage(named: "element23.png"), forState: UIControlState.Highlighted)
+        terrainButton.addTarget(self, action: Selector("terrainButton"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        var terrainLabel = UILabel()
+        terrainLabel.text = "Terrain"
+        terrainLabel.font = UIFont(name: "Open Sans", size: 14.0)
+        terrainLabel.textColor = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 1.00)
+        terrainLabel.sizeToFit()
+        terrainLabel.frame = CGRectMake(56, (terrainButton.frame.size.height - terrainLabel.frame.size.height) / 2, terrainLabel.frame.size.width, terrainLabel.frame.size.height)
+        
+        terrainButton.addSubview(terrainLabel)
+        
         var checkY = CGFloat(174 + (54 * defaults.integerForKey("mapType")))
         checkImage = UIImageView()
         checkImage.image = UIImage(named: "element24.png")
@@ -196,6 +210,7 @@ class MenuView: UIView {
         menuView.addSubview(streetsButton)
         menuView.addSubview(satelliteButton)
         menuView.addSubview(hybridButton)
+        menuView.addSubview(terrainButton)
         menuView.addSubview(checkImage)
     }
     
@@ -219,6 +234,13 @@ class MenuView: UIView {
     
     func hybridButton() {
         defaults.setInteger(2, forKey: "mapType")
+        var checkY = CGFloat(174 + (54 * defaults.integerForKey("mapType")))
+        checkImage.frame = CGRectMake(10, checkY, 42, 42)
+        NSNotificationCenter.defaultCenter().postNotificationName(mapChangedNotification, object: nil)
+    }
+    
+    func terrainButton() {
+        defaults.setInteger(3, forKey: "mapType")
         var checkY = CGFloat(174 + (54 * defaults.integerForKey("mapType")))
         checkImage.frame = CGRectMake(10, checkY, 42, 42)
         NSNotificationCenter.defaultCenter().postNotificationName(mapChangedNotification, object: nil)

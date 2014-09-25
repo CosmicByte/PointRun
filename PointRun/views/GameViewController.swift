@@ -54,6 +54,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
             mapView.delegate = self
             mapView.myLocationEnabled = true
             self.view.addSubview(mapView)
+            mapChanged()
         } else {
             CLLocationManager().requestWhenInUseAuthorization()
         }
@@ -93,11 +94,19 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     }
     
     func mapChanged() {
-        /*var mapType = defaults.integerForKey("mapType")
+        var mapType = defaults.integerForKey("mapType")
         switch (mapType) {
         case 0:
-        mapView.
-        }*/
+            mapView.mapType = kGMSTypeNormal
+        case 1:
+            mapView.mapType = kGMSTypeSatellite
+        case 2:
+            mapView.mapType = kGMSTypeHybrid
+        case 3:
+            mapView.mapType = kGMSTypeTerrain
+        default:
+            NSLog("\(wat)")
+        }
     }
     
     @IBAction func menuButton(sender: AnyObject) {
@@ -146,7 +155,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                         }
                     }
                     
-                    var pointsInAnnotation: Int? = point.snippet.stringByReplacingOccurrencesOfString(" Point", withString: "", options: nil, range: nil).stringByReplacingOccurrencesOfString("s", withString: "", options: nil, range: nil).toInt()
+                    var pointsInAnnotation = (point.snippet.componentsSeparatedByString(" ")[0] as String).toInt()
                     self.points += pointsInAnnotation!
                     pointLabel.text = NSString(format: "%d %@", self.points, (self.points == 1 ? "Point" : "Points"))
                     removePoint(pointCoords.latitude, longitude: pointCoords.longitude)
