@@ -66,7 +66,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     }
     
     override func viewDidLayoutSubviews() {
-        if (gameMode != PRGameMode.Timed) {
+        if (gameMode != PRGameMode.Timed && !multiplayer) {
             timerImage.removeFromSuperview()
             timerLabel.removeFromSuperview()
         }
@@ -84,7 +84,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                     sec = 59
                     min -= 1
                 } else {
-                    //endGame()
+                    self.endGame(PRGameEnd.TimerDone)
                     timer.invalidate()
                 }
             }
@@ -134,8 +134,9 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                 var lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                 var lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                 var points = Int(arc4random_uniform(10) + 1)
+                var uuid = NSUUID.UUID().UUIDString
                 
-                addPoint(mapView, latitude: lat, longitude: lon, value: points)
+                addPoint(mapView, latitude: lat, longitude: lon, value: points, uuid: uuid)
             }
         } else {
             for point in markers {
@@ -145,7 +146,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                 if (userLoc.distanceFromLocation(pointLoc) <= 5) {
                     if (gameMode == PRGameMode.Chance) {
                         if (arc4random_uniform(10) == 0) {
-                            //[self endGame:0];
+                            self.endGame(PRGameEnd.PoisonPin)
                             return
                         } else {
                             //[[Achievement sharedInstance] checkEvader:self.points];
@@ -155,41 +156,72 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                     var pointsInAnnotation = (point.snippet.componentsSeparatedByString(" ")[0] as String).toInt()
                     self.points += pointsInAnnotation!
                     pointLabel.text = NSString(format: "%d %@", self.points, (self.points == 1 ? "Point" : "Points"))
-                    removePoint(pointCoords.latitude, longitude: pointCoords.longitude)
+                    removePoint(point.userData as String)
                     
                     var lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                     var lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                     var points = Int(arc4random_uniform(10) + 1)
+                    var uuid = NSUUID.UUID().UUIDString
                     
-                    addPoint(mapView, latitude: lat, longitude: lon, value: points)
+                    addPoint(mapView, latitude: lat, longitude: lon, value: points, uuid: uuid)
                 }
             }
         }
     }
     
-    func addPoint(map: GMSMapView, latitude lat: Double, longitude lon: Double, value: Int) {
+    func addPoint(map: GMSMapView, latitude lat: Double, longitude lon: Double, value: Int, uuid: String) {
         var coordinates = CLLocationCoordinate2DMake(lat, lon)
         var point = GMSMarker(position: coordinates)
         point.appearAnimation = kGMSMarkerAnimationPop
-        //point.icon = UIImage(named: "gamePoint.png")
         var s = value == 1 ? "" : "s"
         point.snippet = "\(value) Point\(s)"
         point.map = map
+        point.userData = uuid
         
         markers.append(point)
         
-        NSLog("Created \(value) points at \(lat), \(lon)")
+        NSLog("Created \(value) points at \(lat), \(lon) with a UUID of \(uuid)")
     }
     
-    func removePoint(latitude: Double, longitude: Double) {
+    func removePoint(uuid: String) {
         var i = 0
         for point in markers {
-            if (point.position.latitude == latitude && point.position.longitude == longitude) {
+            if (point.userData as String == uuid) {
                 point.map = nil
                 markers.removeAtIndex(i)
                 Functions.vibrate()
             }
             i += 1
         }
+    }
+    
+    func endGame(reason: PRGameEnd) {
+        var alert = UIAlertController(title: "Game Over!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
+            self.pop()
+        }))
+        
+        switch (reason) {
+        case PRGameEnd.MenuExit:
+            NSLog("0")
+        case PRGameEnd.TimerDone:
+            alert.message = "You have run out of time!"
+        case PRGameEnd.PoisonPin:
+            alert.message = "That pin was poisonous!"
+        case PRGameEnd.Disconnect:
+            alert.message = "Another player has been disconnected."
+            alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Destructive, handler:nil))
+        case PRGameEnd.Error:
+            alert.message = "An error has unexpectedly occured."
+        default:
+            NSLog("\(wat)")
+        }
+        
+        alert.message! += "\nScore: \(points)"
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func pop() {
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }

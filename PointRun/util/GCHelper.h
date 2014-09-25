@@ -11,7 +11,7 @@
 
 @protocol GCHelperDelegate 
 - (void)matchStarted;
-- (void)matchEnded:(NSString *)playerID;
+- (void)matchEnded;
 - (void)match:(GKMatch *)match didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID;
 @end
 

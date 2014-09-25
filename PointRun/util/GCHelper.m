@@ -67,7 +67,7 @@ static GCHelper *sharedHelper = nil;
         if (error != nil) {
             NSLog(@"Error retrieving player info: %@", error.localizedDescription);
             matchStarted = NO;
-            [delegate matchEnded:@""];
+            [delegate matchEnded];
         } else {
             self.playersDict = [NSMutableDictionary dictionaryWithCapacity:players.count];
             for (GKPlayer *player in players) {
@@ -225,7 +225,7 @@ static GCHelper *sharedHelper = nil;
             break; 
         case GKPlayerStateDisconnected:
             matchStarted = NO;
-            [delegate matchEnded:@""];
+            [delegate matchEnded];
             self.match = nil;
             break;
         case GKPlayerStateUnknown:
@@ -238,7 +238,7 @@ static GCHelper *sharedHelper = nil;
     if (match != theMatch) return;
     NSLog(@"Failed to connect to player with error: %@", error.localizedDescription);
     matchStarted = NO;
-    [delegate matchEnded:playerID];
+    [delegate matchEnded];
 }
 
 // The match was unable to be established with any players due to an error.
@@ -246,7 +246,7 @@ static GCHelper *sharedHelper = nil;
     if (match != theMatch) return;
     NSLog(@"Match failed with error: %@", error.localizedDescription);
     matchStarted = NO;
-    [delegate matchEnded:@""];
+    [delegate matchEnded];
 }
 
 #pragma mark GKLocalPlayerListener

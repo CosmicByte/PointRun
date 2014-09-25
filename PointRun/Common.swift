@@ -28,3 +28,17 @@ enum PRGameMode: Int {
     case Chance = 2
     case Race = 3
 }
+
+enum PRMessageType: Int {
+    case PlayerData = 0
+    case PointLocation = 1
+    case PointCaptured = 2
+}
+
+enum PRGameEnd: Int {
+    case MenuExit = 0
+    case TimerDone = 1
+    case PoisonPin = 2
+    case Disconnect = 3
+    case Error = 4
+}
