@@ -118,10 +118,11 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         location = locations.last as CLLocation
-        mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 17.5, bearing: 0, viewingAngle: 360)
         
         if (firstLocUpdate && !multiplayer) {
             firstLocUpdate = false
+            
+            mapView.camera = GMSCameraPosition.cameraWithTarget(location.coordinate, zoom: 17.5)
             
             for (var i = 0; i < 40; i++) {
                 var lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
@@ -145,7 +146,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                         }
                     }
                     
-                    var pointsInAnnotation: Int? = point.title.stringByReplacingOccurrencesOfString(" Point", withString: "", options: nil, range: nil).stringByReplacingOccurrencesOfString("s", withString: "", options: nil, range: nil).toInt()
+                    var pointsInAnnotation: Int? = point.snippet.stringByReplacingOccurrencesOfString(" Point", withString: "", options: nil, range: nil).stringByReplacingOccurrencesOfString("s", withString: "", options: nil, range: nil).toInt()
                     self.points += pointsInAnnotation!
                     pointLabel.text = NSString(format: "%d %@", self.points, (self.points == 1 ? "Point" : "Points"))
                     removePoint(pointCoords.latitude, longitude: pointCoords.longitude)
@@ -164,22 +165,25 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         var coordinates = CLLocationCoordinate2DMake(lat, lon)
         var point = GMSMarker(position: coordinates)
         point.appearAnimation = kGMSMarkerAnimationPop
-        point.icon = UIImage(named: "gamePoint.png")
+        //point.icon = UIImage(named: "gamePoint.png")
         var s = value == 1 ? "" : "s"
         point.snippet = "\(value) Point\(s)"
         point.map = map
         
         markers.append(point)
         
-        NSLog("Created \(points) points at \(lat), \(lon)")
+        NSLog("Created \(value) points at \(lat), \(lon)")
     }
     
     func removePoint(latitude: Double, longitude: Double) {
+        var i = 0
         for point in markers {
             if (point.position.latitude == latitude && point.position.longitude == longitude) {
                 point.map = nil
+                markers.removeAtIndex(i)
                 Functions.vibrate()
             }
+            i += 1
         }
     }
     
