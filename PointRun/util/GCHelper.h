@@ -32,6 +32,9 @@
 @property (retain) UIViewController *presentingViewController;
 @property (retain) GKMatch *match;
 @property (assign) id <GCHelperDelegate> delegate;
+@property (retain) GKPlayer *invitedPlayer;
+@property (retain) GKInvite *invite;
+@property (retain) UIViewController *mainViewController;
 
 + (GCHelper *)sharedInstance;
 - (void)authenticateLocalUser;

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Functions.h"
 #import "GCHelper.h"
-#import <Mapbox-iOS-SDK/Mapbox.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 @interface ObjectiveBridge : NSObject
 

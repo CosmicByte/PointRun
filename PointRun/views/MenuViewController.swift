@@ -143,7 +143,7 @@ class MenuViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         var gvc = segue.destinationViewController as GameViewController
-        gvc.sendGameMode(gameMode: gameMode)
+        gvc.sendGameMode(gameMode: gameMode, multiplayer: !singlePlayer)
     }
     
     override func prefersStatusBarHidden() -> Bool {

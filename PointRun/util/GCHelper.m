@@ -14,6 +14,9 @@
 @synthesize match;
 @synthesize delegate;
 @synthesize playersDict;
+@synthesize invitedPlayer;
+@synthesize invite;
+@synthesize mainViewController;
 
 #pragma mark Initialization
 
@@ -244,6 +247,18 @@ static GCHelper *sharedHelper = nil;
     NSLog(@"Match failed with error: %@", error.localizedDescription);
     matchStarted = NO;
     [delegate matchEnded:@""];
+}
+
+#pragma mark GKLocalPlayerListener
+
+- (void)player:(GKPlayer *)player didAcceptInvite:(GKInvite *)inviteToAccept {
+    GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithInvite:inviteToAccept];
+    mmvc.matchmakerDelegate = self;
+    [mainViewController presentViewController:mmvc animated:YES completion:nil];
+}
+
+- (void)player:(GKPlayer *)player didRequestMatchWithOtherPlayers:(NSArray *)playersToInvite {
+    
 }
 
 @end

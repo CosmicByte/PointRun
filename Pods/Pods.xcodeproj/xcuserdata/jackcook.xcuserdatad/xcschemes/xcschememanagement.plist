@@ -4,32 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Mapbox.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-FMDB.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-GRMustache.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-JRSwizzle.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-Mapbox-iOS-SDK.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-SMCalloutView.xcscheme</key>
+		<key>Pods-Google-Maps-iOS-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,37 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>189AB4293193400EA2402B28</key>
+		<key>96C1BE954895499FA7577A7D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>29F306C73F254FA7A0CE0D13</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3918C72DF3FA4A388398A504</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>46E7247B69E842199B1C3C37</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5841C64B2FCB4A909024390F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>ADFFE45890904B4D885367A4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B1A9F70CC8D142E2B43AF936</key>
+		<key>BBFC73BCBD2840498C000AA1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

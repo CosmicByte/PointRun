@@ -9,15 +9,18 @@
 import UIKit
 import AudioToolbox
 
-class GameViewController: UIViewController, RMMapViewDelegate {
+class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, GCHelperDelegate {
 
+    var multiplayer = false
     var gameMode: PRGameMode = PRGameMode.Timed
     var menuView: MenuView!
     
     @IBOutlet var pointLabel: UILabel!
     @IBOutlet var timerImage: UIImageView!
     @IBOutlet var timerLabel: UILabel!
-    var mapView: RMMapView!
+    
+    var mapView: GMSMapView!
+    var markers = [GMSMarker]()
     
     var points = 0
     
@@ -27,10 +30,16 @@ class GameViewController: UIViewController, RMMapViewDelegate {
     var timer: NSTimer!
     
     var manager = CLLocationManager()
+    var location = CLLocation()
     var firstLocUpdate = true
+    
+    var players = [Player]()
+    var playerIDs = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //GCHelper.sharedInstance().findMatchWithMinPlayers(2, maxPlayers: 4, viewController: self, delegate: self)
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
@@ -41,17 +50,16 @@ class GameViewController: UIViewController, RMMapViewDelegate {
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("decreaseTime"), userInfo: nil, repeats: true)
         
         if (CLLocationManager.locationServicesEnabled()) {
-            var tileSource = RMMapboxSource(mapID: "jackcook.j8kcb1lh")
-            mapView = RMMapView(frame: CGRectMake(0, 64, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height), andTilesource: tileSource)
+            mapView = GMSMapView(frame: CGRectMake(0, 64, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height))
             mapView.delegate = self
-            mapView.showsUserLocation = true
-            mapView.setUserTrackingMode(RMUserTrackingModeFollow, animated: true)
-            mapView.adjustTilesForRetinaDisplay = true
-            mapView.hideAttribution = true
+            mapView.myLocationEnabled = true
             self.view.addSubview(mapView)
         } else {
             CLLocationManager().requestWhenInUseAuthorization()
         }
+        
+        manager.delegate = self
+        manager.startUpdatingLocation()
     }
     
     override func viewDidLayoutSubviews() {
@@ -99,56 +107,35 @@ class GameViewController: UIViewController, RMMapViewDelegate {
         menuView.show()
     }
     
-    func sendGameMode(gameMode gameType: PRGameMode) {
+    func sendGameMode(gameMode gameType: PRGameMode, multiplayer mplayer: Bool) {
         gameMode = gameType
+        multiplayer = mplayer
     }
     
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
     
-    func singleTapOnMap(map: RMMapView!, at point: CGPoint) {
-        var alertView = AlertView()
-        self.view.addSubview(alertView)
-        alertView.show()
-    }
-    
-    func mapView(mapView: RMMapView!, layerForAnnotation annotation: RMAnnotation!) -> RMMapLayer! {
-        if (annotation.isUserLocationAnnotation) {
-            var marker = RMMarker(UIImage: UIImage(named: "userLocation.png"))
-            return marker
-        } else if (annotation.userInfo as NSString == "points") {
-            var marker = RMMarker(UIImage: UIImage(named: "gamePoint.png"))
-            return marker
-        } else {
-            return nil
-        }
-    }
-    
-    func mapView(mapView: RMMapView!, didUpdateUserLocation userLocation: RMUserLocation!) {
-        if (firstLocUpdate) {
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        location = locations.last as CLLocation
+        mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 17.5, bearing: 0, viewingAngle: 360)
+        
+        if (firstLocUpdate && !multiplayer) {
             firstLocUpdate = false
             
             for (var i = 0; i < 40; i++) {
-                var lat = userLocation.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
-                var lon = userLocation.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
-                var points = arc4random_uniform(10) + 1
+                var lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
+                var lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
+                var points = Int(arc4random_uniform(10) + 1)
                 
-                var coords = CLLocationCoordinate2DMake(lat, lon)
-                var point = RMAnnotation(mapView: mapView, coordinate: coords, andTitle: NSString(format: "%d Point%@", points, (points == 1 ? "" : "s")))
-                point.userInfo = "points"
-                
-                mapView.addAnnotation(point)
-                NSLog("Created %d points at %f, %f", points, lat, lon)
+                addPoint(mapView, latitude: lat, longitude: lon, value: points)
             }
         } else {
-            var i = 0
-            for point: RMAnnotation in mapView.annotations as [RMAnnotation] {
-                if (i >= mapView.annotations.count) {break}
-                var pointCoords = point.coordinate
+            for point in markers {
+                var pointCoords = point.position
                 var pointLoc = CLLocation(latitude: pointCoords.latitude, longitude: pointCoords.longitude)
-                var userLoc = CLLocation(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-                if (userLoc.distanceFromLocation(pointLoc) <= 5 && !point.isUserLocationAnnotation) {
+                var userLoc = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                if (userLoc.distanceFromLocation(pointLoc) <= 5) {
                     if (gameMode == PRGameMode.Chance) {
                         if (arc4random_uniform(10) == 0) {
                             //[self endGame:0];
@@ -161,27 +148,122 @@ class GameViewController: UIViewController, RMMapViewDelegate {
                     var pointsInAnnotation: Int? = point.title.stringByReplacingOccurrencesOfString(" Point", withString: "", options: nil, range: nil).stringByReplacingOccurrencesOfString("s", withString: "", options: nil, range: nil).toInt()
                     self.points += pointsInAnnotation!
                     pointLabel.text = NSString(format: "%d %@", self.points, (self.points == 1 ? "Point" : "Points"))
-                    removePoint(i)
+                    removePoint(pointCoords.latitude, longitude: pointCoords.longitude)
                     
-                    var lat = userLocation.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
-                    var lon = userLocation.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
-                    var points = arc4random_uniform(10) + 1
+                    var lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
+                    var lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
+                    var points = Int(arc4random_uniform(10) + 1)
                     
-                    var coords = CLLocationCoordinate2DMake(lat, lon)
-                    var point = RMAnnotation(mapView: mapView, coordinate: coords, andTitle: NSString(format: "%d Point%@", points, (points == 1 ? "" : "s")))
-                    point.userInfo = "points"
-                    
-                    mapView.addAnnotation(point)
-                    NSLog("Created %d points at %f, %f", points, lat, lon)
+                    addPoint(mapView, latitude: lat, longitude: lon, value: points)
                 }
-                i += 1
             }
         }
     }
     
-    func removePoint(position: Int) {
-        var annotation = mapView.annotations[position] as RMAnnotation
-        mapView.removeAnnotation(annotation)
-        Functions.vibrate()
+    func addPoint(map: GMSMapView, latitude lat: Double, longitude lon: Double, value: Int) {
+        var coordinates = CLLocationCoordinate2DMake(lat, lon)
+        var point = GMSMarker(position: coordinates)
+        point.appearAnimation = kGMSMarkerAnimationPop
+        point.icon = UIImage(named: "gamePoint.png")
+        var s = value == 1 ? "" : "s"
+        point.snippet = "\(value) Point\(s)"
+        point.map = map
+        
+        markers.append(point)
+        
+        NSLog("Created \(points) points at \(lat), \(lon)")
+    }
+    
+    func removePoint(latitude: Double, longitude: Double) {
+        for point in markers {
+            if (point.position.latitude == latitude && point.position.longitude == longitude) {
+                point.map = nil
+                Functions.vibrate()
+            }
+        }
+    }
+    
+    // MARK: Sending data
+    
+    func sendData(data: NSData) {
+        var success = GCHelper.sharedInstance().match.sendDataToAllPlayers(data, withDataMode: GKMatchSendDataMode.Reliable, error: nil)
+        if (!success) {
+            NSLog("Error sending init packet")
+        }
+    }
+    
+    func sendLocationUpdate() {
+        var playerLocation = Message(playerLocationWithLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        self.sendData(NSKeyedArchiver.archivedDataWithRootObject(playerLocation))
+    }
+    
+    func sendPointLocation(latitude lat: Double, longitude lon: Double, points: Int) {
+        var pointLocation = Message(pointLocationWithLatitude: lat, longitude: lon, points: points)
+        self.sendData(NSKeyedArchiver.archivedDataWithRootObject(pointLocation))
+    }
+    
+    func sendGameOver(reason: Int) {
+        
+    }
+    
+    func sendPlayerData() {
+        var playerData = Message(playerDataWithWhatever: "helloworld")
+        self.sendData(NSKeyedArchiver.archivedDataWithRootObject(playerData))
+    }
+    
+    
+    // MARK: GCHelperDelegate
+    
+    func matchStarted() {
+        NSLog("Match started")
+        self.sendPlayerData()
+        self.sendLocationUpdate()
+        manager.startUpdatingLocation()
+        
+        mapView.userInteractionEnabled = false
+        
+        var alertView = AlertView()
+        self.view.addSubview(alertView)
+        alertView.show()
+    }
+    
+    func matchEnded(playerID: String!) {
+        NSLog("Match ended")
+    }
+    
+    func match(match: GKMatch!, didReceiveData data: NSData!, fromPlayer playerID: String!) {
+        var message = NSKeyedUnarchiver.unarchiveObjectWithData(data) as Message
+        switch (message.type!) {
+        case PRMessageType.PlayerLocation:
+            for player in players {
+                if (player.pid == playerID) {
+                    var coords = CLLocationCoordinate2DMake(message.latitude, message.longitude)
+                    player.mapPoint.position = coords
+                }
+            }
+        case PRMessageType.PointLocation:
+            addPoint(mapView, latitude: message.latitude, longitude: message.longitude, value: message.points)
+        case PRMessageType.PlayerData:
+            playerIDs.append(playerID)
+            var player = Player()
+            player.pid = playerID
+            player.name = "Friend"
+            GKPlayer.loadPlayersForIdentifiers([playerID]) { (players, error) -> Void in
+                var playerObj = players.last as GKPlayer
+                player.name = playerObj.displayName
+                NSLog("Opponent name: \(playerObj.displayName)")
+                
+                var point = GMSMarker(position: CLLocationCoordinate2DMake(message.latitude, message.longitude))
+                point.appearAnimation = kGMSMarkerAnimationPop
+                point.icon = UIImage(named: "gamePlayer.png")
+                point.snippet = player.name
+                point.map = self.mapView
+                player.mapPoint = point
+            }
+            player.playerNum = playerIDs.count - 1
+            player.image.image = UIImage(named: "gamePlayer.png")
+        default:
+            NSLog("\(wat)")
+        }
     }
 }
