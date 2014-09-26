@@ -174,8 +174,14 @@ class MenuViewController: UIViewController {
             gameMode = PRGameMode.Timed
             self.performSegueWithIdentifier("gameSegue", sender: self)
         } else {
-            gameMode = PRGameMode.Race
-            self.performSegueWithIdentifier("multiplayerSegue", sender: self)
+            if (GKLocalPlayer.localPlayer().authenticated) {
+                gameMode = PRGameMode.Race
+                self.performSegueWithIdentifier("multiplayerSegue", sender: self)
+            } else {
+                var alert = UIAlertController(title: "Game Center", message: "You are not signed into Game Center.", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
         }
     }
     

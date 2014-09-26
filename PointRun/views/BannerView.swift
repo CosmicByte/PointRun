@@ -16,8 +16,9 @@ class BannerView: UIView {
         self.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
         
         var textView = UILabel(frame: CGRectMake(16, -3, frame.size.width - 32, frame.size.height - 8))
-        var s = playername == "You" ? "ve" : "s"
-        textView.text = "\(playername) ha\(s) picked up \(points) points".stringByReplacingOccurrencesOfString("“", withString: "")
+        var ve = playername == "You" ? "ve" : "s"
+        var s = points == 1 ? "" : "s"
+        textView.text = "\(playername) ha\(ve) picked up \(points) point\(s)".stringByReplacingOccurrencesOfString("“", withString: "")
         textView.font = UIFont(name: "Open Sans", size: 13.0)
         textView.textAlignment = NSTextAlignment.Center
         
