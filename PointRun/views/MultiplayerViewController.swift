@@ -18,6 +18,11 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
         super.viewDidLoad()
     }
     
+    override func backButton() {
+        super.backButton()
+        started = false
+    }
+    
     override func viewDidLayoutSubviews() {
         if (!madeMatch) {
             GCHelper.sharedInstance().findMatchWithMinPlayers(2, maxPlayers: 4, viewController: self, delegate: self)

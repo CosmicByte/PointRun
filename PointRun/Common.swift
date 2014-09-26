@@ -9,6 +9,7 @@
 import Foundation
 
 let defaults = NSUserDefaults.standardUserDefaults()
+let nc = NSNotificationCenter.defaultCenter()
 
 let statisticNotification = "StatisticNotification"
 let achievementNotification = "AchievementNotification"
