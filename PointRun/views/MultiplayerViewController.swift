@@ -44,8 +44,8 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
         }
     }
     
-    override func removePoint(uuid: String) {
-        super.removePoint(uuid)
+    override func removePoint(uuid: String, thisdevice: Bool) {
+        super.removePoint(uuid, thisdevice: thisdevice)
         self.sendPointCaptured(uuid)
     }
     
@@ -147,15 +147,8 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
             addPoint(mapView, latitude: message.latitude, longitude: message.longitude, value: message.points, uuid: message.uuid)
         case PRMessageType.PointCaptured:
             if (!contains(deleted, message.uuid)) {
-                removePoint(message.uuid)
+                removePoint(message.uuid, thisdevice: false)
                 deleted.append(message.uuid)
-            }
-            
-            for player in players {
-                if (player.pid == playerID && points > 0) {
-                    banner(player.name, points: message.points)
-                }
-                break
             }
         default:
             NSLog("\(wat)")

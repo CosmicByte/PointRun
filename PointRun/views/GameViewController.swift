@@ -72,10 +72,6 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         }
     }
     
-    func banner(playername: String, points: Int) {
-        self.view.addSubview(BannerView(playername: playername, points: points))
-    }
-    
     func decreaseTime() {
         time += 1
         if (gameMode == PRGameMode.Timed) {
@@ -147,7 +143,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                 var pointCoords = point.position
                 var pointLoc = CLLocation(latitude: pointCoords.latitude, longitude: pointCoords.longitude)
                 var userLoc = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                if (userLoc.distanceFromLocation(pointLoc) <= 30) {
+                if (userLoc.distanceFromLocation(pointLoc) <= 7) {
                     if (gameMode == PRGameMode.Chance) {
                         if (arc4random_uniform(10) == 0) {
                             self.endGame(PRGameEnd.PoisonPin)
@@ -160,8 +156,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                     var pointsInAnnotation = (point.snippet.componentsSeparatedByString(" ")[0] as String).toInt()
                     self.points += pointsInAnnotation!
                     pointLabel.text = NSString(format: "%d %@", self.points, (self.points == 1 ? "Point" : "Points"))
-                    removePoint(point.userData as String)
-                    banner("You", points: pointsInAnnotation!)
+                    removePoint(point.userData as String, thisdevice: true)
                     
                     var lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                     var lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
@@ -188,13 +183,16 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         NSLog("Created \(value) points at \(lat), \(lon) with a UUID of \(uuid)")
     }
     
-    func removePoint(uuid: String) {
+    func removePoint(uuid: String, thisdevice: Bool) {
         var i = 0
         for point in markers {
             if (point.userData as String == uuid) {
                 point.map = nil
                 markers.removeAtIndex(i)
-                Functions.vibrate()
+                
+                if (thisdevice) {
+                    Functions.vibrate()
+                }
             }
             i += 1
         }
