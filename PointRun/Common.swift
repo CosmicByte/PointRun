@@ -42,4 +42,6 @@ enum PRGameEnd: Int {
     case PoisonPin = 2
     case Disconnect = 3
     case Error = 4
+    case MultiplayerWin = 5
+    case MultiplayerLoss = 6
 }

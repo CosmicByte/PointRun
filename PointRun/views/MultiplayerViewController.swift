@@ -36,11 +36,24 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
         if (started) {
             self.sendPlayerData()
         }
+        
+        if (points >= 100) {
+            self.endGame(PRGameEnd.MultiplayerWin)
+        }
     }
     
     override func removePoint(uuid: String) {
         super.removePoint(uuid)
         self.sendPointCaptured(uuid)
+    }
+    
+    override func endGame(reason: PRGameEnd) {
+        super.endGame(reason)
+        started = false
+    }
+    
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        points += 100
     }
  
     // MARK: Sending data
@@ -89,13 +102,11 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
             var uuid = NSUUID.UUID().UUIDString
             
             addPoint(mapView, latitude: lat, longitude: lon, value: points, uuid: uuid)
-            
             sendPointLocation(latitude: lat, longitude: lon, points: points, uuid: uuid)
         }
     }
     
     func matchEnded() {
-        started = false
         self.endGame(PRGameEnd.Disconnect)
     }
     
@@ -107,6 +118,9 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
                 for player in players {
                     if (player.pid == playerID) {
                         player.points = message.points
+                        if (player.points >= 100) {
+                            self.endGame(PRGameEnd.MultiplayerLoss)
+                        }
                         
                         var coords = CLLocationCoordinate2DMake(message.latitude, message.longitude)
                         player.mapPoint.position = coords

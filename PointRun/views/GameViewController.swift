@@ -196,6 +196,8 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     }
     
     func endGame(reason: PRGameEnd) {
+        manager.stopUpdatingLocation()
+        
         var alert = UIAlertController(title: "Game Over!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
             self.pop()
@@ -210,14 +212,20 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
             alert.message = "That pin was poisonous!"
         case PRGameEnd.Disconnect:
             alert.message = "Another player has been disconnected."
-            alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Destructive, handler:nil))
+            alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Destructive, handler: { (alertAction) -> Void in
+                self.manager.startUpdatingLocation()
+            }))
         case PRGameEnd.Error:
             alert.message = "An error has unexpectedly occured."
+        case PRGameEnd.MultiplayerWin:
+            alert.message = "You won!"
+        case PRGameEnd.MultiplayerLoss:
+            alert.message = "You lost."
         default:
             NSLog("\(wat)")
         }
         
-        alert.message! += "\nScore: \(points)"
+        alert.message! += "\nYour Score: \(points)"
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
