@@ -13,6 +13,8 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
     var madeMatch = false
     var started = false
     
+    var deleted = [String]()
+    
     override func viewDidLoad() {
         multiplayer = true
         super.viewDidLoad()
@@ -50,10 +52,6 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
     override func endGame(reason: PRGameEnd) {
         super.endGame(reason)
         started = false
-    }
-    
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        points += 100
     }
  
     // MARK: Sending data
@@ -148,7 +146,17 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
         case PRMessageType.PointLocation:
             addPoint(mapView, latitude: message.latitude, longitude: message.longitude, value: message.points, uuid: message.uuid)
         case PRMessageType.PointCaptured:
-            removePoint(message.uuid)
+            if (!contains(deleted, message.uuid)) {
+                removePoint(message.uuid)
+                deleted.append(message.uuid)
+            }
+            
+            for player in players {
+                if (player.pid == playerID && points > 0) {
+                    banner(player.name, points: message.points)
+                }
+                break
+            }
         default:
             NSLog("\(wat)")
         }

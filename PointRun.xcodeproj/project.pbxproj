@@ -78,6 +78,7 @@
 		EB3E3BBF19A58F4500A768DD /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E3B7819A58F4500A768DD /* GameViewController.swift */; };
 		EB3E3BC019A58F4500A768DD /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E3B7919A58F4500A768DD /* MenuView.swift */; };
 		EB3E3BC119A58F4500A768DD /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E3B7A19A58F4500A768DD /* MenuViewController.swift */; };
+		EB60357E19D520BB009BE80F /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60357D19D520BB009BE80F /* BannerView.swift */; };
 		EB67142F19D46BD700E0EF63 /* MultiplayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67142E19D46BD700E0EF63 /* MultiplayerViewController.swift */; };
 		EB67143519D4746E00E0EF63 /* gamemodeRace.png in Resources */ = {isa = PBXBuildFile; fileRef = EB67143419D4746E00E0EF63 /* gamemodeRace.png */; };
 		EB67508B19A58DE4007D8EA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67508A19A58DE4007D8EA1 /* AppDelegate.swift */; };
@@ -175,6 +176,7 @@
 		EB3E3B7819A58F4500A768DD /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		EB3E3B7919A58F4500A768DD /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		EB3E3B7A19A58F4500A768DD /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		EB60357D19D520BB009BE80F /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		EB67142E19D46BD700E0EF63 /* MultiplayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerViewController.swift; sourceTree = "<group>"; };
 		EB67143419D4746E00E0EF63 /* gamemodeRace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamemodeRace.png; sourceTree = "<group>"; };
 		EB67508519A58DE4007D8EA1 /* PointRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -343,6 +345,7 @@
 				EB3E3B7919A58F4500A768DD /* MenuView.swift */,
 				EB3E3B7A19A58F4500A768DD /* MenuViewController.swift */,
 				EB67142E19D46BD700E0EF63 /* MultiplayerViewController.swift */,
+				EB60357D19D520BB009BE80F /* BannerView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 				EBCEC8FF19D39E67005E301B /* Communication.swift in Sources */,
 				EB67508B19A58DE4007D8EA1 /* AppDelegate.swift in Sources */,
 				EB3E3BBC19A58F4500A768DD /* GCHelper.m in Sources */,
+				EB60357E19D520BB009BE80F /* BannerView.swift in Sources */,
 				EB3E3BBE19A58F4500A768DD /* AlertView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

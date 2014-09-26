@@ -72,6 +72,10 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         }
     }
     
+    func banner(playername: String, points: Int) {
+        self.view.addSubview(BannerView(playername: playername, points: points))
+    }
+    
     func decreaseTime() {
         time += 1
         if (gameMode == PRGameMode.Timed) {
@@ -143,7 +147,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                 var pointCoords = point.position
                 var pointLoc = CLLocation(latitude: pointCoords.latitude, longitude: pointCoords.longitude)
                 var userLoc = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                if (userLoc.distanceFromLocation(pointLoc) <= 5) {
+                if (userLoc.distanceFromLocation(pointLoc) <= 30) {
                     if (gameMode == PRGameMode.Chance) {
                         if (arc4random_uniform(10) == 0) {
                             self.endGame(PRGameEnd.PoisonPin)
@@ -157,6 +161,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                     self.points += pointsInAnnotation!
                     pointLabel.text = NSString(format: "%d %@", self.points, (self.points == 1 ? "Point" : "Points"))
                     removePoint(point.userData as String)
+                    banner("You", points: pointsInAnnotation!)
                     
                     var lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                     var lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
