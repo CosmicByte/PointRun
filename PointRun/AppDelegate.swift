@@ -14,8 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
-        //GCHelper.sharedInstance().authenticateLocalUser()
-        helper.authenticateLocalUser()
+        GCHelper.sharedInstance.authenticateLocalUser()
         GMSServices.provideAPIKey("AIzaSyBTxTpBslCxwVNOjOLM9IyoaoX8Vovw0Dw")
         
         return true

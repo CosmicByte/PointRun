@@ -26,6 +26,13 @@ class GCHelper: NSObject, GKMatchmakerViewControllerDelegate, GKGameCenterContro
     var matchStarted = false
     var authenticated = false
     
+    class var sharedInstance: GCHelper {
+        struct Static {
+            static let instance = GCHelper()
+        }
+        return Static.instance
+    }
+    
     override init() {
         super.init()
         nc.addObserver(self, selector: Selector("authenticationChanged"), name: GKPlayerAuthenticationDidChangeNotificationName, object: nil)
