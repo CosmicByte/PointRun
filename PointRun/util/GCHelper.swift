@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 CosmicByte. All rights reserved.
 //
 
+import GameKit
+
 protocol GCHelperDelegate {
     func matchStarted()
     func match(match: GKMatch, didReceiveData: NSData, fromPlayer: String)

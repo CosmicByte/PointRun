@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 CosmicByte. All rights reserved.
 //
 
+import GameKit
 import UIKit
 
 class MultiplayerViewController: GameViewController, GCHelperDelegate {

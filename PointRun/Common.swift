@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 CosmicByte. All rights reserved.
 //
 
-import Foundation
+import AudioToolbox
 
 let defaults = NSUserDefaults.standardUserDefaults()
 let nc = NSNotificationCenter.defaultCenter()
@@ -46,4 +46,8 @@ enum PRGameEnd: Int {
     case Error = 4
     case MultiplayerWin = 5
     case MultiplayerLoss = 6
+}
+
+func vibrate() {
+    AudioServicesPlaySystemSound(1352)
 }

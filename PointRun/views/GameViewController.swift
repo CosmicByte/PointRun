@@ -191,7 +191,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                 markers.removeAtIndex(i)
                 
                 if (thisdevice) {
-                    Functions.vibrate()
+                    vibrate()
                 }
             }
             i += 1
