@@ -27,7 +27,8 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
     
     override func viewDidLayoutSubviews() {
         if (!madeMatch) {
-            GCHelper.sharedInstance().findMatchWithMinPlayers(2, maxPlayers: 4, viewController: self, delegate: self)
+            helper.findMatchWithMinPlayers(2, maxPlayers: 4, viewController: self, delegate: self)
+            //GCHelper.sharedInstance(nil).findMatchWithMinPlayers(2, maxPlayers: 4, viewController: self, delegate: self)
             madeMatch = true
         }
     }
@@ -57,7 +58,7 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
     // MARK: Sending data
 
     func sendData(data: NSData) {
-        var success = GCHelper.sharedInstance().match.sendDataToAllPlayers(data, withDataMode: GKMatchSendDataMode.Reliable, error: nil)
+        var success = helper.match.sendDataToAllPlayers(data, withDataMode: GKMatchSendDataMode.Reliable, error: nil)
         if (!success) {
             NSLog("Error sending init packet")
         }
@@ -108,7 +109,7 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
         self.endGame(PRGameEnd.Disconnect)
     }
     
-    func match(match: GKMatch!, didReceiveData data: NSData!, fromPlayer playerID: String!) {
+    func match(match: GKMatch, didReceiveData data: NSData, fromPlayer playerID: String) {
         var message = NSKeyedUnarchiver.unarchiveObjectWithData(data) as Message
         switch (message.type!) {
         case PRMessageType.PlayerData:

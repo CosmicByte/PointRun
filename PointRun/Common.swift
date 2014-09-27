@@ -21,6 +21,8 @@ let menuWidth: CGFloat = 260
 let alertWidth: CGFloat = 280
 let alertHeight: CGFloat = 175
 
+let helper = GCHelper()
+
 let wat = "i dont want to live on this planet anymore"
 
 enum PRGameMode: Int {

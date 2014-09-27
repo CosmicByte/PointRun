@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "Functions.h"
-#import "GCHelper.h"
+//#import "GCHelper.h"
+#import <GameKit/GameKit.h>
 #import <GoogleMaps/GoogleMaps.h>
 
 @interface ObjectiveBridge : NSObject
