@@ -279,25 +279,33 @@ class MenuView: UIView {
                 heading.sizeToFit()
                 heading.frame = CGRectMake(16, (statisticCell.frame.size.height - heading.frame.size.height) / 2, heading.frame.size.width, heading.frame.size.height)
                 statisticCell.addSubview(heading)
-            // STATISTICS NEED TO REFLECT ACTUAL VALUES
             case 1:
                 name.text = "Game wins"
-                score.text = "3"
+                score.text = String(defaults.integerForKey(gameWinsStatistic))
             case 2:
-                name.text = "Time played"
-                score.text = "4"
+                var time = defaults.integerForKey(timePlayedStatistic)
+                if (time < 60) {
+                    name.text = "Seconds played"
+                    score.text = String(time)
+                } else if (time >= 60 && time < 3600) {
+                    name.text = "Minutes played"
+                    score.text = String(time / 60)
+                } else if (time >= 3600) {
+                    name.text = "Hours played"
+                    score.text = String(time / 3600)
+                }
             case 3:
                 name.text = "Meters travelled"
-                score.text = "250"
+                score.text = String(defaults.integerForKey(metersTravelledStatistic))
             case 4:
                 name.text = "Pins collected"
-                score.text = "35"
+                score.text = String(defaults.integerForKey(pinsCollectedStatistic))
             case 5:
                 name.text = "Points earned"
-                score.text = "35"
+                score.text = String(defaults.integerForKey(pointsEarnedStatistic))
             case 6:
                 name.text = "Poison pins"
-                score.text = "2"
+                score.text = String(defaults.integerForKey(poisonPinsStatistic))
             default:
                 NSLog("i dont want to live on this planet anymore")
             }

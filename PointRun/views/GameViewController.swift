@@ -75,6 +75,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     
     func decreaseTime() {
         defaults.setInteger(defaults.integerForKey(addictedDefault) + 1, forKey: addictedDefault)
+        defaults.setInteger(defaults.integerForKey(timePlayedStatistic) + 1, forKey: timePlayedStatistic)
         
         if (gameMode == PRGameMode.Timed) {
             var ssec = NSString(format: "%@%d", (sec > 9 ? "" : "0"), sec)
@@ -131,6 +132,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
             var distance = Int(location.distanceFromLocation(lastLocation))
             defaults.setInteger(distance + defaults.integerForKey(marathonManDefault), forKey: marathonManDefault)
             checkAchievement(PRAchievement.MarathonMan)
+            defaults.setInteger(defaults.integerForKey(metersTravelledStatistic) + distance, forKey: metersTravelledStatistic)
         }
         lastLocation = location
         
@@ -160,6 +162,8 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                             defaults.setInteger(defaults.integerForKey(badLuckDefault) + 1, forKey: badLuckDefault)
                             checkAchievement(PRAchievement.BadLuck)
                             
+                            defaults.setInteger(defaults.integerForKey(poisonPinsStatistic) + 1, forKey: poisonPinsStatistic)
+                            
                             return
                         } else {
                             defaults.setInteger(self.points, forKey: evaderDefault)
@@ -185,6 +189,9 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                     } else {
                         defaults.setInteger(0, forKey: hatTrickDefault)
                     }
+                    
+                    defaults.setInteger(defaults.integerForKey(pinsCollectedStatistic) + 1, forKey: pinsCollectedStatistic)
+                    defaults.setInteger(defaults.integerForKey(pointsEarnedStatistic) + value, forKey: pointsEarnedStatistic)
                 }
             }
         }

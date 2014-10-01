@@ -46,6 +46,8 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
             
             defaults.setInteger(defaults.integerForKey(k100Default) + 1, forKey: k100Default)
             checkAchievement(PRAchievement.k100)
+            
+            defaults.setInteger(defaults.integerForKey(gameWinsStatistic) + 1, forKey: gameWinsStatistic)
         }
     }
     

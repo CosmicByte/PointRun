@@ -25,6 +25,13 @@ let addictedCompleted = "AddictedCompleted"
 let badLuckCompleted = "BadLuckCompleted"
 let evaderCompleted = "EvaderCompleted"
 
+let gameWinsStatistic = "GameWins"
+let timePlayedStatistic = "TimePlayed"
+let metersTravelledStatistic = "MetersTravelled"
+let pinsCollectedStatistic = "PinsCollected"
+let pointsEarnedStatistic = "PointsEarned"
+let poisonPinsStatistic = "PoisonPins"
+
 let statisticNotification = "Statistic"
 let achievementNotification = "Achievement"
 let leaderboardNotification = "Leaderboard"
