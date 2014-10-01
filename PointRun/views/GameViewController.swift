@@ -232,6 +232,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
             NSLog("0")
         case PRGameEnd.TimerDone:
             alert.message = "You have run out of time!"
+            GCHelper.sharedInstance.reportLeaderboardIdentifier("mosttimedpoints", score: self.points)
         case PRGameEnd.PoisonPin:
             alert.message = "That pin was poisonous!"
         case PRGameEnd.Disconnect:
