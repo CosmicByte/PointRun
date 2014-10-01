@@ -47,6 +47,7 @@ class MenuViewController: UIViewController {
     
     @IBAction func menuButton(sender: AnyObject) {
         menuView = MenuView()
+        menuView.viewController = self
         menuView.showStatistics()
         self.view.addSubview(menuView)
         menuView.show()

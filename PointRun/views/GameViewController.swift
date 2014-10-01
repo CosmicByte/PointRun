@@ -95,7 +95,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     }
     
     func backButton() {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.endGame(PRGameEnd.MenuExit)
     }
     
     func mapChanged() {
@@ -116,6 +116,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     
     @IBAction func menuButton(sender: AnyObject) {
         menuView = MenuView()
+        menuView.viewController = self
         menuView.showSettings()
         self.view.addSubview(menuView)
         menuView.show()
@@ -231,6 +232,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     
     func endGame(reason: PRGameEnd) {
         manager.stopUpdatingLocation()
+        timer.invalidate()
         
         var alert = UIAlertController(title: "Game Over!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
@@ -239,7 +241,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         
         switch (reason) {
         case PRGameEnd.MenuExit:
-            break
+            self.navigationController?.popViewControllerAnimated(true)
         case PRGameEnd.TimerDone:
             alert.message = "You have run out of time!"
             GCHelper.sharedInstance.reportLeaderboardIdentifier("mosttimedpoints", score: self.points)

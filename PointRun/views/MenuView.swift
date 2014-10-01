@@ -21,6 +21,8 @@ class MenuView: UIView {
     var device = UIScreen.mainScreen().bounds.size
     var statisticsShown = false
     
+    var viewController: UIViewController!
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -357,6 +359,29 @@ class MenuView: UIView {
     }
     
     func resetStatistics() {
-        NSLog("test")
+        var alert = UIAlertController(title: "Reset", message: "Are you sure you want to reset your statistics?", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Destructive, handler: { (alertAction) -> Void in
+            defaults.setInteger(0, forKey: gameWinsStatistic)
+            defaults.setInteger(0, forKey: timePlayedStatistic)
+            defaults.setInteger(0, forKey: metersTravelledStatistic)
+            defaults.setInteger(0, forKey: pinsCollectedStatistic)
+            defaults.setInteger(0, forKey: pointsEarnedStatistic)
+            defaults.setInteger(0, forKey: poisonPinsStatistic)
+            
+            for view in self.menuView.subviews {
+                if (view is UIImageView) {
+                    for label in view.subviews {
+                        if (label is UILabel) {
+                            // It works, so...
+                            if (label.frame.origin.x > 100) {
+                                (label as UILabel).text = "0"
+                            }
+                        }
+                    }
+                }
+            }
+        }))
+        viewController.presentViewController(alert, animated: true, completion: nil)
     }
 }
