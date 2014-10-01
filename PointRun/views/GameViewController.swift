@@ -110,7 +110,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         case 3:
             mapView.mapType = kGMSTypeTerrain
         default:
-            NSLog("\(wat)")
+            NSLog(wat)
         }
     }
     
@@ -239,7 +239,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         
         switch (reason) {
         case PRGameEnd.MenuExit:
-            NSLog("0")
+            break
         case PRGameEnd.TimerDone:
             alert.message = "You have run out of time!"
             GCHelper.sharedInstance.reportLeaderboardIdentifier("mosttimedpoints", score: self.points)
@@ -257,7 +257,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         case PRGameEnd.MultiplayerLoss:
             alert.message = "You lost."
         default:
-            NSLog("\(wat)")
+            NSLog(wat)
         }
         
         alert.message! += "\nYour Score: \(points)"

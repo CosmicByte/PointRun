@@ -46,7 +46,7 @@ class Message: NSObject {
         case 2:
             return PRMessageType.PointCaptured
         default:
-            NSLog("\(wat)")
+            NSLog(wat)
         }
         
         return PRMessageType.PlayerData
@@ -67,7 +67,7 @@ class Message: NSObject {
         case 2:
             type = PRMessageType.PointCaptured
         default:
-            NSLog("\(wat)")
+            NSLog(wat)
         }
     }
     

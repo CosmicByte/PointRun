@@ -51,6 +51,6 @@ func checkAchievement(achievement: PRAchievement) {
             defaults.setBool(true, forKey: evaderCompleted)
         }
     default:
-        NSLog("\(wat)")
+        NSLog(wat)
     }
 }

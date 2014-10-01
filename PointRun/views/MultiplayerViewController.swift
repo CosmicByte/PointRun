@@ -158,7 +158,7 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
                 deleted.append(message.uuid)
             }
         default:
-            NSLog("\(wat)")
+            NSLog(wat)
         }
     }
 }

@@ -307,7 +307,7 @@ class MenuView: UIView {
                 name.text = "Poison pins"
                 score.text = String(defaults.integerForKey(poisonPinsStatistic))
             default:
-                NSLog("i dont want to live on this planet anymore")
+                NSLog(wat)
             }
             
             if (i != 0) {
