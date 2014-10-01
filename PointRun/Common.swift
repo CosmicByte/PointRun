@@ -11,11 +11,25 @@ import AudioToolbox
 let defaults = NSUserDefaults.standardUserDefaults()
 let nc = NSNotificationCenter.defaultCenter()
 
-let statisticNotification = "StatisticNotification"
-let achievementNotification = "AchievementNotification"
-let leaderboardNotification = "LeaderboardNotification"
-let backNotification = "BackNotification"
-let mapChangedNotification = "MapChangedNotification"
+let marathonManDefault = "MarathonMan"
+let hatTrickDefault = "HatTrick"
+let k100Default = "100"
+let addictedDefault = "Addicted"
+let badLuckDefault = "BadLuck"
+let evaderDefault = "Evader"
+
+let marathonManCompleted = "MarathonManCompleted"
+let hatTrickCompleted = "HatTrickCompleted"
+let k100Completed = "100Completed"
+let addictedCompleted = "AddictedCompleted"
+let badLuckCompleted = "BadLuckCompleted"
+let evaderCompleted = "EvaderCompleted"
+
+let statisticNotification = "Statistic"
+let achievementNotification = "Achievement"
+let leaderboardNotification = "Leaderboard"
+let backNotification = "Back"
+let mapChangedNotification = "MapChanged"
 
 let menuWidth: CGFloat = 260
 let alertWidth: CGFloat = 280
@@ -44,6 +58,15 @@ enum PRGameEnd: Int {
     case Error = 4
     case MultiplayerWin = 5
     case MultiplayerLoss = 6
+}
+
+enum PRAchievement: Int {
+    case MarathonMan = 0
+    case HatTrick = 1
+    case k100 = 2
+    case Addicted = 3
+    case BadLuck = 4
+    case Evader = 5
 }
 
 func vibrate() {

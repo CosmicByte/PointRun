@@ -15,6 +15,8 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     var gameMode: PRGameMode = PRGameMode.Timed
     var menuView: MenuView!
     
+    var lastLocation: CLLocation!
+    
     @IBOutlet var pointLabel: UILabel!
     @IBOutlet var timerImage: UIImageView!
     @IBOutlet var timerLabel: UILabel!
@@ -26,7 +28,6 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     
     var min = 5
     var sec = 0
-    var time = 0
     var timer: NSTimer!
     
     var manager = CLLocationManager()
@@ -73,7 +74,8 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     }
     
     func decreaseTime() {
-        time += 1
+        defaults.setInteger(defaults.integerForKey(addictedDefault) + 1, forKey: addictedDefault)
+        
         if (gameMode == PRGameMode.Timed) {
             var ssec = NSString(format: "%@%d", (sec > 9 ? "" : "0"), sec)
             timerLabel.text = NSString(format: "%d:%@", min, ssec)
@@ -125,6 +127,13 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         location = locations.last as CLLocation
         
+        if (lastLocation != nil) {
+            var distance = Int(location.distanceFromLocation(lastLocation))
+            defaults.setInteger(distance + defaults.integerForKey(marathonManDefault), forKey: marathonManDefault)
+            checkAchievement(PRAchievement.MarathonMan)
+        }
+        lastLocation = location
+        
         if (firstLocUpdate && !multiplayer) {
             firstLocUpdate = false
             
@@ -133,10 +142,10 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
             for (var i = 0; i < 40; i++) {
                 var lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                 var lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
-                var points = Int(arc4random_uniform(10) + 1)
+                var value = Int(arc4random_uniform(10) + 1)
                 var uuid = NSUUID.UUID().UUIDString
                 
-                addPoint(mapView, latitude: lat, longitude: lon, value: points, uuid: uuid)
+                addPoint(mapView, latitude: lat, longitude: lon, value: value, uuid: uuid)
             }
         } else {
             for point in markers {
@@ -147,9 +156,14 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                     if (gameMode == PRGameMode.Chance) {
                         if (arc4random_uniform(10) == 0) {
                             self.endGame(PRGameEnd.PoisonPin)
+                            
+                            defaults.setInteger(defaults.integerForKey(badLuckDefault) + 1, forKey: badLuckDefault)
+                            checkAchievement(PRAchievement.BadLuck)
+                            
                             return
                         } else {
-                            //[[Achievement sharedInstance] checkEvader:self.points];
+                            defaults.setInteger(self.points, forKey: evaderDefault)
+                            checkAchievement(PRAchievement.Evader)
                         }
                     }
                     
@@ -160,10 +174,17 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                     
                     var lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                     var lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
-                    var points = Int(arc4random_uniform(10) + 1)
+                    var value = Int(arc4random_uniform(10) + 1)
                     var uuid = NSUUID.UUID().UUIDString
                     
-                    addPoint(mapView, latitude: lat, longitude: lon, value: points, uuid: uuid)
+                    addPoint(mapView, latitude: lat, longitude: lon, value: value, uuid: uuid)
+                    
+                    if (value == 10) {
+                        defaults.setInteger(defaults.integerForKey(hatTrickDefault) + 1, forKey: hatTrickDefault)
+                        checkAchievement(PRAchievement.HatTrick)
+                    } else {
+                        defaults.setInteger(0, forKey: hatTrickDefault)
+                    }
                 }
             }
         }
