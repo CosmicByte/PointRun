@@ -207,7 +207,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         point.map = map
         point.userData = uuid
         
-        var colors = [UIColor(red: 0.88, green: 0.22, blue: 0.18, alpha: 1.00), UIColor(red: 0.89, green: 0.31, blue: 0.16, alpha: 1.00), UIColor(red: 0.90, green: 0.40, blue: 0.14, alpha: 1.00), UIColor(red: 0.91, green: 0.50, blue: 0.12, alpha: 1.00), UIColor(red: 0.92, green: 0.60, blue: 0.10, alpha: 1.00), UIColor(red: 0.93, green: 0.70, blue: 0.08, alpha: 1.00), UIColor(red: 0.73, green: 0.73, blue: 0.15, alpha: 1.00), UIColor(red: 0.54, green: 0.74, blue: 0.23, alpha: 1.00), UIColor(red: 0.36, green: 0.76, blue: 0.32, alpha: 1.00), UIColor(red: 0.19, green: 0.78, blue: 0.41, alpha: 1.00)]
+        var colors = [UIColor(red: 0.88, green: 0.22, blue: 0.18, alpha: 1.00), UIColor(red: 0.88, green: 0.22, blue: 0.18, alpha: 1.00), UIColor(red: 0.88, green: 0.22, blue: 0.18, alpha: 1.00), UIColor(red: 0.92, green: 0.60, blue: 0.10, alpha: 1.00), UIColor(red: 0.92, green: 0.60, blue: 0.10, alpha: 1.00), UIColor(red: 0.92, green: 0.60, blue: 0.10, alpha: 1.00), UIColor(red: 0.92, green: 0.60, blue: 0.10, alpha: 1.00), UIColor(red: 0.19, green: 0.78, blue: 0.41, alpha: 1.00), UIColor(red: 0.19, green: 0.78, blue: 0.41, alpha: 1.00), UIColor(red: 0.19, green: 0.78, blue: 0.41, alpha: 1.00)]
         point.icon = GMSMarker.markerImageWithColor(colors[value - 1])
         
         markers.append(point)

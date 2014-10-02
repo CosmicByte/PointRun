@@ -85,6 +85,7 @@
 		EB991F5919DB5FE800ECF07A /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB991F5819DB5FE800ECF07A /* Achievement.swift */; };
 		EBCEC8FF19D39E67005E301B /* Communication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCEC8FE19D39E67005E301B /* Communication.swift */; };
 		EBCEC90119D3A9C4005E301B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCEC90019D3A9C4005E301B /* Player.swift */; };
+		EBF7346D19DCEA0E004859A8 /* 180.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF7346C19DCEA0E004859A8 /* 180.png */; };
 		ECCBB732D96B4ADFAE3D925F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7AEF9618E647448D8ED79E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -185,6 +186,7 @@
 		EB991F5819DB5FE800ECF07A /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		EBCEC8FE19D39E67005E301B /* Communication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Communication.swift; sourceTree = "<group>"; };
 		EBCEC90019D3A9C4005E301B /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		EBF7346C19DCEA0E004859A8 /* 180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 180.png; sourceTree = "<group>"; };
 		EFEDC0B079D0105F4A3026E6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -247,6 +249,7 @@
 		EB3E3B2D19A58F4500A768DD /* icon */ = {
 			isa = PBXGroup;
 			children = (
+				EBF7346C19DCEA0E004859A8 /* 180.png */,
 				EB3E3B2E19A58F4500A768DD /* 100.png */,
 				EB3E3B2F19A58F4500A768DD /* 1024.png */,
 				EB3E3B3019A58F4500A768DD /* 114.png */,
@@ -519,6 +522,7 @@
 				EB3E3B9819A58F4500A768DD /* element11.png in Resources */,
 				EB3E3B9B19A58F4500A768DD /* element14.png in Resources */,
 				EB67509019A58DE4007D8EA1 /* Main.storyboard in Resources */,
+				EBF7346D19DCEA0E004859A8 /* 180.png in Resources */,
 				EB3E3B8E19A58F4500A768DD /* element01.png in Resources */,
 				EB3E3B9619A58F4500A768DD /* element09.png in Resources */,
 				EB3E3B7B19A58F4500A768DD /* OpenSans-Regular.ttf in Resources */,

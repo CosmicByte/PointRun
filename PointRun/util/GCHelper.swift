@@ -41,7 +41,7 @@ class GCHelper: NSObject, GKMatchmakerViewControllerDelegate, GKGameCenterContro
     // MARK: Internal functions
     
     func authenticationChanged() {
-        if (GKLocalPlayer.localPlayer().authenticated && !authenticated) {
+        if (GKLocalPlayer.localPlayer().authenticated && authenticated) {
             NSLog("Authentication changed: player authenticated")
             authenticated = true
         } else {
@@ -125,6 +125,7 @@ class GCHelper: NSObject, GKMatchmakerViewControllerDelegate, GKGameCenterContro
     func reportLeaderboardIdentifier(identifier: String, score: Int) {
         var scoreObject = GKScore(leaderboardIdentifier: identifier)
         scoreObject.value = Int64(score)
+        NSLog("\(scoreObject.value)")
         GKScore.reportScores([scoreObject], withCompletionHandler: { (error) -> Void in
             if (error != nil) {
                 NSLog("Error in reporting leaderboard scores: \(error)")
