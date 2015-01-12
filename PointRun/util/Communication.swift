@@ -76,6 +76,6 @@ class Message: NSObject {
         aCoder.encodeDouble(longitude, forKey: "longitude")
         aCoder.encodeInteger(points, forKey: "points")
         aCoder.encodeObject(uuid, forKey: "uuid")
-        aCoder.encodeInteger(type.toRaw(), forKey: "type")
+        aCoder.encodeInteger(type.rawValue, forKey: "type")
     }
 }

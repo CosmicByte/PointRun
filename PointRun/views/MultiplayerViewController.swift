@@ -29,7 +29,6 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
     override func viewDidLayoutSubviews() {
         if (!madeMatch) {
             GCHelper.sharedInstance.findMatchWithMinPlayers(2, maxPlayers: 4, viewController: self, delegate: self)
-            //GCHelper.sharedInstance(nil).findMatchWithMinPlayers(2, maxPlayers: 4, viewController: self, delegate: self)
             madeMatch = true
         }
     }
@@ -104,7 +103,7 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
             var lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
             var lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
             var points = Int(arc4random_uniform(10) + 1)
-            var uuid = NSUUID.UUID().UUIDString
+            var uuid = NSUUID().UUIDString
             
             addPoint(mapView, latitude: lat, longitude: lon, value: points, uuid: uuid)
             sendPointLocation(latitude: lat, longitude: lon, points: points, uuid: uuid)

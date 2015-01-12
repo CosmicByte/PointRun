@@ -146,7 +146,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                 var lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                 var lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                 var value = Int(arc4random_uniform(10) + 1)
-                var uuid = NSUUID.UUID().UUIDString
+                var uuid = NSUUID().UUIDString
                 
                 addPoint(mapView, latitude: lat, longitude: lon, value: value, uuid: uuid)
             }
@@ -180,7 +180,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                     var lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                     var lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                     var value = Int(arc4random_uniform(10) + 1)
-                    var uuid = NSUUID.UUID().UUIDString
+                    var uuid = NSUUID().UUIDString
                     
                     addPoint(mapView, latitude: lat, longitude: lon, value: value, uuid: uuid)
                     
