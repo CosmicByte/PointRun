@@ -39,7 +39,6 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var nc = NSNotificationCenter.defaultCenter()
         nc.addObserver(self, selector: Selector("menuTab:"), name: statisticNotification, object: nil)
         nc.addObserver(self, selector: Selector("menuTab:"), name: achievementNotification, object: nil)
         nc.addObserver(self, selector: Selector("menuTab:"), name: leaderboardNotification, object: nil)
@@ -49,16 +48,17 @@ class MenuViewController: UIViewController {
         menuView = MenuView()
         menuView.viewController = self
         menuView.showStatistics()
-        self.view.addSubview(menuView)
+        view.addSubview(menuView)
         menuView.show()
     }
     
     @IBAction func singlePlayerDown(sender: AnyObject) {
-        if (!singlePlayer) {
+        if !singlePlayer {
             singlePlayerButton.setImage(UIImage(named: "element19.png"), forState: UIControlState.Normal)
         } else {
             singlePlayerButton.setImage(UIImage(named: "element18.png"), forState: UIControlState.Normal)
         }
+        
         singlePlayerButton.setImage(UIImage(named: "element07.png"), forState: UIControlState.Highlighted)
         
         singlePlayerImage.image = UIImage(named: "singleWhite.png")
@@ -91,7 +91,7 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction func singlePlayerUpOutside(sender: AnyObject) {
-        if (singlePlayer) {
+        if singlePlayer {
             singlePlayerButton.setImage(UIImage(named: "element18.png"), forState: UIControlState.Normal)
             singlePlayerImage.image = UIImage(named: "singleWhite.png")
         } else {
@@ -105,7 +105,7 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction func singlePlayerDragExit(sender: AnyObject) {
-        if (singlePlayer) {
+        if singlePlayer {
             singlePlayerImage.image = UIImage(named: "singleWhite.png")
         } else {
             singlePlayerImage.image = UIImage(named: "singleGreen.png")
@@ -146,7 +146,7 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction func multiPlayerUpOutside(sender: AnyObject) {
-        if (singlePlayer) {
+        if singlePlayer {
             multiPlayerButton.setImage(UIImage(named: "element19.png"), forState: UIControlState.Normal)
             multiPlayerImage.image = UIImage(named: "multiGreen.png")
         } else {
@@ -164,19 +164,19 @@ class MenuViewController: UIViewController {
     }
     
     func menuTab(note: NSNotification) {
-        if (note.name == achievementNotification) {
+        if note.name == achievementNotification {
             GCHelper.sharedInstance.showGameCenter(self, viewState: GKGameCenterViewControllerState.Achievements)
-        } else if (note.name == leaderboardNotification) {
+        } else if note.name == leaderboardNotification {
             GCHelper.sharedInstance.showGameCenter(self, viewState: GKGameCenterViewControllerState.Leaderboards)
         }
     }
     
     @IBAction func timedButton(sender: AnyObject) {
-        if (singlePlayer) {
+        if singlePlayer {
             gameMode = PRGameMode.Timed
             self.performSegueWithIdentifier("gameSegue", sender: self)
         } else {
-            if (GKLocalPlayer.localPlayer().authenticated) {
+            if GKLocalPlayer.localPlayer().authenticated {
                 gameMode = PRGameMode.Race
                 self.performSegueWithIdentifier("multiplayerSegue", sender: self)
             } else {
@@ -198,7 +198,7 @@ class MenuViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if (segue.identifier == "gameSegue") {
+        if segue.identifier == "gameSegue" {
             var gvc = segue.destinationViewController as GameViewController
             gvc.sendGameMode(gameMode: gameMode)
         } else {

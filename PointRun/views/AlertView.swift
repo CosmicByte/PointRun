@@ -26,32 +26,32 @@ class AlertView: UIView {
         opacityView.backgroundColor = UIColor.blackColor()
         opacityView.alpha = 0.0
         
-        var tgr = UITapGestureRecognizer(target: self, action: Selector("hide"))
+        let tgr = UITapGestureRecognizer(target: self, action: Selector("hide"))
         opacityView.addGestureRecognizer(tgr)
         
         
         alertView = UIView(frame: CGRectMake((device.width - alertWidth) / 2, (device.height - alertHeight) / 2, alertWidth, alertHeight))
         alertView.alpha = 0.0
         
-        var alertBackground = UIImageView(frame: CGRectMake(0, 0, alertWidth, alertHeight))
+        let alertBackground = UIImageView(frame: CGRectMake(0, 0, alertWidth, alertHeight))
         alertBackground.image = UIImage(named: "element11.png")
         
-        var alertIcon = UIImageView(frame: CGRectMake((alertWidth - 29) / 2, 6, 29, 24))
+        let alertIcon = UIImageView(frame: CGRectMake((alertWidth - 29) / 2, 6, 29, 24))
         alertIcon.image = UIImage(named: "warning.png")
         
-        var alertText = UILabel(frame: CGRectMake(18, 58, alertWidth - 36, 48))
+        let alertText = UILabel(frame: CGRectMake(18, 58, alertWidth - 36, 48))
         alertText.text = "Be mindful of traffic, obstructions, and other hazards while playing PointRun!"
         alertText.font = UIFont(name: "Open Sans", size: 13.0)
         alertText.textColor = UIColor(red: 0.36, green: 0.36, blue: 0.36, alpha: 1.00)
         alertText.numberOfLines = 0
         alertText.textAlignment = NSTextAlignment.Center
         
-        var alertButton = UIButton(frame: CGRectMake(8, alertHeight - 49, alertWidth - 16, 40))
+        let alertButton = UIButton(frame: CGRectMake(8, alertHeight - 49, alertWidth - 16, 40))
         alertButton.setImage(UIImage(named: "element08.png"), forState: UIControlState.Normal)
         alertButton.setImage(UIImage(named: "element20.png"), forState: UIControlState.Highlighted)
         alertButton.addTarget(self, action: Selector("hide"), forControlEvents: UIControlEvents.TouchUpInside)
         
-        var buttonText = UILabel()
+        let buttonText = UILabel()
         buttonText.text = "Start game"
         buttonText.font = UIFont(name: "Open Sans", size: 14.0)
         buttonText.textColor = UIColor.whiteColor()
@@ -70,10 +70,10 @@ class AlertView: UIView {
     }
     
     func show() {
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
+        UIView.animateWithDuration(0.5) { () -> Void in
             self.opacityView.alpha = 0.5
             self.alertView.alpha = 1.0
-        })
+        }
     }
     
     func hide() {

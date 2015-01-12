@@ -37,29 +37,15 @@ class Message: NSObject {
         type = PRMessageType.PointCaptured
     }
     
-    func intToMessageType(int: Int) -> PRMessageType {
-        switch (int) {
-        case 0:
-            return PRMessageType.PlayerData
-        case 1:
-            return PRMessageType.PointLocation
-        case 2:
-            return PRMessageType.PointCaptured
-        default:
-            NSLog(wat)
-        }
-        
-        return PRMessageType.PlayerData
-    }
-    
     required init(coder aDecoder: NSCoder) {
         latitude = aDecoder.decodeDoubleForKey("latitude")
         longitude = aDecoder.decodeDoubleForKey("longitude")
         points = aDecoder.decodeIntegerForKey("points")
         uuid = aDecoder.decodeObjectForKey("uuid") as String
         
-        var typeValue = aDecoder.decodeIntegerForKey("type")
-        switch (typeValue) {
+        let typeValue = aDecoder.decodeIntegerForKey("type")
+        
+        switch typeValue {
         case 0:
             type = PRMessageType.PlayerData
         case 1:
@@ -67,7 +53,7 @@ class Message: NSObject {
         case 2:
             type = PRMessageType.PointCaptured
         default:
-            NSLog(wat)
+            println(wat)
         }
     }
     
@@ -77,5 +63,20 @@ class Message: NSObject {
         aCoder.encodeInteger(points, forKey: "points")
         aCoder.encodeObject(uuid, forKey: "uuid")
         aCoder.encodeInteger(type.rawValue, forKey: "type")
+    }
+    
+    func intToMessageType(int: Int) -> PRMessageType {
+        switch int {
+        case 0:
+            return PRMessageType.PlayerData
+        case 1:
+            return PRMessageType.PointLocation
+        case 2:
+            return PRMessageType.PointCaptured
+        default:
+            println(wat)
+        }
+        
+        return PRMessageType.PlayerData
     }
 }
