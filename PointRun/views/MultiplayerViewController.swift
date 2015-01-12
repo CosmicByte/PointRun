@@ -43,7 +43,7 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
         if points >= 100 {
             self.endGame(PRGameEnd.MultiplayerWin)
             
-            defaults.setInteger(defaults.integerForKey(k100Default) + 1, forKey: k100Default)
+            defaults.setInteger(defaults.integerForKey(PRAchievement.k100.rawValue) + 1, forKey: PRAchievement.k100.rawValue)
             checkAchievement(PRAchievement.k100)
             
             defaults.setInteger(defaults.integerForKey(gameWinsStatistic) + 1, forKey: gameWinsStatistic)

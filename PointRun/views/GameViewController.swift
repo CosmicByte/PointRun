@@ -73,7 +73,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     }
     
     func decreaseTime() {
-        defaults.setInteger(defaults.integerForKey(addictedDefault) + 1, forKey: addictedDefault)
+        defaults.setInteger(defaults.integerForKey(PRAchievement.Addicted.rawValue) + 1, forKey: PRAchievement.Addicted.rawValue)
         defaults.setInteger(defaults.integerForKey(timePlayedStatistic) + 1, forKey: timePlayedStatistic)
         
         if gameMode == PRGameMode.Timed {
@@ -130,7 +130,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         
         if lastLocation != nil {
             let distance = Int(location.distanceFromLocation(lastLocation))
-            defaults.setInteger(distance + defaults.integerForKey(marathonManDefault), forKey: marathonManDefault)
+            defaults.setInteger(distance + defaults.integerForKey(PRAchievement.MarathonMan.rawValue), forKey: PRAchievement.MarathonMan.rawValue)
             checkAchievement(PRAchievement.MarathonMan)
             defaults.setInteger(defaults.integerForKey(metersTravelledStatistic) + distance, forKey: metersTravelledStatistic)
         }
@@ -160,14 +160,14 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                         if arc4random_uniform(10) == 0 {
                             self.endGame(PRGameEnd.PoisonPin)
                             
-                            defaults.setInteger(defaults.integerForKey(badLuckDefault) + 1, forKey: badLuckDefault)
+                            defaults.setInteger(defaults.integerForKey(PRAchievement.BadLuck.rawValue) + 1, forKey: PRAchievement.BadLuck.rawValue)
                             checkAchievement(PRAchievement.BadLuck)
                             
                             defaults.setInteger(defaults.integerForKey(poisonPinsStatistic) + 1, forKey: poisonPinsStatistic)
                             
                             return
                         } else {
-                            defaults.setInteger(self.points, forKey: evaderDefault)
+                            defaults.setInteger(self.points, forKey: PRAchievement.Evader.rawValue)
                             checkAchievement(PRAchievement.Evader)
                         }
                     }
@@ -185,10 +185,10 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                     addPoint(mapView, latitude: lat, longitude: lon, value: value, uuid: uuid)
                     
                     if value == 10 {
-                        defaults.setInteger(defaults.integerForKey(hatTrickDefault) + 1, forKey: hatTrickDefault)
+                        defaults.setInteger(defaults.integerForKey(PRAchievement.HatTrick.rawValue) + 1, forKey: PRAchievement.HatTrick.rawValue)
                         checkAchievement(PRAchievement.HatTrick)
                     } else {
-                        defaults.setInteger(0, forKey: hatTrickDefault)
+                        defaults.setInteger(0, forKey: PRAchievement.HatTrick.rawValue)
                     }
                     
                     defaults.setInteger(defaults.integerForKey(pinsCollectedStatistic) + 1, forKey: pinsCollectedStatistic)

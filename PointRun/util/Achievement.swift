@@ -9,48 +9,58 @@
 import Foundation
 
 func checkAchievement(achievement: PRAchievement) {
+    let value = defaults.doubleForKey(achievement.rawValue + "Default")
+    var percent: Double = 0
+    
     switch achievement {
     case PRAchievement.MarathonMan:
-        if !defaults.boolForKey(marathonManCompleted) {
-            let meters = defaults.doubleForKey(marathonManDefault)
-            GCHelper.sharedInstance.reportAchievementIdentifier("marathonman", percent: 0.002 * meters)
-            defaults.setBool(true, forKey: marathonManDefault)
-        }
+        percent = value * 0.002
     case PRAchievement.HatTrick:
-        if !defaults.boolForKey(hatTrickCompleted) {
-            let inarow = defaults.integerForKey(hatTrickDefault)
-            if inarow == 3 {
-                GCHelper.sharedInstance.reportAchievementIdentifier("hattrick", percent: 100.0)
-            }
-            defaults.setBool(true, forKey: hatTrickCompleted)
+        if defaults.boolForKey(achievement.rawValue + "Completed") {
+            return
         }
+        
+        percent = value == 3 ? 100 : 0
     case PRAchievement.k100:
-        if !defaults.boolForKey(k100Completed) {
-            let wins = defaults.doubleForKey(k100Default)
-            GCHelper.sharedInstance.reportAchievementIdentifier("100", percent: wins)
-            defaults.setBool(true, forKey: k100Completed)
-        }
+        percent = value
     case PRAchievement.Addicted:
-        if !defaults.boolForKey(addictedCompleted) {
-            let time = defaults.doubleForKey(addictedDefault)
-            GCHelper.sharedInstance.reportAchievementIdentifier("addicted", percent: (1 / 864) * time)
-            defaults.setBool(true, forKey: addictedCompleted)
-        }
+        percent = value * 5
     case PRAchievement.BadLuck:
-        if !defaults.boolForKey(badLuckCompleted) {
-            let deaths = defaults.doubleForKey(badLuckDefault)
-            GCHelper.sharedInstance.reportAchievementIdentifier("badluck", percent: deaths * 5)
-            defaults.setBool(true, forKey: badLuckCompleted)
-        }
+        percent = value * 5
     case PRAchievement.Evader:
-        if !defaults.boolForKey(evaderCompleted) {
-            let score = defaults.integerForKey(evaderDefault)
-            if score >= 100 {
-                GCHelper.sharedInstance.reportAchievementIdentifier("evader", percent: 100.0)
-            }
-            defaults.setBool(true, forKey: evaderCompleted)
+        if defaults.boolForKey(achievement.rawValue + "Completed") {
+            return
         }
-    default:
-        println(wat)
+        
+        percent = value >= 100 ? 100 : 0
+    }
+    
+    GCHelper.sharedInstance.reportAchievementIdentifier(gameCenterID(achievement), percent: percent)
+    defaults.setBool(percent >= 100, forKey: achievement.rawValue)
+}
+
+enum PRAchievement: String {
+    case MarathonMan = "MarathonMan",
+    HatTrick = "HatTrick",
+    k100 = "100",
+    Addicted = "Addicted",
+    BadLuck = "BadLuck",
+    Evader = "Evader"
+}
+
+func gameCenterID(achievement: PRAchievement) -> String {
+    switch achievement {
+    case .MarathonMan:
+        return "marathonman"
+    case .HatTrick:
+        return "hattrick"
+    case .k100:
+        return "100"
+    case .Addicted:
+        return "addicted"
+    case .BadLuck:
+        return "badluck"
+    case .Evader:
+        return "evader"
     }
 }
