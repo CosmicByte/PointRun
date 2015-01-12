@@ -46,26 +46,26 @@ class MenuView: UIView {
         menuView.backgroundColor = UIColor.whiteColor()
         
         statisticsButton = UIButton(frame: CGRectMake(0, 0, 87, 64))
-        statisticsButton.setImage(UIImage(named: "element06.png"), forState: UIControlState.Normal)
-        statisticsButton.setImage(UIImage(named: "element07.png"), forState: UIControlState.Highlighted)
-        statisticsButton.addTarget(self, action: Selector("statisticsButtonEvent"), forControlEvents: UIControlEvents.TouchDown)
-        statisticsButton.addTarget(self, action: Selector("showStatistics"), forControlEvents: UIControlEvents.AllTouchEvents)
+        statisticsButton.setImage(UIImage(named: "element06.png"), forState: .Normal)
+        statisticsButton.setImage(UIImage(named: "element07.png"), forState: .Highlighted)
+        statisticsButton.addTarget(self, action: Selector("statisticsButtonEvent"), forControlEvents: .TouchDown)
+        statisticsButton.addTarget(self, action: Selector("showStatistics"), forControlEvents: .AllTouchEvents)
         
         let statisticsImage = UIImageView(frame: CGRectMake(30, 21, 27, 22))
         statisticsImage.image = UIImage(named: "statistics.png")
         
         let achievementsButton = UIButton(frame: CGRectMake(87, 0, 86, 64))
-        achievementsButton.setImage(UIImage(named: "element07.png"), forState: UIControlState.Normal)
-        achievementsButton.setImage(UIImage(named: "element06.png"), forState: UIControlState.Highlighted)
-        achievementsButton.addTarget(self, action: Selector("showAchievements"), forControlEvents: UIControlEvents.TouchUpInside)
+        achievementsButton.setImage(UIImage(named: "element07.png"), forState: .Normal)
+        achievementsButton.setImage(UIImage(named: "element06.png"), forState: .Highlighted)
+        achievementsButton.addTarget(self, action: Selector("showAchievements"), forControlEvents: .TouchUpInside)
         
         let achievementsImage = UIImageView(frame: CGRectMake(35.5, 21, 15, 22))
         achievementsImage.image = UIImage(named: "medal.png")
         
         let leaderboardButton = UIButton(frame: CGRectMake(173, 0, 87, 64))
-        leaderboardButton.setImage(UIImage(named: "element06.png"), forState: UIControlState.Normal)
-        leaderboardButton.setImage(UIImage(named: "element07.png"), forState: UIControlState.Highlighted)
-        leaderboardButton.addTarget(self, action: Selector("showLeaderboards"), forControlEvents: UIControlEvents.TouchUpInside)
+        leaderboardButton.setImage(UIImage(named: "element06.png"), forState: .Normal)
+        leaderboardButton.setImage(UIImage(named: "element07.png"), forState: .Highlighted)
+        leaderboardButton.addTarget(self, action: Selector("showLeaderboards"), forControlEvents: .TouchUpInside)
         
         let leaderboardImage = UIImageView(frame: CGRectMake(28.5, 21, 30, 22))
         leaderboardImage.image = UIImage(named: "list.png")
@@ -119,9 +119,9 @@ class MenuView: UIView {
         backImage.image = UIImage(named: "element13.png")
         
         let backButton = UIButton(frame: CGRectMake(10, 74, menuWidth - 20, backHeight - 20))
-        backButton.setImage(UIImage(named: "element08.png"), forState: UIControlState.Normal)
-        backButton.setImage(UIImage(named: "element20.png"), forState: UIControlState.Highlighted)
-        backButton.addTarget(self, action: Selector("backButton"), forControlEvents: UIControlEvents.TouchUpInside)
+        backButton.setImage(UIImage(named: "element08.png"), forState: .Normal)
+        backButton.setImage(UIImage(named: "element20.png"), forState: .Highlighted)
+        backButton.addTarget(self, action: Selector("backButton"), forControlEvents: .TouchUpInside)
         
         let iconHeight: CGFloat = 18
         let backIcon = UIImageView(frame: CGRectMake(16, (backButton.frame.size.height - iconHeight) / 2, 21, iconHeight))
@@ -148,9 +148,9 @@ class MenuView: UIView {
         optionLabel.frame = CGRectMake(12, 142, 128, optionLabel.frame.size.height)
         
         let streetsButton = UIButton(frame: CGRectMake(10, 174, menuWidth - 20, 42))
-        streetsButton.setImage(UIImage(named: "element22.png"), forState: UIControlState.Normal)
-        streetsButton.setImage(UIImage(named: "element23.png"), forState: UIControlState.Highlighted)
-        streetsButton.addTarget(self, action: Selector("streetsButton"), forControlEvents: UIControlEvents.TouchUpInside)
+        streetsButton.setImage(UIImage(named: "element22.png"), forState: .Normal)
+        streetsButton.setImage(UIImage(named: "element23.png"), forState: .Highlighted)
+        streetsButton.addTarget(self, action: Selector("streetsButton"), forControlEvents: .TouchUpInside)
         
         let streetsLabel = UILabel()
         streetsLabel.text = "Streets"
@@ -162,9 +162,9 @@ class MenuView: UIView {
         streetsButton.addSubview(streetsLabel)
         
         let satelliteButton = UIButton(frame: CGRectMake(10, 228, menuWidth - 20, 42))
-        satelliteButton.setImage(UIImage(named: "element22.png"), forState: UIControlState.Normal)
-        satelliteButton.setImage(UIImage(named: "element23.png"), forState: UIControlState.Highlighted)
-        satelliteButton.addTarget(self, action: Selector("satelliteButton"), forControlEvents: UIControlEvents.TouchUpInside)
+        satelliteButton.setImage(UIImage(named: "element22.png"), forState: .Normal)
+        satelliteButton.setImage(UIImage(named: "element23.png"), forState: .Highlighted)
+        satelliteButton.addTarget(self, action: Selector("satelliteButton"), forControlEvents: .TouchUpInside)
         
         let satelliteLabel = UILabel()
         satelliteLabel.text = "Satellite"
@@ -176,9 +176,9 @@ class MenuView: UIView {
         satelliteButton.addSubview(satelliteLabel)
         
         let hybridButton = UIButton(frame: CGRectMake(10, 282, menuWidth - 20, 42))
-        hybridButton.setImage(UIImage(named: "element22.png"), forState: UIControlState.Normal)
-        hybridButton.setImage(UIImage(named: "element23.png"), forState: UIControlState.Highlighted)
-        hybridButton.addTarget(self, action: Selector("hybridButton"), forControlEvents: UIControlEvents.TouchUpInside)
+        hybridButton.setImage(UIImage(named: "element22.png"), forState: .Normal)
+        hybridButton.setImage(UIImage(named: "element23.png"), forState: .Highlighted)
+        hybridButton.addTarget(self, action: Selector("hybridButton"), forControlEvents: .TouchUpInside)
         
         let hybridLabel = UILabel()
         hybridLabel.text = "Hybrid"
@@ -190,9 +190,9 @@ class MenuView: UIView {
         hybridButton.addSubview(hybridLabel)
         
         let terrainButton = UIButton(frame: CGRectMake(10, 336, menuWidth - 20, 42))
-        terrainButton.setImage(UIImage(named: "element22.png"), forState: UIControlState.Normal)
-        terrainButton.setImage(UIImage(named: "element23.png"), forState: UIControlState.Highlighted)
-        terrainButton.addTarget(self, action: Selector("terrainButton"), forControlEvents: UIControlEvents.TouchUpInside)
+        terrainButton.setImage(UIImage(named: "element22.png"), forState: .Normal)
+        terrainButton.setImage(UIImage(named: "element23.png"), forState: .Highlighted)
+        terrainButton.addTarget(self, action: Selector("terrainButton"), forControlEvents: .TouchUpInside)
         
         let terrainLabel = UILabel()
         terrainLabel.text = "Terrain"
@@ -203,7 +203,7 @@ class MenuView: UIView {
         
         terrainButton.addSubview(terrainLabel)
         
-        let checkY = CGFloat(174 + (54 * defaults.integerForKey("mapType")))
+        let checkY = CGFloat(174 + (54 * defaults.doubleForKey("mapType")))
         checkImage = UIImageView()
         checkImage.image = UIImage(named: "element24.png")
         checkImage.frame = CGRectMake(10, checkY, 42, 42)
@@ -229,31 +229,31 @@ class MenuView: UIView {
     }
     
     func streetsButton() {
-        defaults.setInteger(0, forKey: "mapType")
-        let checkY = CGFloat(174 + (54 * defaults.integerForKey("mapType")))
+        defaults.setDouble(0, forKey: "mapType")
+        let checkY = CGFloat(174 + (54 * defaults.doubleForKey("mapType")))
         checkImage.frame = CGRectMake(10, checkY, 42, 42)
-        NSNotificationCenter.defaultCenter().postNotificationName(mapChangedNotification, object: nil)
+        nc.postNotificationName(mapChangedNotification, object: nil)
     }
     
     func satelliteButton() {
-        defaults.setInteger(1, forKey: "mapType")
-        let checkY = CGFloat(174 + (54 * defaults.integerForKey("mapType")))
+        defaults.setDouble(1, forKey: "mapType")
+        let checkY = CGFloat(174 + (54 * defaults.doubleForKey("mapType")))
         checkImage.frame = CGRectMake(10, checkY, 42, 42)
-        NSNotificationCenter.defaultCenter().postNotificationName(mapChangedNotification, object: nil)
+        nc.postNotificationName(mapChangedNotification, object: nil)
     }
     
     func hybridButton() {
-        defaults.setInteger(2, forKey: "mapType")
-        let checkY = CGFloat(174 + (54 * defaults.integerForKey("mapType")))
+        defaults.setDouble(2, forKey: "mapType")
+        let checkY = CGFloat(174 + (54 * defaults.doubleForKey("mapType")))
         checkImage.frame = CGRectMake(10, checkY, 42, 42)
-        NSNotificationCenter.defaultCenter().postNotificationName(mapChangedNotification, object: nil)
+        nc.postNotificationName(mapChangedNotification, object: nil)
     }
     
     func terrainButton() {
-        defaults.setInteger(3, forKey: "mapType")
-        let checkY = CGFloat(174 + (54 * defaults.integerForKey("mapType")))
+        defaults.setDouble(3, forKey: "mapType")
+        let checkY = CGFloat(174 + (54 * defaults.doubleForKey("mapType")))
         checkImage.frame = CGRectMake(10, checkY, 42, 42)
-        NSNotificationCenter.defaultCenter().postNotificationName(mapChangedNotification, object: nil)
+        nc.postNotificationName(mapChangedNotification, object: nil)
     }
     
     func showStatistics() {
@@ -283,33 +283,33 @@ class MenuView: UIView {
                 statisticCell.addSubview(heading)
             case 1:
                 name.text = "Game wins"
-                score.text = String(defaults.integerForKey(gameWinsStatistic))
+                score.text = defaults.doubleForKey(gameWinsStatistic).toString()
             case 2:
-                let time = defaults.integerForKey(timePlayedStatistic)
+                let time = defaults.doubleForKey(timePlayedStatistic)
                 if time < 60 {
                     name.text = "Seconds played"
-                    score.text = String(time)
+                    score.text = time.toString()
                 } else if time >= 60 && time < 3600 {
                     name.text = "Minutes played"
-                    score.text = String(time / 60)
+                    score.text = (time / 60).toString()
                 } else if time >= 3600 {
                     name.text = "Hours played"
-                    score.text = String(time / 3600)
+                    score.text = (time / 3600).toString()
                 }
             case 3:
                 name.text = "Meters travelled"
-                score.text = String(defaults.integerForKey(metersTravelledStatistic))
+                score.text = defaults.doubleForKey(metersTravelledStatistic).toString()
             case 4:
                 name.text = "Pins collected"
-                score.text = String(defaults.integerForKey(pinsCollectedStatistic))
+                score.text = defaults.doubleForKey(pinsCollectedStatistic).toString()
             case 5:
                 name.text = "Points earned"
-                score.text = String(defaults.integerForKey(pointsEarnedStatistic))
+                score.text = defaults.doubleForKey(pointsEarnedStatistic).toString()
             case 6:
                 name.text = "Poison pins"
-                score.text = String(defaults.integerForKey(poisonPinsStatistic))
+                score.text = defaults.doubleForKey(poisonPinsStatistic).toString()
             default:
-                println(wat)
+                break
             }
             
             if i != 0 {
@@ -333,9 +333,9 @@ class MenuView: UIView {
         resetImage.image = UIImage(named: "element13.png")
         
         let resetButton = UIButton(frame: CGRectMake(10, device.height - 20 - resetHeight + 10, menuWidth - 20, resetHeight - 20))
-        resetButton.setImage(UIImage(named: "element08.png"), forState: UIControlState.Normal)
-        resetButton.setImage(UIImage(named: "element20.png"), forState: UIControlState.Highlighted)
-        resetButton.addTarget(self, action: Selector("resetStatistics"), forControlEvents: UIControlEvents.TouchUpInside)
+        resetButton.setImage(UIImage(named: "element08.png"), forState: .Normal)
+        resetButton.setImage(UIImage(named: "element20.png"), forState: .Highlighted)
+        resetButton.addTarget(self, action: Selector("resetStatistics"), forControlEvents: .TouchUpInside)
         
         let resetText = UILabel()
         resetText.text = "Reset all stats"
@@ -359,15 +359,15 @@ class MenuView: UIView {
     }
     
     func resetStatistics() {
-        let alert = UIAlertController(title: "Reset", message: "Are you sure you want to reset your statistics?", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Destructive, handler: { (alertAction) -> Void in
-            defaults.setInteger(0, forKey: gameWinsStatistic)
-            defaults.setInteger(0, forKey: timePlayedStatistic)
-            defaults.setInteger(0, forKey: metersTravelledStatistic)
-            defaults.setInteger(0, forKey: pinsCollectedStatistic)
-            defaults.setInteger(0, forKey: pointsEarnedStatistic)
-            defaults.setInteger(0, forKey: poisonPinsStatistic)
+        let alert = UIAlertController(title: "Reset", message: "Are you sure you want to reset your statistics?", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "No", style: .Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { (alertAction) -> Void in
+            defaults.setDouble(0, forKey: gameWinsStatistic)
+            defaults.setDouble(0, forKey: timePlayedStatistic)
+            defaults.setDouble(0, forKey: metersTravelledStatistic)
+            defaults.setDouble(0, forKey: pinsCollectedStatistic)
+            defaults.setDouble(0, forKey: pointsEarnedStatistic)
+            defaults.setDouble(0, forKey: poisonPinsStatistic)
             
             for view in self.menuView.subviews {
                 if view is UIImageView {

@@ -41,12 +41,12 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
         }
         
         if points >= 100 {
-            self.endGame(PRGameEnd.MultiplayerWin)
+            self.endGame(.MultiplayerWin)
             
-            defaults.setInteger(defaults.integerForKey(PRAchievement.k100.rawValue) + 1, forKey: PRAchievement.k100.rawValue)
+            defaults.setDouble(defaults.doubleForKey(PRAchievement.k100.rawValue) + 1, forKey: PRAchievement.k100.rawValue)
             checkAchievement(PRAchievement.k100)
             
-            defaults.setInteger(defaults.integerForKey(gameWinsStatistic) + 1, forKey: gameWinsStatistic)
+            defaults.setDouble(defaults.doubleForKey(gameWinsStatistic) + 1, forKey: gameWinsStatistic)
         }
     }
     
@@ -111,7 +111,7 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
     }
     
     func matchEnded() {
-        self.endGame(PRGameEnd.Disconnect)
+        self.endGame(.Disconnect)
     }
     
     func match(match: GKMatch, didReceiveData data: NSData, fromPlayer playerID: String) {
@@ -123,7 +123,7 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
                     if player.pid == playerID {
                         player.points = message.points
                         if player.points >= 100 {
-                            self.endGame(PRGameEnd.MultiplayerLoss)
+                            self.endGame(.MultiplayerLoss)
                         }
                         
                         var coords = CLLocationCoordinate2DMake(message.latitude, message.longitude)
@@ -157,7 +157,7 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
                 deleted.append(message.uuid)
             }
         default:
-            println(wat)
+            break
         }
     }
 }

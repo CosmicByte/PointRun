@@ -54,21 +54,21 @@ class MenuViewController: UIViewController {
     
     @IBAction func singlePlayerDown(sender: AnyObject) {
         if !singlePlayer {
-            singlePlayerButton.setImage(UIImage(named: "element19.png"), forState: UIControlState.Normal)
+            singlePlayerButton.setImage(UIImage(named: "element19.png"), forState: .Normal)
         } else {
-            singlePlayerButton.setImage(UIImage(named: "element18.png"), forState: UIControlState.Normal)
+            singlePlayerButton.setImage(UIImage(named: "element18.png"), forState: .Normal)
         }
         
-        singlePlayerButton.setImage(UIImage(named: "element07.png"), forState: UIControlState.Highlighted)
+        singlePlayerButton.setImage(UIImage(named: "element07.png"), forState: .Highlighted)
         
         singlePlayerImage.image = UIImage(named: "singleWhite.png")
     }
     
     @IBAction func singlePlayerUp(sender: AnyObject) {
-        singlePlayerButton.setImage(UIImage(named: "element18.png"), forState: UIControlState.Normal)
+        singlePlayerButton.setImage(UIImage(named: "element18.png"), forState: .Normal)
         
-        multiPlayerButton.setImage(UIImage(named: "element19.png"), forState: UIControlState.Normal)
-        multiPlayerButton.setImage(UIImage(named: "element07.png"), forState: UIControlState.Highlighted)
+        multiPlayerButton.setImage(UIImage(named: "element19.png"), forState: .Normal)
+        multiPlayerButton.setImage(UIImage(named: "element07.png"), forState: .Highlighted)
         
         multiPlayerImage.image = UIImage(named: "multiGreen.png")
         
@@ -92,10 +92,10 @@ class MenuViewController: UIViewController {
     
     @IBAction func singlePlayerUpOutside(sender: AnyObject) {
         if singlePlayer {
-            singlePlayerButton.setImage(UIImage(named: "element18.png"), forState: UIControlState.Normal)
+            singlePlayerButton.setImage(UIImage(named: "element18.png"), forState: .Normal)
             singlePlayerImage.image = UIImage(named: "singleWhite.png")
         } else {
-            singlePlayerButton.setImage(UIImage(named: "element19.png"), forState: UIControlState.Normal)
+            singlePlayerButton.setImage(UIImage(named: "element19.png"), forState: .Normal)
             singlePlayerImage.image = UIImage(named: "singleGreen.png")
         }
     }
@@ -113,17 +113,17 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction func multiPlayerDown(sender: AnyObject) {
-        multiPlayerButton.setImage(UIImage(named: "element19.png"), forState: UIControlState.Normal)
-        multiPlayerButton.setImage(UIImage(named: "element07.png"), forState: UIControlState.Highlighted)
+        multiPlayerButton.setImage(UIImage(named: "element19.png"), forState: .Normal)
+        multiPlayerButton.setImage(UIImage(named: "element07.png"), forState: .Highlighted)
         
         multiPlayerImage.image = UIImage(named: "multiWhite.png")
     }
     
     @IBAction func multiPlayerUp(sender: AnyObject) {
-        multiPlayerButton.setImage(UIImage(named: "element18.png"), forState: UIControlState.Normal)
+        multiPlayerButton.setImage(UIImage(named: "element18.png"), forState: .Normal)
         
-        singlePlayerButton.setImage(UIImage(named: "element19.png"), forState: UIControlState.Normal)
-        singlePlayerButton.setImage(UIImage(named: "element07.png"), forState: UIControlState.Highlighted)
+        singlePlayerButton.setImage(UIImage(named: "element19.png"), forState: .Normal)
+        singlePlayerButton.setImage(UIImage(named: "element07.png"), forState: .Highlighted)
         
         singlePlayerImage.image = UIImage(named: "singleGreen.png")
         
@@ -147,10 +147,10 @@ class MenuViewController: UIViewController {
     
     @IBAction func multiPlayerUpOutside(sender: AnyObject) {
         if singlePlayer {
-            multiPlayerButton.setImage(UIImage(named: "element19.png"), forState: UIControlState.Normal)
+            multiPlayerButton.setImage(UIImage(named: "element19.png"), forState: .Normal)
             multiPlayerImage.image = UIImage(named: "multiGreen.png")
         } else {
-            multiPlayerButton.setImage(UIImage(named: "element18.png"), forState: UIControlState.Normal)
+            multiPlayerButton.setImage(UIImage(named: "element18.png"), forState: .Normal)
             multiPlayerImage.image = UIImage(named: "multiWhite.png")
         }
     }
@@ -165,35 +165,35 @@ class MenuViewController: UIViewController {
     
     func menuTab(note: NSNotification) {
         if note.name == achievementNotification {
-            GCHelper.sharedInstance.showGameCenter(self, viewState: GKGameCenterViewControllerState.Achievements)
+            GCHelper.sharedInstance.showGameCenter(self, viewState: .Achievements)
         } else if note.name == leaderboardNotification {
-            GCHelper.sharedInstance.showGameCenter(self, viewState: GKGameCenterViewControllerState.Leaderboards)
+            GCHelper.sharedInstance.showGameCenter(self, viewState: .Leaderboards)
         }
     }
     
     @IBAction func timedButton(sender: AnyObject) {
         if singlePlayer {
-            gameMode = PRGameMode.Timed
+            gameMode = .Timed
             self.performSegueWithIdentifier("gameSegue", sender: self)
         } else {
             if GKLocalPlayer.localPlayer().authenticated {
-                gameMode = PRGameMode.Race
+                gameMode = .Race
                 self.performSegueWithIdentifier("multiplayerSegue", sender: self)
             } else {
-                var alert = UIAlertController(title: "Game Center", message: "You are not signed into Game Center.", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                var alert = UIAlertController(title: "Game Center", message: "You are not signed into Game Center.", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
         }
     }
     
     @IBAction func endlessButton(sender: AnyObject) {
-        gameMode = PRGameMode.Endless
+        gameMode = .Endless
         self.performSegueWithIdentifier("gameSegue", sender: self)
     }
     
     @IBAction func chanceButton(sender: AnyObject) {
-        gameMode = PRGameMode.Chance
+        gameMode = .Chance
         self.performSegueWithIdentifier("gameSegue", sender: self)
     }
     

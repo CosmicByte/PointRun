@@ -21,7 +21,7 @@ class Message: NSObject {
         latitude = lat
         longitude = lon
         points = pts
-        type = PRMessageType.PlayerData
+        type = .PlayerData
     }
     
     init(pointLocationWithLatitude lat: Double, longitude lon: Double, points pts: Int, uuid uid: String) {
@@ -29,12 +29,12 @@ class Message: NSObject {
         longitude = lon
         points = pts
         uuid = uid
-        type = PRMessageType.PointLocation
+        type = .PointLocation
     }
     
     init(pointCapturedWithUUID uid: String) {
         uuid = uid
-        type = PRMessageType.PointCaptured
+        type = .PointCaptured
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -47,13 +47,13 @@ class Message: NSObject {
         
         switch typeValue {
         case 0:
-            type = PRMessageType.PlayerData
+            type = .PlayerData
         case 1:
-            type = PRMessageType.PointLocation
+            type = .PointLocation
         case 2:
-            type = PRMessageType.PointCaptured
+            type = .PointCaptured
         default:
-            println(wat)
+            break
         }
     }
     
@@ -68,15 +68,15 @@ class Message: NSObject {
     func intToMessageType(int: Int) -> PRMessageType {
         switch int {
         case 0:
-            return PRMessageType.PlayerData
+            return .PlayerData
         case 1:
-            return PRMessageType.PointLocation
+            return .PointLocation
         case 2:
-            return PRMessageType.PointCaptured
+            return .PointCaptured
         default:
-            println(wat)
+            break
         }
         
-        return PRMessageType.PlayerData
+        return .PlayerData
     }
 }

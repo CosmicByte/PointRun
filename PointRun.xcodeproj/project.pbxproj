@@ -83,6 +83,7 @@
 		EB67509219A58DE4007D8EA1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB67509119A58DE4007D8EA1 /* Images.xcassets */; };
 		EB67509E19A58DE4007D8EA1 /* PointRunTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67509D19A58DE4007D8EA1 /* PointRunTests.swift */; };
 		EB991F5919DB5FE800ECF07A /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB991F5819DB5FE800ECF07A /* Achievement.swift */; };
+		EBA113BB1A64868900B781E0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA113BA1A64868900B781E0 /* Extensions.swift */; };
 		EBCEC8FF19D39E67005E301B /* Communication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCEC8FE19D39E67005E301B /* Communication.swift */; };
 		EBCEC90119D3A9C4005E301B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCEC90019D3A9C4005E301B /* Player.swift */; };
 		EBF7346D19DCEA0E004859A8 /* 180.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF7346C19DCEA0E004859A8 /* 180.png */; };
@@ -184,6 +185,7 @@
 		EB67509C19A58DE4007D8EA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB67509D19A58DE4007D8EA1 /* PointRunTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointRunTests.swift; sourceTree = "<group>"; };
 		EB991F5819DB5FE800ECF07A /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
+		EBA113BA1A64868900B781E0 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EBCEC8FE19D39E67005E301B /* Communication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Communication.swift; sourceTree = "<group>"; };
 		EBCEC90019D3A9C4005E301B /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		EBF7346C19DCEA0E004859A8 /* 180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 180.png; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				EBCEC90019D3A9C4005E301B /* Player.swift */,
 				EB65D51719D6F4E500196D77 /* GCHelper.swift */,
 				EB991F5819DB5FE800ECF07A /* Achievement.swift */,
+				EBA113BA1A64868900B781E0 /* Extensions.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				EB3E3BC019A58F4500A768DD /* MenuView.swift in Sources */,
 				EB991F5919DB5FE800ECF07A /* Achievement.swift in Sources */,
 				EB3E3B2919A58F3A00A768DD /* Common.swift in Sources */,
+				EBA113BB1A64868900B781E0 /* Extensions.swift in Sources */,
 				EB3E3BC119A58F4500A768DD /* MenuViewController.swift in Sources */,
 				EBCEC8FF19D39E67005E301B /* Communication.swift in Sources */,
 				EB67508B19A58DE4007D8EA1 /* AppDelegate.swift in Sources */,

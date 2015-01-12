@@ -47,9 +47,9 @@ class AlertView: UIView {
         alertText.textAlignment = NSTextAlignment.Center
         
         let alertButton = UIButton(frame: CGRectMake(8, alertHeight - 49, alertWidth - 16, 40))
-        alertButton.setImage(UIImage(named: "element08.png"), forState: UIControlState.Normal)
-        alertButton.setImage(UIImage(named: "element20.png"), forState: UIControlState.Highlighted)
-        alertButton.addTarget(self, action: Selector("hide"), forControlEvents: UIControlEvents.TouchUpInside)
+        alertButton.setImage(UIImage(named: "element08.png"), forState: .Normal)
+        alertButton.setImage(UIImage(named: "element20.png"), forState: .Highlighted)
+        alertButton.addTarget(self, action: Selector("hide"), forControlEvents: .TouchUpInside)
         
         let buttonText = UILabel()
         buttonText.text = "Start game"

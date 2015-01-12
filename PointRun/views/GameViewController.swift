@@ -16,7 +16,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     @IBOutlet var timerLabel: UILabel!
     
     var multiplayer = false
-    var gameMode: PRGameMode = PRGameMode.Timed
+    var gameMode = PRGameMode.Timed
     var menuView: MenuView!
     
     var lastLocation: CLLocation!
@@ -66,17 +66,17 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     }
     
     override func viewDidLayoutSubviews() {
-        if gameMode != PRGameMode.Timed && !multiplayer {
+        if gameMode != .Timed && !multiplayer {
             timerImage.removeFromSuperview()
             timerLabel.removeFromSuperview()
         }
     }
     
     func decreaseTime() {
-        defaults.setInteger(defaults.integerForKey(PRAchievement.Addicted.rawValue) + 1, forKey: PRAchievement.Addicted.rawValue)
-        defaults.setInteger(defaults.integerForKey(timePlayedStatistic) + 1, forKey: timePlayedStatistic)
+        defaults.setDouble(defaults.doubleForKey(PRAchievement.Addicted.rawValue) + 1, forKey: PRAchievement.Addicted.rawValue)
+        defaults.setDouble(defaults.doubleForKey(timePlayedStatistic) + 1, forKey: timePlayedStatistic)
         
-        if gameMode == PRGameMode.Timed {
+        if gameMode == .Timed {
             let ssec = NSString(format: "%@%d", (sec > 9 ? "" : "0"), sec)
             timerLabel.text = NSString(format: "%d:%@", min, ssec)
             if sec > 0 {
@@ -86,7 +86,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                     sec = 59
                     min -= 1
                 } else {
-                    self.endGame(PRGameEnd.TimerDone)
+                    self.endGame(.TimerDone)
                     timer.invalidate()
                 }
             }
@@ -94,11 +94,11 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     }
     
     func backButton() {
-        self.endGame(PRGameEnd.MenuExit)
+        self.endGame(.MenuExit)
     }
     
     func mapChanged() {
-        var mapType = defaults.integerForKey("mapType")
+        var mapType = defaults.doubleForKey("mapType")
         switch mapType {
         case 0:
             mapView.mapType = kGMSTypeNormal
@@ -109,7 +109,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         case 3:
             mapView.mapType = kGMSTypeTerrain
         default:
-            println(wat)
+            break
         }
     }
     
@@ -129,10 +129,10 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         location = locations.last as CLLocation
         
         if lastLocation != nil {
-            let distance = Int(location.distanceFromLocation(lastLocation))
-            defaults.setInteger(distance + defaults.integerForKey(PRAchievement.MarathonMan.rawValue), forKey: PRAchievement.MarathonMan.rawValue)
-            checkAchievement(PRAchievement.MarathonMan)
-            defaults.setInteger(defaults.integerForKey(metersTravelledStatistic) + distance, forKey: metersTravelledStatistic)
+            let distance = location.distanceFromLocation(lastLocation)
+            defaults.setDouble(distance + defaults.doubleForKey(PRAchievement.MarathonMan.rawValue), forKey: PRAchievement.MarathonMan.rawValue)
+            checkAchievement(.MarathonMan)
+            defaults.setDouble(defaults.doubleForKey(metersTravelledStatistic) + distance, forKey: metersTravelledStatistic)
         }
         
         lastLocation = location
@@ -156,18 +156,18 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                 let pointLoc = CLLocation(latitude: pointCoords.latitude, longitude: pointCoords.longitude)
                 let userLoc = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 if userLoc.distanceFromLocation(pointLoc) <= 7 {
-                    if gameMode == PRGameMode.Chance {
+                    if gameMode == .Chance {
                         if arc4random_uniform(10) == 0 {
-                            self.endGame(PRGameEnd.PoisonPin)
+                            self.endGame(.PoisonPin)
                             
-                            defaults.setInteger(defaults.integerForKey(PRAchievement.BadLuck.rawValue) + 1, forKey: PRAchievement.BadLuck.rawValue)
+                            defaults.setDouble(defaults.doubleForKey(PRAchievement.BadLuck.rawValue) + 1, forKey: PRAchievement.BadLuck.rawValue)
                             checkAchievement(PRAchievement.BadLuck)
                             
-                            defaults.setInteger(defaults.integerForKey(poisonPinsStatistic) + 1, forKey: poisonPinsStatistic)
+                            defaults.setDouble(defaults.doubleForKey(poisonPinsStatistic) + 1, forKey: poisonPinsStatistic)
                             
                             return
                         } else {
-                            defaults.setInteger(self.points, forKey: PRAchievement.Evader.rawValue)
+                            defaults.setDouble(Double(points), forKey: PRAchievement.Evader.rawValue)
                             checkAchievement(PRAchievement.Evader)
                         }
                     }
@@ -179,20 +179,20 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                     
                     let lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                     let lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
-                    let value = Int(arc4random_uniform(10) + 1)
+                    let value = Double(arc4random_uniform(10) + 1)
                     let uuid = NSUUID().UUIDString
                     
-                    addPoint(mapView, latitude: lat, longitude: lon, value: value, uuid: uuid)
+                    addPoint(mapView, latitude: lat, longitude: lon, value: Int(value), uuid: uuid)
                     
                     if value == 10 {
-                        defaults.setInteger(defaults.integerForKey(PRAchievement.HatTrick.rawValue) + 1, forKey: PRAchievement.HatTrick.rawValue)
+                        defaults.setDouble(defaults.doubleForKey(PRAchievement.HatTrick.rawValue) + 1, forKey: PRAchievement.HatTrick.rawValue)
                         checkAchievement(PRAchievement.HatTrick)
                     } else {
-                        defaults.setInteger(0, forKey: PRAchievement.HatTrick.rawValue)
+                        defaults.setDouble(0, forKey: PRAchievement.HatTrick.rawValue)
                     }
                     
-                    defaults.setInteger(defaults.integerForKey(pinsCollectedStatistic) + 1, forKey: pinsCollectedStatistic)
-                    defaults.setInteger(defaults.integerForKey(pointsEarnedStatistic) + value, forKey: pointsEarnedStatistic)
+                    defaults.setDouble(defaults.doubleForKey(pinsCollectedStatistic) + 1, forKey: pinsCollectedStatistic)
+                    defaults.setDouble(defaults.doubleForKey(pointsEarnedStatistic) + value, forKey: pointsEarnedStatistic)
                 }
             }
         }
@@ -234,32 +234,32 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         manager.stopUpdatingLocation()
         timer.invalidate()
         
-        let alert = UIAlertController(title: "Game Over!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
+        let alert = UIAlertController(title: "Game Over!", message: "", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (alertAction) -> Void in
             self.pop()
         }))
         
         switch reason {
-        case PRGameEnd.MenuExit:
+        case .MenuExit:
             self.navigationController?.popViewControllerAnimated(true)
-        case PRGameEnd.TimerDone:
+        case .TimerDone:
             alert.message = "You have run out of time!"
             GCHelper.sharedInstance.reportLeaderboardIdentifier("mosttimedpoints", score: self.points)
-        case PRGameEnd.PoisonPin:
+        case .PoisonPin:
             alert.message = "That pin was poisonous!"
-        case PRGameEnd.Disconnect:
+        case .Disconnect:
             alert.message = "Another player has been disconnected."
-            alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Destructive, handler: { (alertAction) -> Void in
+            alert.addAction(UIAlertAction(title: "Continue", style: .Destructive, handler: { (alertAction) -> Void in
                 self.manager.startUpdatingLocation()
             }))
-        case PRGameEnd.Error:
+        case .Error:
             alert.message = "An error has unexpectedly occured."
-        case PRGameEnd.MultiplayerWin:
+        case .MultiplayerWin:
             alert.message = "You won!"
-        case PRGameEnd.MultiplayerLoss:
+        case .MultiplayerLoss:
             alert.message = "You lost."
         default:
-            println(wat)
+            break
         }
         
         alert.message? += "\nYour Score: \(points)"
