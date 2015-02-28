@@ -244,7 +244,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
             self.navigationController?.popViewControllerAnimated(true)
         case .TimerDone:
             alert.message = "You have run out of time!"
-            GCHelper.sharedInstance.reportLeaderboardIdentifier("mosttimedpoints", score: self.points)
+            GCHelper.reportLeaderboardIdentifier("mosttimedpoints", score: self.points)
         case .PoisonPin:
             alert.message = "That pin was poisonous!"
         case .Disconnect:

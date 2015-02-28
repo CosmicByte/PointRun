@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B700E0F267865F9A4E7494E4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 003788D98FF7E287DC8D2A16 /* libPods.a */; };
+		EB3E38F21AA172AE0067978B /* GCHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E38F11AA172AE0067978B /* GCHelper.swift */; };
 		EB3E3B2919A58F3A00A768DD /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E3B2819A58F3A00A768DD /* Common.swift */; };
 		EB3E3B7B19A58F4500A768DD /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB3E3B2C19A58F4500A768DD /* OpenSans-Regular.ttf */; };
 		EB3E3B7C19A58F4500A768DD /* 100.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E3B2E19A58F4500A768DD /* 100.png */; };
@@ -75,7 +77,6 @@
 		EB3E3BBF19A58F4500A768DD /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E3B7819A58F4500A768DD /* GameViewController.swift */; };
 		EB3E3BC019A58F4500A768DD /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E3B7919A58F4500A768DD /* MenuView.swift */; };
 		EB3E3BC119A58F4500A768DD /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E3B7A19A58F4500A768DD /* MenuViewController.swift */; };
-		EB65D51819D6F4E500196D77 /* GCHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB65D51719D6F4E500196D77 /* GCHelper.swift */; };
 		EB67142F19D46BD700E0EF63 /* MultiplayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67142E19D46BD700E0EF63 /* MultiplayerViewController.swift */; };
 		EB67143519D4746E00E0EF63 /* gamemodeRace.png in Resources */ = {isa = PBXBuildFile; fileRef = EB67143419D4746E00E0EF63 /* gamemodeRace.png */; };
 		EB67508B19A58DE4007D8EA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67508A19A58DE4007D8EA1 /* AppDelegate.swift */; };
@@ -87,7 +88,6 @@
 		EBCEC8FF19D39E67005E301B /* Communication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCEC8FE19D39E67005E301B /* Communication.swift */; };
 		EBCEC90119D3A9C4005E301B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCEC90019D3A9C4005E301B /* Player.swift */; };
 		EBF7346D19DCEA0E004859A8 /* 180.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF7346C19DCEA0E004859A8 /* 180.png */; };
-		ECCBB732D96B4ADFAE3D925F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7AEF9618E647448D8ED79E /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,8 +101,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4B7AEF9618E647448D8ED79E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		003788D98FF7E287DC8D2A16 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8D8A33E298D7C827374CDC9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		EB3E38F11AA172AE0067978B /* GCHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCHelper.swift; sourceTree = "<group>"; };
 		EB3E3B2819A58F3A00A768DD /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		EB3E3B2C19A58F4500A768DD /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		EB3E3B2E19A58F4500A768DD /* 100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 100.png; sourceTree = "<group>"; };
@@ -172,7 +173,6 @@
 		EB3E3B7819A58F4500A768DD /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		EB3E3B7919A58F4500A768DD /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		EB3E3B7A19A58F4500A768DD /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		EB65D51719D6F4E500196D77 /* GCHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCHelper.swift; sourceTree = "<group>"; };
 		EB65D51919D6FCF300196D77 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		EB67142E19D46BD700E0EF63 /* MultiplayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerViewController.swift; sourceTree = "<group>"; };
 		EB67143419D4746E00E0EF63 /* gamemodeRace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamemodeRace.png; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECCBB732D96B4ADFAE3D925F /* libPods.a in Frameworks */,
+				B700E0F267865F9A4E7494E4 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				EB65D51919D6FCF300196D77 /* GameKit.framework */,
-				4B7AEF9618E647448D8ED79E /* libPods.a */,
+				003788D98FF7E287DC8D2A16 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -339,9 +339,9 @@
 				EB3E3B7419A58F4500A768DD /* ObjectiveBridge.h */,
 				EBCEC8FE19D39E67005E301B /* Communication.swift */,
 				EBCEC90019D3A9C4005E301B /* Player.swift */,
-				EB65D51719D6F4E500196D77 /* GCHelper.swift */,
 				EB991F5819DB5FE800ECF07A /* Achievement.swift */,
 				EBA113BA1A64868900B781E0 /* Extensions.swift */,
+				EB3E38F11AA172AE0067978B /* GCHelper.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -619,9 +619,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBCEC90119D3A9C4005E301B /* Player.swift in Sources */,
-				EB65D51819D6F4E500196D77 /* GCHelper.swift in Sources */,
 				EB67142F19D46BD700E0EF63 /* MultiplayerViewController.swift in Sources */,
 				EB3E3BBF19A58F4500A768DD /* GameViewController.swift in Sources */,
+				EB3E38F21AA172AE0067978B /* GCHelper.swift in Sources */,
 				EB3E3BC019A58F4500A768DD /* MenuView.swift in Sources */,
 				EB991F5919DB5FE800ECF07A /* Achievement.swift in Sources */,
 				EB3E3B2919A58F3A00A768DD /* Common.swift in Sources */,

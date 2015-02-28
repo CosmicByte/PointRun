@@ -165,9 +165,9 @@ class MenuViewController: UIViewController {
     
     func menuTab(note: NSNotification) {
         if note.name == achievementNotification {
-            GCHelper.sharedInstance.showGameCenter(self, viewState: .Achievements)
+            GCHelper.showGameCenter(self, viewState: .Achievements)
         } else if note.name == leaderboardNotification {
-            GCHelper.sharedInstance.showGameCenter(self, viewState: .Leaderboards)
+            GCHelper.showGameCenter(self, viewState: .Leaderboards)
         }
     }
     

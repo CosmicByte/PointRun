@@ -35,7 +35,7 @@ func checkAchievement(achievement: PRAchievement) {
         percent = value >= 100 ? 100 : 0
     }
     
-    GCHelper.sharedInstance.reportAchievementIdentifier(gameCenterID(achievement), percent: percent)
+    GCHelper.reportAchievementIdentifier(gameCenterID(achievement), percent: percent)
     defaults.setBool(percent >= 100, forKey: achievement.rawValue)
 }
 
