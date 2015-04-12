@@ -199,10 +199,10 @@ class MenuViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "gameSegue" {
-            var gvc = segue.destinationViewController as GameViewController
+            var gvc = segue.destinationViewController as! GameViewController
             gvc.sendGameMode(gameMode: gameMode)
         } else {
-            var mvc = segue.destinationViewController as MultiplayerViewController
+            var mvc = segue.destinationViewController as! MultiplayerViewController
             mvc.sendGameMode(gameMode: gameMode)
         }
     }

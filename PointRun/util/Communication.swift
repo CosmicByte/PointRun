@@ -41,7 +41,7 @@ class Message: NSObject {
         latitude = aDecoder.decodeDoubleForKey("latitude")
         longitude = aDecoder.decodeDoubleForKey("longitude")
         points = aDecoder.decodeIntegerForKey("points")
-        uuid = aDecoder.decodeObjectForKey("uuid") as String
+        uuid = aDecoder.decodeObjectForKey("uuid") as! String
         
         let typeValue = aDecoder.decodeIntegerForKey("type")
         

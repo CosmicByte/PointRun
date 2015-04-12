@@ -27,7 +27,7 @@ class MenuView: UIView {
         super.init(coder: aDecoder)
     }
     
-    override init() {
+    override init(frame: CGRect) {
         super.init(frame: CGRectMake(0, 0, device.width, device.height))
         
         opacityView = UIView(frame: CGRectMake(0, 0, device.width, device.height))
@@ -375,7 +375,7 @@ class MenuView: UIView {
                         if label is UILabel {
                             // It works, so...
                             if label.frame.origin.x > 100 {
-                                (label as UILabel).text = "0"
+                                (label as! UILabel).text = "0"
                             }
                         }
                     }

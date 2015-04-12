@@ -115,7 +115,7 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
     }
     
     func match(match: GKMatch, didReceiveData data: NSData, fromPlayer playerID: String) {
-        var message = NSKeyedUnarchiver.unarchiveObjectWithData(data) as Message
+        var message = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Message
         switch message.type! {
         case PRMessageType.PlayerData:
             if contains(playerIDs, playerID) {
@@ -137,7 +137,7 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
                 player.pid = playerID
                 player.name = "Friend"
                 GKPlayer.loadPlayersForIdentifiers([playerID], withCompletionHandler: { (players, error) -> Void in
-                    let playerObj = players.last as GKPlayer
+                    let playerObj = players.last as! GKPlayer
                     player.name = playerObj.displayName
                     println("Opponent name: \(playerObj.displayName)")
                     

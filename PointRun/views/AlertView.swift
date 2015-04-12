@@ -19,7 +19,7 @@ class AlertView: UIView {
         super.init(coder: aDecoder)
     }
     
-    override init() {
+    override init(frame: CGRect) {
         super.init(frame: CGRectMake(0, 0, device.width, device.height))
         
         opacityView = UIView(frame: CGRectMake(0, 0, device.width, device.height))

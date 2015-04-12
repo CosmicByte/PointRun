@@ -78,7 +78,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         
         if gameMode == .Timed {
             let ssec = NSString(format: "%@%d", (sec > 9 ? "" : "0"), sec)
-            timerLabel.text = NSString(format: "%d:%@", min, ssec)
+            timerLabel.text = NSString(format: "%d:%@", min, ssec) as String
             if sec > 0 {
                 sec -= 1
             } else {
@@ -126,7 +126,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        location = locations.last as CLLocation
+        location = locations.last as! CLLocation
         
         if lastLocation != nil {
             let distance = location.distanceFromLocation(lastLocation)
@@ -174,8 +174,8 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                     
                     let pointsInAnnotation = (point.snippet.componentsSeparatedByString(" ")[0] as String).toInt()
                     self.points += pointsInAnnotation!
-                    pointLabel.text = NSString(format: "%d %@", self.points, (self.points == 1 ? "Point" : "Points"))
-                    removePoint(point.userData as String, thisdevice: true)
+                    pointLabel.text = NSString(format: "%d %@", self.points, (self.points == 1 ? "Point" : "Points")) as String
+                    removePoint(point.userData as! String, thisdevice: true)
                     
                     let lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                     let lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
@@ -218,7 +218,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     func removePoint(uuid: String, thisdevice: Bool) {
         var i = 0
         for point in markers {
-            if point.userData as String == uuid {
+            if point.userData as! String == uuid {
                 point.map = nil
                 markers.removeAtIndex(i)
                 
