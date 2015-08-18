@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B700E0F267865F9A4E7494E4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 003788D98FF7E287DC8D2A16 /* libPods.a */; };
-		EB3E38F21AA172AE0067978B /* GCHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E38F11AA172AE0067978B /* GCHelper.swift */; };
+		3EC98DC31C7A706670446D22 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69B0B965AE1F0220B6263C40 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EB3E3B2919A58F3A00A768DD /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E3B2819A58F3A00A768DD /* Common.swift */; };
 		EB3E3B7B19A58F4500A768DD /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB3E3B2C19A58F4500A768DD /* OpenSans-Regular.ttf */; };
 		EB3E3B7C19A58F4500A768DD /* 100.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E3B2E19A58F4500A768DD /* 100.png */; };
@@ -101,9 +100,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		003788D98FF7E287DC8D2A16 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		69B0B965AE1F0220B6263C40 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8D8A33E298D7C827374CDC9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		EB3E38F11AA172AE0067978B /* GCHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCHelper.swift; sourceTree = "<group>"; };
 		EB3E3B2819A58F3A00A768DD /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		EB3E3B2C19A58F4500A768DD /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		EB3E3B2E19A58F4500A768DD /* 100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 100.png; sourceTree = "<group>"; };
@@ -168,7 +166,6 @@
 		EB3E3B6C19A58F4500A768DD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EB3E3B6D19A58F4500A768DD /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		EB3E3B6E19A58F4500A768DD /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		EB3E3B7419A58F4500A768DD /* ObjectiveBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveBridge.h; sourceTree = "<group>"; };
 		EB3E3B7719A58F4500A768DD /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		EB3E3B7819A58F4500A768DD /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		EB3E3B7919A58F4500A768DD /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -197,7 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B700E0F267865F9A4E7494E4 /* libPods.a in Frameworks */,
+				3EC98DC31C7A706670446D22 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				EB65D51919D6FCF300196D77 /* GameKit.framework */,
-				003788D98FF7E287DC8D2A16 /* libPods.a */,
+				69B0B965AE1F0220B6263C40 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -336,12 +333,10 @@
 		EB3E3B6F19A58F4500A768DD /* util */ = {
 			isa = PBXGroup;
 			children = (
-				EB3E3B7419A58F4500A768DD /* ObjectiveBridge.h */,
 				EBCEC8FE19D39E67005E301B /* Communication.swift */,
 				EBCEC90019D3A9C4005E301B /* Player.swift */,
 				EB991F5819DB5FE800ECF07A /* Achievement.swift */,
 				EBA113BA1A64868900B781E0 /* Extensions.swift */,
-				EB3E38F11AA172AE0067978B /* GCHelper.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -430,6 +425,7 @@
 				EB67508219A58DE4007D8EA1 /* Frameworks */,
 				EB67508319A58DE4007D8EA1 /* Resources */,
 				EBF4D94A88B54A3FAB862B0D /* Copy Pods Resources */,
+				2B919717044BD6F486D748F1 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -581,6 +577,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2B919717044BD6F486D748F1 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9AD63BA76CF44FBFB7623ECA /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -621,7 +632,6 @@
 				EBCEC90119D3A9C4005E301B /* Player.swift in Sources */,
 				EB67142F19D46BD700E0EF63 /* MultiplayerViewController.swift in Sources */,
 				EB3E3BBF19A58F4500A768DD /* GameViewController.swift in Sources */,
-				EB3E38F21AA172AE0067978B /* GCHelper.swift in Sources */,
 				EB3E3BC019A58F4500A768DD /* MenuView.swift in Sources */,
 				EB991F5919DB5FE800ECF07A /* Achievement.swift in Sources */,
 				EB3E3B2919A58F3A00A768DD /* Common.swift in Sources */,
@@ -751,7 +761,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = PointRun/util/ObjectiveBridge.h;
 			};
 			name = Debug;
 		};
@@ -767,7 +776,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = PointRun/util/ObjectiveBridge.h;
 			};
 			name = Release;
 		};

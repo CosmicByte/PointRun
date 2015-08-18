@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GCHelper
 
 func checkAchievement(achievement: PRAchievement) {
     let value = defaults.doubleForKey(achievement.rawValue + "Default")
@@ -35,7 +36,7 @@ func checkAchievement(achievement: PRAchievement) {
         percent = value >= 100 ? 100 : 0
     }
     
-    GCHelper.reportAchievementIdentifier(gameCenterID(achievement), percent: percent)
+    GCHelper.sharedInstance.reportAchievementIdentifier(gameCenterID(achievement), percent: percent)
     defaults.setBool(percent >= 100, forKey: achievement.rawValue)
 }
 

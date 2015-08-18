@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 CosmicByte. All rights reserved.
 //
 
-import UIKit
 import AudioToolbox
+import GCHelper
+import GoogleMaps
+import UIKit
 
 class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
@@ -244,7 +246,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
             self.navigationController?.popViewControllerAnimated(true)
         case .TimerDone:
             alert.message = "You have run out of time!"
-            GCHelper.reportLeaderboardIdentifier("mosttimedpoints", score: self.points)
+            GCHelper.sharedInstance.reportLeaderboardIdentifier("mosttimedpoints", score: self.points)
         case .PoisonPin:
             alert.message = "That pin was poisonous!"
         case .Disconnect:

@@ -1,6 +1,6 @@
-source 'https://github.com/CocoaPods/Specs.git'
-
 platform :ios, '8.0'
 inhibit_all_warnings!
+use_frameworks!
 
-pod 'Google-Maps-iOS-SDK', '~> 1.8'
+pod 'GCHelper', '~> 0.2'
+pod 'GoogleMaps', '~> 1.10'

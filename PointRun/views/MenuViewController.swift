@@ -7,6 +7,7 @@
 //
 
 import GameKit
+import GCHelper
 import UIKit
 
 class MenuViewController: UIViewController {
@@ -165,9 +166,9 @@ class MenuViewController: UIViewController {
     
     func menuTab(note: NSNotification) {
         if note.name == achievementNotification {
-            GCHelper.showGameCenter(self, viewState: .Achievements)
+            GCHelper.sharedInstance.showGameCenter(self, viewState: .Achievements)
         } else if note.name == leaderboardNotification {
-            GCHelper.showGameCenter(self, viewState: .Leaderboards)
+            GCHelper.sharedInstance.showGameCenter(self, viewState: .Leaderboards)
         }
     }
     

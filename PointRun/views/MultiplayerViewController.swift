@@ -7,6 +7,8 @@
 //
 
 import GameKit
+import GCHelper
+import GoogleMaps
 import UIKit
 
 class MultiplayerViewController: GameViewController, GCHelperDelegate {
@@ -28,7 +30,7 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
     
     override func viewDidLayoutSubviews() {
         if !madeMatch {
-            GCHelper.findMatchWithMinPlayers(2, maxPlayers: 4, viewController: self, delegate: self)
+            GCHelper.sharedInstance.findMatchWithMinPlayers(2, maxPlayers: 4, viewController: self, delegate: self)
             madeMatch = true
         }
     }
@@ -63,7 +65,7 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
     // MARK: Sending data
 
     func sendData(data: NSData) {
-        var success = GCHelper.match.sendDataToAllPlayers(data, withDataMode: GKMatchSendDataMode.Reliable, error: nil)
+        var success = GCHelper.sharedInstance.match.sendDataToAllPlayers(data, withDataMode: GKMatchSendDataMode.Reliable, error: nil)
         if !success {
             println("Error sending init packet")
         }
