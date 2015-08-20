@@ -181,7 +181,7 @@ class MenuViewController: UIViewController {
                 gameMode = .Race
                 self.performSegueWithIdentifier("multiplayerSegue", sender: self)
             } else {
-                var alert = UIAlertController(title: "Game Center", message: "You are not signed into Game Center.", preferredStyle: .Alert)
+                let alert = UIAlertController(title: "Game Center", message: "You are not signed into Game Center.", preferredStyle: .Alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
@@ -200,10 +200,10 @@ class MenuViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "gameSegue" {
-            var gvc = segue.destinationViewController as! GameViewController
+            let gvc = segue.destinationViewController as! GameViewController
             gvc.sendGameMode(gameMode: gameMode)
         } else {
-            var mvc = segue.destinationViewController as! MultiplayerViewController
+            let mvc = segue.destinationViewController as! MultiplayerViewController
             mvc.sendGameMode(gameMode: gameMode)
         }
     }

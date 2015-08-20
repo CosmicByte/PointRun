@@ -23,7 +23,7 @@ class MenuView: UIView {
     
     var viewController: UIViewController!
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -263,7 +263,7 @@ class MenuView: UIView {
         if statisticsShown {return}
         statisticsShown = true
         
-        var height = 46
+        let height = 46
         for i in 0...6 {
             let statisticCell = UIImageView(frame: CGRectMake(0, CGFloat(64 + (i * height)), menuWidth, CGFloat(height)))
             statisticCell.image = UIImage(named: "element13.png")

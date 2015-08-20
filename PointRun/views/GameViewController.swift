@@ -100,7 +100,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     }
     
     func mapChanged() {
-        var mapType = defaults.doubleForKey("mapType")
+        let mapType = defaults.doubleForKey("mapType")
         switch mapType {
         case 0:
             mapView.mapType = kGMSTypeNormal
@@ -127,8 +127,8 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         gameMode = gameType
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        location = locations.last as! CLLocation
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        location = locations.last!
         
         if lastLocation != nil {
             let distance = location.distanceFromLocation(lastLocation)
@@ -144,7 +144,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
             
             mapView.camera = GMSCameraPosition.cameraWithTarget(location.coordinate, zoom: 17.5)
             
-            for i in 0...39 {
+            for _ in 0...39 {
                 let lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                 let lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                 let value = Int(arc4random_uniform(10) + 1)
@@ -174,7 +174,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                         }
                     }
                     
-                    let pointsInAnnotation = (point.snippet.componentsSeparatedByString(" ")[0] as String).toInt()
+                    let pointsInAnnotation = Int((point.snippet.componentsSeparatedByString(" ")[0] as String))
                     self.points += pointsInAnnotation!
                     pointLabel.text = NSString(format: "%d %@", self.points, (self.points == 1 ? "Point" : "Points")) as String
                     removePoint(point.userData as! String, thisdevice: true)
@@ -214,7 +214,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         
         markers.append(point)
         
-        println("Created \(value) points at \(lat), \(lon) with a UUID of \(uuid)")
+        print("Created \(value) points at \(lat), \(lon) with a UUID of \(uuid)")
     }
     
     func removePoint(uuid: String, thisdevice: Bool) {
@@ -260,8 +260,6 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
             alert.message = "You won!"
         case .MultiplayerLoss:
             alert.message = "You lost."
-        default:
-            break
         }
         
         alert.message? += "\nYour Score: \(points)"

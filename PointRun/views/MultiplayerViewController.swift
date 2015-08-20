@@ -35,7 +35,7 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
         }
     }
     
-    override func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    override func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         super.locationManager(manager, didUpdateLocations: locations)
         
         if started {
@@ -65,24 +65,25 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
     // MARK: Sending data
 
     func sendData(data: NSData) {
-        var success = GCHelper.sharedInstance.match.sendDataToAllPlayers(data, withDataMode: GKMatchSendDataMode.Reliable, error: nil)
-        if !success {
-            println("Error sending init packet")
+        do {
+            try GCHelper.sharedInstance.match.sendDataToAllPlayers(data, withDataMode: .Reliable)
+        } catch {
+            print("Error sending init packet")
         }
     }
     
     func sendPlayerData() {
-        var playerData = Message(playerDataWithPoints: points, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        let playerData = Message(playerDataWithPoints: points, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         self.sendData(NSKeyedArchiver.archivedDataWithRootObject(playerData))
     }
     
     func sendPointLocation(latitude lat: Double, longitude lon: Double, points: Int, uuid: String) {
-        var pointLocation = Message(pointLocationWithLatitude: lat, longitude: lon, points: points, uuid: uuid)
+        let pointLocation = Message(pointLocationWithLatitude: lat, longitude: lon, points: points, uuid: uuid)
         self.sendData(NSKeyedArchiver.archivedDataWithRootObject(pointLocation))
     }
     
     func sendPointCaptured(uuid: String) {
-        var pointCaptured = Message(pointCapturedWithUUID: uuid)
+        let pointCaptured = Message(pointCapturedWithUUID: uuid)
         self.sendData(NSKeyedArchiver.archivedDataWithRootObject(pointCaptured))
     }
     
@@ -97,11 +98,11 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
         
         mapView.camera = GMSCameraPosition.cameraWithTarget(location.coordinate, zoom: 17.5)
         
-        var alertView = AlertView()
+        let alertView = AlertView()
         self.view.addSubview(alertView)
         alertView.show()
         
-        for i in 0...19 {
+        for _ in 0...19 {
             let lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
             let lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
             let points = Int(arc4random_uniform(10) + 1)
@@ -117,10 +118,10 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
     }
     
     func match(match: GKMatch, didReceiveData data: NSData, fromPlayer playerID: String) {
-        var message = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Message
+        let message = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Message
         switch message.type! {
         case PRMessageType.PlayerData:
-            if contains(playerIDs, playerID) {
+            if playerIDs.contains(playerID) {
                 for player in players {
                     if player.pid == playerID {
                         player.points = message.points
@@ -128,20 +129,24 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
                             self.endGame(.MultiplayerLoss)
                         }
                         
-                        var coords = CLLocationCoordinate2DMake(message.latitude, message.longitude)
+                        let coords = CLLocationCoordinate2DMake(message.latitude, message.longitude)
                         player.mapPoint.position = coords
                         player.mapPoint.snippet = "\(player.name) - \(player.points)"
                     }
                 }
             } else {
                 playerIDs.append(playerID)
-                var player = Player()
+                let player = Player()
                 player.pid = playerID
                 player.name = "Friend"
                 GKPlayer.loadPlayersForIdentifiers([playerID], withCompletionHandler: { (players, error) -> Void in
-                    let playerObj = players.last as! GKPlayer
+                    guard let players = players else {
+                        return
+                    }
+                    
+                    let playerObj = players.last!
                     player.name = playerObj.displayName
-                    println("Opponent name: \(playerObj.displayName)")
+                    print("Opponent name: \(playerObj.displayName)")
                     
                     player.mapPoint = GMSMarker(position: CLLocationCoordinate2DMake(message.latitude, message.longitude))
                     player.mapPoint.appearAnimation = kGMSMarkerAnimationPop
@@ -154,12 +159,10 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
         case PRMessageType.PointLocation:
             addPoint(mapView, latitude: message.latitude, longitude: message.longitude, value: message.points, uuid: message.uuid)
         case PRMessageType.PointCaptured:
-            if !contains(deleted, message.uuid) {
+            if !deleted.contains(message.uuid) {
                 removePoint(message.uuid, thisdevice: false)
                 deleted.append(message.uuid)
             }
-        default:
-            break
         }
     }
 }
