@@ -55,27 +55,27 @@ class MenuViewController: UIViewController {
     
     @IBAction func singlePlayerDown(_ sender: AnyObject) {
         if !singlePlayer {
-            singlePlayerButton.setImage(UIImage(named: "element19.png"), for: UIControlState())
+            singlePlayerButton.setImage(#imageLiteral(resourceName: "Element19"), for: .normal)
         } else {
-            singlePlayerButton.setImage(UIImage(named: "element18.png"), for: UIControlState())
+            singlePlayerButton.setImage(#imageLiteral(resourceName: "Element18"), for: .normal)
         }
         
-        singlePlayerButton.setImage(UIImage(named: "element07.png"), for: .highlighted)
+        singlePlayerButton.setImage(#imageLiteral(resourceName: "Element07"), for: .highlighted)
         
-        singlePlayerImage.image = UIImage(named: "singleWhite.png")
+        singlePlayerImage.image = #imageLiteral(resourceName: "Singleplayer White")
     }
     
     @IBAction func singlePlayerUp(_ sender: AnyObject) {
-        singlePlayerButton.setImage(UIImage(named: "element18.png"), for: UIControlState())
+        singlePlayerButton.setImage(#imageLiteral(resourceName: "Element18"), for: .normal)
         
-        multiPlayerButton.setImage(UIImage(named: "element19.png"), for: UIControlState())
-        multiPlayerButton.setImage(UIImage(named: "element07.png"), for: .highlighted)
+        multiPlayerButton.setImage(#imageLiteral(resourceName: "Element19"), for: .normal)
+        multiPlayerButton.setImage(#imageLiteral(resourceName: "Element07"), for: .highlighted)
         
-        multiPlayerImage.image = UIImage(named: "multiGreen.png")
+        multiPlayerImage.image = #imageLiteral(resourceName: "Multiplayer Green")
         
         singlePlayer = true
         
-        timedButtonIcon.image = UIImage(named: "gamemodeTimer.png")
+        timedButtonIcon.image = #imageLiteral(resourceName: "Timer Gamemode")
         timedButtonIcon.frame = CGRect(x: 42, y: 183, width: 39, height: 36)
         timedButtonTitle.text = "Timed"
         timedButtonDescription.text = "You will be given 5 minutes to collect as many points as you can."
@@ -93,44 +93,44 @@ class MenuViewController: UIViewController {
     
     @IBAction func singlePlayerUpOutside(_ sender: AnyObject) {
         if singlePlayer {
-            singlePlayerButton.setImage(UIImage(named: "element18.png"), for: UIControlState())
-            singlePlayerImage.image = UIImage(named: "singleWhite.png")
+            singlePlayerButton.setImage(#imageLiteral(resourceName: "Element18"), for: .normal)
+            singlePlayerImage.image = #imageLiteral(resourceName: "Singleplayer White")
         } else {
-            singlePlayerButton.setImage(UIImage(named: "element19.png"), for: UIControlState())
-            singlePlayerImage.image = UIImage(named: "singleGreen.png")
+            singlePlayerButton.setImage(#imageLiteral(resourceName: "Element19"), for: .normal)
+            singlePlayerImage.image = #imageLiteral(resourceName: "Singleplayer Green")
         }
     }
     
     @IBAction func singlePlayerDragEnter(_ sender: AnyObject) {
-        singlePlayerImage.image = UIImage(named: "singleWhite.png")
+        singlePlayerImage.image = #imageLiteral(resourceName: "Singleplayer White")
     }
     
     @IBAction func singlePlayerDragExit(_ sender: AnyObject) {
         if singlePlayer {
-            singlePlayerImage.image = UIImage(named: "singleWhite.png")
+            singlePlayerImage.image = #imageLiteral(resourceName: "Singleplayer White")
         } else {
-            singlePlayerImage.image = UIImage(named: "singleGreen.png")
+            singlePlayerImage.image = #imageLiteral(resourceName: "Singleplayer Green")
         }
     }
     
     @IBAction func multiPlayerDown(_ sender: AnyObject) {
-        multiPlayerButton.setImage(UIImage(named: "element19.png"), for: UIControlState())
-        multiPlayerButton.setImage(UIImage(named: "element07.png"), for: .highlighted)
+        multiPlayerButton.setImage(#imageLiteral(resourceName: "Element19"), for: .normal)
+        multiPlayerButton.setImage(#imageLiteral(resourceName: "Element07"), for: .highlighted)
         
-        multiPlayerImage.image = UIImage(named: "multiWhite.png")
+        multiPlayerImage.image = #imageLiteral(resourceName: "Multiplayer White")
     }
     
     @IBAction func multiPlayerUp(_ sender: AnyObject) {
-        multiPlayerButton.setImage(UIImage(named: "element18.png"), for: UIControlState())
+        multiPlayerButton.setImage(#imageLiteral(resourceName: "Element18"), for: .normal)
         
-        singlePlayerButton.setImage(UIImage(named: "element19.png"), for: UIControlState())
-        singlePlayerButton.setImage(UIImage(named: "element07.png"), for: .highlighted)
+        singlePlayerButton.setImage(#imageLiteral(resourceName: "Element19"), for: .normal)
+        singlePlayerButton.setImage(#imageLiteral(resourceName: "Element07"), for: .highlighted)
         
-        singlePlayerImage.image = UIImage(named: "singleGreen.png")
+        singlePlayerImage.image = #imageLiteral(resourceName: "Singleplayer Green")
         
         singlePlayer = false
         
-        timedButtonIcon.image = UIImage(named: "gamemodeRace.png")
+        timedButtonIcon.image = #imageLiteral(resourceName: "Race Gamemode")
         timedButtonIcon.frame = CGRect(x: (timedButtonBackground.frame.size.height - timedButtonIcon.frame.size.height / 1.08108) / 2 + timedButtonBackground.frame.origin.y, y: timedButtonIcon.frame.origin.y, width: timedButtonIcon.frame.size.width, height: timedButtonIcon.frame.size.height / 1.08108)
         timedButtonTitle.text = "Race"
         timedButtonDescription.text = "Beat up to three other friends in a race to 100 points."
@@ -148,20 +148,20 @@ class MenuViewController: UIViewController {
     
     @IBAction func multiPlayerUpOutside(_ sender: AnyObject) {
         if singlePlayer {
-            multiPlayerButton.setImage(UIImage(named: "element19.png"), for: UIControlState())
-            multiPlayerImage.image = UIImage(named: "multiGreen.png")
+            multiPlayerButton.setImage(#imageLiteral(resourceName: "Element19"), for: .normal)
+            multiPlayerImage.image = #imageLiteral(resourceName: "Multiplayer Green")
         } else {
-            multiPlayerButton.setImage(UIImage(named: "element18.png"), for: UIControlState())
-            multiPlayerImage.image = UIImage(named: "multiWhite.png")
+            multiPlayerButton.setImage(#imageLiteral(resourceName: "Element18"), for: .normal)
+            multiPlayerImage.image = #imageLiteral(resourceName: "Multiplayer White")
         }
     }
     
     @IBAction func multiPlayerDragEnter(_ sender: AnyObject) {
-        multiPlayerImage.image = UIImage(named: "multiWhite.png")
+        multiPlayerImage.image = #imageLiteral(resourceName: "Multiplayer White")
     }
     
     @IBAction func multiPlayerDragExit(_ sender: AnyObject) {
-        multiPlayerImage.image = UIImage(named: "multiGreen.png")
+        multiPlayerImage.image = #imageLiteral(resourceName: "Multiplayer Green")
     }
     
     func menuTab(_ note: Notification) {

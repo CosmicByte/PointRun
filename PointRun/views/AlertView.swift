@@ -34,10 +34,10 @@ class AlertView: UIView {
         alertView.alpha = 0.0
         
         let alertBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: alertWidth, height: alertHeight))
-        alertBackground.image = UIImage(named: "element11.png")
+        alertBackground.image = #imageLiteral(resourceName: "Element11")
         
         let alertIcon = UIImageView(frame: CGRect(x: (alertWidth - 29) / 2, y: 6, width: 29, height: 24))
-        alertIcon.image = UIImage(named: "warning.png")
+        alertIcon.image = #imageLiteral(resourceName: "Warning")
         
         let alertText = UILabel(frame: CGRect(x: 18, y: 58, width: alertWidth - 36, height: 48))
         alertText.text = "Be mindful of traffic, obstructions, and other hazards while playing PointRun!"
@@ -47,8 +47,8 @@ class AlertView: UIView {
         alertText.textAlignment = NSTextAlignment.center
         
         let alertButton = UIButton(frame: CGRect(x: 8, y: alertHeight - 49, width: alertWidth - 16, height: 40))
-        alertButton.setImage(UIImage(named: "element08.png"), for: UIControlState())
-        alertButton.setImage(UIImage(named: "element20.png"), for: .highlighted)
+        alertButton.setImage(#imageLiteral(resourceName: "Element08"), for: .normal)
+        alertButton.setImage(#imageLiteral(resourceName: "Element20"), for: .highlighted)
         alertButton.addTarget(self, action: #selector(AlertView.hide), for: .touchUpInside)
         
         let buttonText = UILabel()

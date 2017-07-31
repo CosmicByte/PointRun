@@ -150,7 +150,7 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
                     
                     player.mapPoint = GMSMarker(position: CLLocationCoordinate2DMake(message.latitude, message.longitude))
                     player.mapPoint.appearAnimation = .pop
-                    player.mapPoint.icon = UIImage(named: "gamePlayer.png")
+                    player.mapPoint.icon = #imageLiteral(resourceName: "Player")
                     player.mapPoint.snippet = "\(player.name) - \(player.points)"
                     player.mapPoint.map = self.mapView
                 })

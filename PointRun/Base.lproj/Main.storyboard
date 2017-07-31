@@ -38,7 +38,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="element19.png" translatesAutoresizingMaskIntoConstraints="NO" id="u3b-WP-4jb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Element19" translatesAutoresizingMaskIntoConstraints="NO" id="u3b-WP-4jb">
                                 <rect key="frame" x="0.0" y="20" width="375" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="CDk-Qk-Iky"/>
@@ -60,7 +60,7 @@
                                     <constraint firstAttribute="width" constant="62" id="3uq-ta-tNN"/>
                                     <constraint firstAttribute="height" constant="64" id="BdV-2W-q1u"/>
                                 </constraints>
-                                <state key="normal" image="element19.png">
+                                <state key="normal" image="Element19">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="default">
@@ -89,7 +89,7 @@
                                     <constraint firstAttribute="height" constant="64" id="U1t-E4-ujO"/>
                                     <constraint firstAttribute="width" constant="62" id="g59-QO-o7e"/>
                                 </constraints>
-                                <state key="normal" image="element18.png">
+                                <state key="normal" image="Element18">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="default">
@@ -112,7 +112,7 @@
                                     <action selector="singlePlayerUpOutside:" destination="vXZ-lx-hvc" eventType="touchUpOutside" id="xfZ-Ed-YJe"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="multiGreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="8cI-gG-bbo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Multiplayer Green" translatesAutoresizingMaskIntoConstraints="NO" id="8cI-gG-bbo">
                                 <rect key="frame" x="326" y="41" width="36" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="Lbz-zr-Dtq"/>
@@ -138,7 +138,7 @@
                                     <constraint firstAttribute="height" constant="64" id="woT-9e-ayM"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="19" minY="19" maxX="19" maxY="19"/>
-                                <state key="normal" image="menu.png">
+                                <state key="normal" image="Menu">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="default">
@@ -157,7 +157,7 @@
                                     <action selector="menuButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Voy-yS-VmG"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="singleWhite.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sc6-4k-Oiu">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Singleplayer White" translatesAutoresizingMaskIntoConstraints="NO" id="Sc6-4k-Oiu">
                                 <rect key="frame" x="274" y="41" width="17" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="jj3-ZB-Tqv"/>
@@ -200,10 +200,10 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" id="zK2-xd-7fW"/>
                                 </constraints>
-                                <state key="normal" image="element08.png">
+                                <state key="normal" image="Element08">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <state key="highlighted" image="element20.png"/>
+                                <state key="highlighted" image="Element20"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="zK2-xd-7fW"/>
@@ -261,10 +261,10 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" id="dgN-dV-eSO"/>
                                 </constraints>
-                                <state key="normal" image="element08.png">
+                                <state key="normal" image="Element08">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <state key="highlighted" image="element20.png"/>
+                                <state key="highlighted" image="Element20"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="dgN-dV-eSO"/>
@@ -279,7 +279,7 @@
                                     <action selector="endlessButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Uqf-Le-sQR"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gamemodeEndless.png" translatesAutoresizingMaskIntoConstraints="NO" id="xbl-ZD-VwS">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Endless Gamemode" translatesAutoresizingMaskIntoConstraints="NO" id="xbl-ZD-VwS">
                                 <rect key="frame" x="42" y="282" width="39" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="OSO-oQ-GhY"/>
@@ -341,10 +341,10 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" id="a18-mG-uni"/>
                                 </constraints>
-                                <state key="normal" image="element08.png">
+                                <state key="normal" image="Element08">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <state key="highlighted" image="element20.png"/>
+                                <state key="highlighted" image="Element20"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="a18-mG-uni"/>
@@ -397,7 +397,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gamemodeTarget.png" translatesAutoresizingMaskIntoConstraints="NO" id="aiV-y0-dGc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Target Gamemode" translatesAutoresizingMaskIntoConstraints="NO" id="aiV-y0-dGc">
                                 <rect key="frame" x="42" y="363" width="39" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="aW6-vU-Axv"/>
@@ -416,7 +416,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gamemodeTimer.png" translatesAutoresizingMaskIntoConstraints="NO" id="acY-1O-6vD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Timer Gamemode" translatesAutoresizingMaskIntoConstraints="NO" id="acY-1O-6vD">
                                 <rect key="frame" x="42" y="183" width="39" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="DXh-fG-PPo"/>
@@ -670,7 +670,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="element19.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZoF-xd-fyY">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Element19" translatesAutoresizingMaskIntoConstraints="NO" id="ZoF-xd-fyY">
                                 <rect key="frame" x="0.0" y="20" width="375" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="ILG-fG-sot"/>
@@ -693,7 +693,7 @@
                                     <constraint firstAttribute="width" constant="64" id="VZr-gw-5GG"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="19" minY="19" maxX="19" maxY="19"/>
-                                <state key="normal" image="menu.png">
+                                <state key="normal" image="Menu">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="default">
@@ -751,7 +751,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timerSmall.png" translatesAutoresizingMaskIntoConstraints="NO" id="znK-Ik-k21">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Timer" translatesAutoresizingMaskIntoConstraints="NO" id="znK-Ik-k21">
                                 <rect key="frame" x="287" y="42" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="14r-0y-2QJ"/>
@@ -857,7 +857,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="udk-p1-Y1g" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lGy-Oc-dmK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="lGy-Oc-dmK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -899,7 +899,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="element19.png" translatesAutoresizingMaskIntoConstraints="NO" id="Uor-7d-KPw">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Element19" translatesAutoresizingMaskIntoConstraints="NO" id="Uor-7d-KPw">
                                 <rect key="frame" x="0.0" y="20" width="375" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="NBN-Pg-RON"/>
@@ -922,7 +922,7 @@
                                     <constraint firstAttribute="width" constant="64" id="lBO-pO-5Op"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="19" minY="19" maxX="19" maxY="19"/>
-                                <state key="normal" image="menu.png">
+                                <state key="normal" image="Menu">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="default">
@@ -1026,16 +1026,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="element08.png" width="701" height="144"/>
-        <image name="element18.png" width="160" height="164"/>
-        <image name="element19.png" width="160" height="164"/>
-        <image name="element20.png" width="701" height="144"/>
-        <image name="gamemodeEndless.png" width="108" height="56"/>
-        <image name="gamemodeTarget.png" width="98" height="98"/>
-        <image name="gamemodeTimer.png" width="94" height="86"/>
-        <image name="menu.png" width="75" height="62"/>
-        <image name="multiGreen.png" width="94" height="58"/>
-        <image name="singleWhite.png" width="44" height="58"/>
-        <image name="timerSmall.png" width="60" height="55"/>
+        <image name="Element08" width="350" height="72"/>
+        <image name="Element18" width="80" height="82"/>
+        <image name="Element19" width="80" height="82"/>
+        <image name="Element20" width="350" height="72"/>
+        <image name="Endless Gamemode" width="54" height="28"/>
+        <image name="Menu" width="37" height="31"/>
+        <image name="Multiplayer Green" width="47" height="29"/>
+        <image name="Singleplayer White" width="22" height="29"/>
+        <image name="Target Gamemode" width="49" height="49"/>
+        <image name="Timer" width="30" height="27"/>
+        <image name="Timer Gamemode" width="47" height="43"/>
     </resources>
 </document>

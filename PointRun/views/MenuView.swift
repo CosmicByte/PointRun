@@ -46,32 +46,32 @@ class MenuView: UIView {
         menuView.backgroundColor = UIColor.white
         
         statisticsButton = UIButton(frame: CGRect(x: 0, y: 0, width: 87, height: 64))
-        statisticsButton.setImage(UIImage(named: "element06.png"), for: UIControlState())
-        statisticsButton.setImage(UIImage(named: "element07.png"), for: .highlighted)
+        statisticsButton.setImage(#imageLiteral(resourceName: "Element06"), for: .normal)
+        statisticsButton.setImage(#imageLiteral(resourceName: "Element07"), for: .highlighted)
         statisticsButton.addTarget(self, action: #selector(MenuView.statisticsButtonEvent), for: .touchDown)
         statisticsButton.addTarget(self, action: #selector(MenuView.showStatistics), for: .allTouchEvents)
         
         let statisticsImage = UIImageView(frame: CGRect(x: 30, y: 21, width: 27, height: 22))
-        statisticsImage.image = UIImage(named: "statistics.png")
+        statisticsImage.image = #imageLiteral(resourceName: "Statistics")
         
         let achievementsButton = UIButton(frame: CGRect(x: 87, y: 0, width: 86, height: 64))
-        achievementsButton.setImage(UIImage(named: "element07.png"), for: UIControlState())
-        achievementsButton.setImage(UIImage(named: "element06.png"), for: .highlighted)
+        achievementsButton.setImage(#imageLiteral(resourceName: "Element07"), for: .normal)
+        achievementsButton.setImage(#imageLiteral(resourceName: "Element06"), for: .highlighted)
         achievementsButton.addTarget(self, action: #selector(MenuView.showAchievements), for: .touchUpInside)
         
         let achievementsImage = UIImageView(frame: CGRect(x: 35.5, y: 21, width: 15, height: 22))
-        achievementsImage.image = UIImage(named: "medal.png")
+        achievementsImage.image = #imageLiteral(resourceName: "Medal")
         
         let leaderboardButton = UIButton(frame: CGRect(x: 173, y: 0, width: 87, height: 64))
-        leaderboardButton.setImage(UIImage(named: "element06.png"), for: UIControlState())
-        leaderboardButton.setImage(UIImage(named: "element07.png"), for: .highlighted)
+        leaderboardButton.setImage(#imageLiteral(resourceName: "Element06"), for: .normal)
+        leaderboardButton.setImage(#imageLiteral(resourceName: "Element07"), for: .highlighted)
         leaderboardButton.addTarget(self, action: #selector(MenuView.showLeaderboards), for: .touchUpInside)
         
         let leaderboardImage = UIImageView(frame: CGRect(x: 28.5, y: 21, width: 30, height: 22))
-        leaderboardImage.image = UIImage(named: "list.png")
+        leaderboardImage.image = #imageLiteral(resourceName: "List")
         
         indicator = UIImageView(frame: CGRect(x: 33, y: 62.5, width: 21, height: 8))
-        indicator.image = UIImage(named: "element03.png")
+        indicator.image = #imageLiteral(resourceName: "Element03")
         
         statisticsButton.addSubview(statisticsImage)
         achievementsButton.addSubview(achievementsImage)
@@ -107,25 +107,25 @@ class MenuView: UIView {
     func statisticsButtonEvent() {
         switch statisticsButton.state {
         case UIControlState.highlighted:
-            indicator.image = UIImage(named: "element21.png")
+            indicator.image = #imageLiteral(resourceName: "Element21")
         default:
-            indicator.image = UIImage(named: "element03.png")
+            indicator.image = #imageLiteral(resourceName: "Element03")
         }
     }
     
     func showSettings() {
         let backHeight: CGFloat = 64
         let backImage = UIImageView(frame: CGRect(x: 0, y: 64, width: menuWidth, height: backHeight))
-        backImage.image = UIImage(named: "element13.png")
+        backImage.image = #imageLiteral(resourceName: "Element13")
         
         let backButton = UIButton(frame: CGRect(x: 10, y: 74, width: menuWidth - 20, height: backHeight - 20))
-        backButton.setImage(UIImage(named: "element08.png"), for: UIControlState())
-        backButton.setImage(UIImage(named: "element20.png"), for: .highlighted)
+        backButton.setImage(#imageLiteral(resourceName: "Element08"), for: .normal)
+        backButton.setImage(#imageLiteral(resourceName: "Element20"), for: .highlighted)
         backButton.addTarget(self, action: #selector(MenuView.backButton), for: .touchUpInside)
         
         let iconHeight: CGFloat = 18
         let backIcon = UIImageView(frame: CGRect(x: 16, y: (backButton.frame.size.height - iconHeight) / 2, width: 21, height: iconHeight))
-        backIcon.image = UIImage(named: "back.png")
+        backIcon.image = #imageLiteral(resourceName: "Back")
         
         let backText = UILabel()
         backText.text = "Return to mode select"
@@ -138,7 +138,7 @@ class MenuView: UIView {
         backButton.addSubview(backText)
         
         let optionImage = UIImageView(frame: CGRect(x: 0, y: 128, width: menuWidth, height: 64))
-        optionImage.image = UIImage(named: "element13.png")
+        optionImage.image = #imageLiteral(resourceName: "Element13")
         
         let optionLabel = UILabel()
         optionLabel.text = "Map display"
@@ -148,8 +148,8 @@ class MenuView: UIView {
         optionLabel.frame = CGRect(x: 12, y: 142, width: 128, height: optionLabel.frame.size.height)
         
         let streetsButton = UIButton(frame: CGRect(x: 10, y: 174, width: menuWidth - 20, height: 42))
-        streetsButton.setImage(UIImage(named: "element22.png"), for: UIControlState())
-        streetsButton.setImage(UIImage(named: "element23.png"), for: .highlighted)
+        streetsButton.setImage(#imageLiteral(resourceName: "Element22"), for: .normal)
+        streetsButton.setImage(#imageLiteral(resourceName: "Element23"), for: .highlighted)
         streetsButton.addTarget(self, action: #selector(MenuView.streetsButton), for: .touchUpInside)
         
         let streetsLabel = UILabel()
@@ -162,8 +162,8 @@ class MenuView: UIView {
         streetsButton.addSubview(streetsLabel)
         
         let satelliteButton = UIButton(frame: CGRect(x: 10, y: 228, width: menuWidth - 20, height: 42))
-        satelliteButton.setImage(UIImage(named: "element22.png"), for: UIControlState())
-        satelliteButton.setImage(UIImage(named: "element23.png"), for: .highlighted)
+        satelliteButton.setImage(#imageLiteral(resourceName: "Element22"), for: .normal)
+        satelliteButton.setImage(#imageLiteral(resourceName: "Element23"), for: .highlighted)
         satelliteButton.addTarget(self, action: #selector(MenuView.satelliteButton), for: .touchUpInside)
         
         let satelliteLabel = UILabel()
@@ -176,8 +176,8 @@ class MenuView: UIView {
         satelliteButton.addSubview(satelliteLabel)
         
         let hybridButton = UIButton(frame: CGRect(x: 10, y: 282, width: menuWidth - 20, height: 42))
-        hybridButton.setImage(UIImage(named: "element22.png"), for: UIControlState())
-        hybridButton.setImage(UIImage(named: "element23.png"), for: .highlighted)
+        hybridButton.setImage(#imageLiteral(resourceName: "Element22"), for: .normal)
+        hybridButton.setImage(#imageLiteral(resourceName: "Element23"), for: .highlighted)
         hybridButton.addTarget(self, action: #selector(MenuView.hybridButton), for: .touchUpInside)
         
         let hybridLabel = UILabel()
@@ -190,8 +190,8 @@ class MenuView: UIView {
         hybridButton.addSubview(hybridLabel)
         
         let terrainButton = UIButton(frame: CGRect(x: 10, y: 336, width: menuWidth - 20, height: 42))
-        terrainButton.setImage(UIImage(named: "element22.png"), for: UIControlState())
-        terrainButton.setImage(UIImage(named: "element23.png"), for: .highlighted)
+        terrainButton.setImage(#imageLiteral(resourceName: "Element22"), for: .normal)
+        terrainButton.setImage(#imageLiteral(resourceName: "Element23"), for: .highlighted)
         terrainButton.addTarget(self, action: #selector(MenuView.terrainButton), for: .touchUpInside)
         
         let terrainLabel = UILabel()
@@ -205,11 +205,11 @@ class MenuView: UIView {
         
         let checkY = CGFloat(174 + (54 * defaults.double(forKey: "mapType")))
         checkImage = UIImageView()
-        checkImage.image = UIImage(named: "element24.png")
+        checkImage.image = #imageLiteral(resourceName: "Element24")
         checkImage.frame = CGRect(x: 10, y: checkY, width: 42, height: 42)
         
         let checkIcon = UIImageView(frame: CGRect(x: (checkImage.frame.size.width - 19) / 2, y: (checkImage.frame.size.height - 16) / 2, width: 19, height: 16))
-        checkIcon.image = UIImage(named: "checkmark.png")
+        checkIcon.image = #imageLiteral(resourceName: "Checkmark")
         
         checkImage.addSubview(checkIcon)
         
@@ -258,7 +258,7 @@ class MenuView: UIView {
     
     func showStatistics() {
         menuView.addSubview(indicator)
-        indicator.image = UIImage(named: "element03.png")
+        indicator.image = #imageLiteral(resourceName: "Element03")
         
         if statisticsShown {return}
         statisticsShown = true
@@ -266,7 +266,7 @@ class MenuView: UIView {
         let height = 46
         for i in 0...6 {
             let statisticCell = UIImageView(frame: CGRect(x: 0, y: CGFloat(64 + (i * height)), width: menuWidth, height: CGFloat(height)))
-            statisticCell.image = UIImage(named: "element13.png")
+            statisticCell.image = #imageLiteral(resourceName: "Element13")
             menuView.insertSubview(statisticCell, belowSubview: indicator)
             
             let name = UILabel()
@@ -330,11 +330,11 @@ class MenuView: UIView {
         
         let resetHeight: CGFloat = 64
         let resetImage = UIImageView(frame: CGRect(x: 0, y: device.height - 20 - resetHeight, width: menuWidth, height: resetHeight))
-        resetImage.image = UIImage(named: "element13.png")
+        resetImage.image = #imageLiteral(resourceName: "Element13")
         
         let resetButton = UIButton(frame: CGRect(x: 10, y: device.height - 20 - resetHeight + 10, width: menuWidth - 20, height: resetHeight - 20))
-        resetButton.setImage(UIImage(named: "element08.png"), for: UIControlState())
-        resetButton.setImage(UIImage(named: "element20.png"), for: .highlighted)
+        resetButton.setImage(#imageLiteral(resourceName: "Element08"), for: .normal)
+        resetButton.setImage(#imageLiteral(resourceName: "Element20"), for: .highlighted)
         resetButton.addTarget(self, action: #selector(MenuView.resetStatistics), for: .touchUpInside)
         
         let resetText = UILabel()
