@@ -16,6 +16,7 @@
 		EB3E3BBF19A58F4500A768DD /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E3B7819A58F4500A768DD /* GameViewController.swift */; };
 		EB3E3BC019A58F4500A768DD /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E3B7919A58F4500A768DD /* MenuView.swift */; };
 		EB3E3BC119A58F4500A768DD /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E3B7A19A58F4500A768DD /* MenuViewController.swift */; };
+		EB426F6D1F2ECDA800CCE13E /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB426F6C1F2ECDA800CCE13E /* NavigationBar.swift */; };
 		EB67142F19D46BD700E0EF63 /* MultiplayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67142E19D46BD700E0EF63 /* MultiplayerViewController.swift */; };
 		EB67508B19A58DE4007D8EA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67508A19A58DE4007D8EA1 /* AppDelegate.swift */; };
 		EB67509019A58DE4007D8EA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB67508E19A58DE4007D8EA1 /* Main.storyboard */; };
@@ -52,6 +53,7 @@
 		EB3E3B7819A58F4500A768DD /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		EB3E3B7919A58F4500A768DD /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		EB3E3B7A19A58F4500A768DD /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		EB426F6C1F2ECDA800CCE13E /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		EB65D51919D6FCF300196D77 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		EB67142E19D46BD700E0EF63 /* MultiplayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerViewController.swift; sourceTree = "<group>"; };
 		EB67508519A58DE4007D8EA1 /* PointRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +133,7 @@
 				EB67142E19D46BD700E0EF63 /* MultiplayerViewController.swift */,
 				EB31FF7E1F2EB99100D1149C /* GamemodeButton.swift */,
 				EBBD3F1E1F2EC78F0008772D /* PlayerNumberButton.swift */,
+				EB426F6C1F2ECDA800CCE13E /* NavigationBar.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				EBCEC90119D3A9C4005E301B /* Player.swift in Sources */,
 				EB67142F19D46BD700E0EF63 /* MultiplayerViewController.swift in Sources */,
 				EB3E3BBF19A58F4500A768DD /* GameViewController.swift in Sources */,
+				EB426F6D1F2ECDA800CCE13E /* NavigationBar.swift in Sources */,
 				EB3E3BC019A58F4500A768DD /* MenuView.swift in Sources */,
 				EB991F5919DB5FE800ECF07A /* Achievement.swift in Sources */,
 				EB3E3B2919A58F3A00A768DD /* Common.swift in Sources */,
