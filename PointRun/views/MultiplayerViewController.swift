@@ -98,9 +98,8 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
         
         mapView.camera = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 17.5)
         
-        let alertView = AlertView()
-        self.view.addSubview(alertView)
-        alertView.show()
+        let controller = AlertViewController.initialize(message: "Be mindful of traffic, obstructions, and other hazards while playing PointRun!", buttonTitle: "Start game")
+        present(controller, animated: true)
         
         for _ in 0...19 {
             let lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)

@@ -10,19 +10,19 @@ import UIKit
 
 open class Button: UIButton {
     
-    var cornerRadius: CGFloat = 4 {
+    @IBInspectable var cornerRadius: CGFloat = 4 {
         didSet {
             layer.cornerRadius = cornerRadius
         }
     }
     
-    var fontSize: CGFloat = 14 {
+    @IBInspectable var fontSize: CGFloat = 14 {
         didSet {
             titleLabel?.font = .systemFont(ofSize: fontSize)
         }
     }
     
-    var showsShadow = true {
+    @IBInspectable var showsShadow = true {
         didSet {
             layer.shadowOpacity = showsShadow ? 1 : 0
         }
@@ -40,37 +40,37 @@ open class Button: UIButton {
         }
     }
     
-    var normalBackgroundColor = UIColor.greenButton {
+    @IBInspectable var normalBackgroundColor = UIColor.greenButton {
         didSet {
             updateColors()
         }
     }
     
-    var highlightedBackgroundColor = UIColor.greenHighlightedButton {
+    @IBInspectable var highlightedBackgroundColor = UIColor.greenHighlightedButton {
         didSet {
             updateColors()
         }
     }
     
-    var selectedBackgroundColor: UIColor? = nil {
+    @IBInspectable var selectedBackgroundColor: UIColor? = nil {
         didSet {
             updateColors()
         }
     }
     
-    var normalShadowColor = UIColor.greenButtonShadow {
+    @IBInspectable var normalShadowColor = UIColor.greenButtonShadow {
         didSet {
             updateColors()
         }
     }
     
-    var highlightedShadowColor = UIColor.greenHighlightedButtonShadow {
+    @IBInspectable var highlightedShadowColor = UIColor.greenHighlightedButtonShadow {
         didSet {
             updateColors()
         }
     }
     
-    var selectedShadowColor: UIColor? = nil {
+    @IBInspectable var selectedShadowColor: UIColor? = nil {
         didSet {
             updateColors()
         }
@@ -108,5 +108,7 @@ open class Button: UIButton {
             backgroundColor = isHighlighted ? highlightedBackgroundColor : normalBackgroundColor
             layer.shadowColor = (isHighlighted ? highlightedShadowColor : normalShadowColor).cgColor
         }
+        
+        setTitleColor(.white, for: .normal)
     }
 }

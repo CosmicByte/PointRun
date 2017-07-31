@@ -61,9 +61,8 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         manager.startUpdatingLocation()
         
         if !multiplayer {
-            let alertView = AlertView()
-            self.view.addSubview(alertView)
-            alertView.show()
+            let controller = AlertViewController.initialize(message: "Be mindful of traffic, obstructions, and other hazards while playing PointRun!", buttonTitle: "Start game")
+            present(controller, animated: true)
         }
     }
     

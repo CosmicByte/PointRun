@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -254,16 +256,16 @@
                                 <exclude reference="CfU-Tq-Nde"/>
                                 <exclude reference="HGt-tq-mBh"/>
                                 <exclude reference="TbX-3y-hkN"/>
-                                <exclude reference="oTk-Jp-DUU"/>
-                                <exclude reference="3EN-t2-WxS"/>
-                                <exclude reference="ODv-Aa-c8s"/>
-                                <exclude reference="VHC-QI-b6S"/>
                                 <exclude reference="UXH-Iu-Wje"/>
                                 <exclude reference="z4l-k0-gXl"/>
                                 <exclude reference="zI5-Ch-Jev"/>
                                 <exclude reference="8oP-7D-xqS"/>
                                 <exclude reference="U9W-yS-QEt"/>
                                 <exclude reference="ozA-B4-Pxu"/>
+                                <exclude reference="oTk-Jp-DUU"/>
+                                <exclude reference="3EN-t2-WxS"/>
+                                <exclude reference="ODv-Aa-c8s"/>
+                                <exclude reference="VHC-QI-b6S"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -276,16 +278,16 @@
                                 <include reference="CfU-Tq-Nde"/>
                                 <include reference="HGt-tq-mBh"/>
                                 <include reference="TbX-3y-hkN"/>
-                                <include reference="oTk-Jp-DUU"/>
-                                <include reference="3EN-t2-WxS"/>
-                                <include reference="ODv-Aa-c8s"/>
-                                <include reference="VHC-QI-b6S"/>
                                 <include reference="UXH-Iu-Wje"/>
                                 <include reference="z4l-k0-gXl"/>
                                 <include reference="zI5-Ch-Jev"/>
                                 <include reference="8oP-7D-xqS"/>
                                 <include reference="U9W-yS-QEt"/>
                                 <include reference="ozA-B4-Pxu"/>
+                                <include reference="oTk-Jp-DUU"/>
+                                <include reference="3EN-t2-WxS"/>
+                                <include reference="ODv-Aa-c8s"/>
+                                <include reference="VHC-QI-b6S"/>
                             </mask>
                         </variation>
                     </view>
@@ -596,9 +598,92 @@
             </objects>
             <point key="canvasLocation" x="2331" y="49.5"/>
         </scene>
+        <!--Alert View Controller-->
+        <scene sceneID="j85-rm-YVg">
+            <objects>
+                <viewController storyboardIdentifier="alertController" id="2Rl-hl-zcg" customClass="AlertViewController" customModule="PointRun" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3ad-ze-9Sn"/>
+                        <viewControllerLayoutGuide type="bottom" id="I6i-Ot-0Db"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FuA-By-PYz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ROp-aA-EWj" customClass="AlertView" customModule="PointRun" customModuleProvider="target">
+                                <rect key="frame" x="20" y="228.5" width="335" height="209"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n6K-0D-5h6">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="42"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Warning" translatesAutoresizingMaskIntoConstraints="NO" id="ooh-jr-viw">
+                                                <rect key="frame" x="157" y="12.5" width="21" height="17"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="ooh-jr-viw" secondAttribute="height" multiplier="88:71" id="y7p-xD-6hF"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="0.20000000000000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="ooh-jr-viw" firstAttribute="centerX" secondItem="n6K-0D-5h6" secondAttribute="centerX" id="Gk4-B7-dG6"/>
+                                            <constraint firstItem="ooh-jr-viw" firstAttribute="centerY" secondItem="n6K-0D-5h6" secondAttribute="centerY" id="Iyz-S2-alY"/>
+                                            <constraint firstItem="ooh-jr-viw" firstAttribute="height" secondItem="n6K-0D-5h6" secondAttribute="height" multiplier="0.4" id="Qcy-Ex-ILz"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxD-Me-Koz" customClass="Button" customModule="PointRun" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="161" width="319" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="WaD-Te-zLn"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfY-K7-BAb">
+                                        <rect key="frame" x="8" y="50" width="319" height="103"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.36078431372549019" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="oxD-Me-Koz" firstAttribute="top" secondItem="nfY-K7-BAb" secondAttribute="bottom" constant="8" id="5AZ-Yc-Huj"/>
+                                    <constraint firstAttribute="trailing" secondItem="oxD-Me-Koz" secondAttribute="trailing" constant="8" id="636-yL-KH9"/>
+                                    <constraint firstAttribute="width" secondItem="ROp-aA-EWj" secondAttribute="height" multiplier="840:524" id="Ct0-OQ-uSd"/>
+                                    <constraint firstItem="oxD-Me-Koz" firstAttribute="leading" secondItem="ROp-aA-EWj" secondAttribute="leading" constant="8" id="L3t-cJ-Gpy"/>
+                                    <constraint firstAttribute="bottom" secondItem="oxD-Me-Koz" secondAttribute="bottom" constant="8" id="Mcq-Ut-tkp"/>
+                                    <constraint firstAttribute="trailing" secondItem="nfY-K7-BAb" secondAttribute="trailing" constant="8" id="RaE-cq-SHY"/>
+                                    <constraint firstItem="n6K-0D-5h6" firstAttribute="top" secondItem="ROp-aA-EWj" secondAttribute="top" id="S6J-eq-272"/>
+                                    <constraint firstItem="nfY-K7-BAb" firstAttribute="leading" secondItem="ROp-aA-EWj" secondAttribute="leading" constant="8" id="ZpO-nb-J6H"/>
+                                    <constraint firstItem="nfY-K7-BAb" firstAttribute="leading" secondItem="ROp-aA-EWj" secondAttribute="leading" constant="8" id="cWT-sk-OY1"/>
+                                    <constraint firstAttribute="trailing" secondItem="nfY-K7-BAb" secondAttribute="trailing" constant="8" id="hN7-Ua-zJq"/>
+                                    <constraint firstItem="nfY-K7-BAb" firstAttribute="top" secondItem="n6K-0D-5h6" secondAttribute="bottom" constant="8" id="noE-Qh-piX"/>
+                                    <constraint firstItem="n6K-0D-5h6" firstAttribute="height" secondItem="ROp-aA-EWj" secondAttribute="height" multiplier="0.2" id="uzy-BU-8M8"/>
+                                    <constraint firstItem="n6K-0D-5h6" firstAttribute="leading" secondItem="ROp-aA-EWj" secondAttribute="leading" id="wCs-pS-Lgg"/>
+                                    <constraint firstAttribute="trailing" secondItem="n6K-0D-5h6" secondAttribute="trailing" id="zSb-Te-UkD"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ROp-aA-EWj" firstAttribute="centerX" secondItem="FuA-By-PYz" secondAttribute="centerX" id="4dV-Da-WIG"/>
+                            <constraint firstItem="ROp-aA-EWj" firstAttribute="centerY" secondItem="FuA-By-PYz" secondAttribute="centerY" id="4fX-be-dOP"/>
+                            <constraint firstAttribute="trailing" secondItem="ROp-aA-EWj" secondAttribute="trailing" constant="20" id="DhK-Uy-lUx"/>
+                            <constraint firstItem="ROp-aA-EWj" firstAttribute="leading" secondItem="FuA-By-PYz" secondAttribute="leading" constant="20" id="spa-4s-BXZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="doneButton" destination="oxD-Me-Koz" id="Ypq-gJ-FMe"/>
+                        <outlet property="messageLabel" destination="nfY-K7-BAb" id="dRy-QS-rJD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GNA-R2-h0a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3268" y="-314"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Menu" width="37" height="31"/>
         <image name="Timer" width="30" height="27"/>
+        <image name="Warning" width="44" height="37"/>
     </resources>
 </document>
