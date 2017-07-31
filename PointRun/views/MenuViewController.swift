@@ -17,20 +17,9 @@ class MenuViewController: UIViewController {
     @IBOutlet var singlePlayerImage: UIImageView!
     @IBOutlet var multiPlayerImage: UIImageView!
     
-    @IBOutlet var timedButtonBackground: UIButton!
-    @IBOutlet var timedButtonIcon: UIImageView!
-    @IBOutlet var timedButtonTitle: UILabel!
-    @IBOutlet var timedButtonDescription: UILabel!
-    
-    @IBOutlet var endlessButtonBackground: UIButton!
-    @IBOutlet var endlessButtonIcon: UIImageView!
-    @IBOutlet var endlessButtonTitle: UILabel!
-    @IBOutlet var endlessButtonDescription: UILabel!
-    
-    @IBOutlet var chanceButtonBackground: UIButton!
-    @IBOutlet var chanceButtonIcon: UIImageView!
-    @IBOutlet var chanceButtonTitle: UILabel!
-    @IBOutlet var chanceButtonDescription: UILabel!
+    @IBOutlet var timedButton: GamemodeButton!
+    @IBOutlet var endlessButton: GamemodeButton!
+    @IBOutlet var chanceButton: GamemodeButton!
     
     var menuView: MenuView!
     
@@ -75,20 +64,9 @@ class MenuViewController: UIViewController {
         
         singlePlayer = true
         
-        timedButtonIcon.image = #imageLiteral(resourceName: "Timer Gamemode")
-        timedButtonIcon.frame = CGRect(x: 42, y: 183, width: 39, height: 36)
-        timedButtonTitle.text = "Timed"
-        timedButtonDescription.text = "You will be given 5 minutes to collect as many points as you can."
-        
-        endlessButtonBackground.alpha = 1.0
-        endlessButtonIcon.alpha = 1.0
-        endlessButtonTitle.alpha = 1.0
-        endlessButtonDescription.alpha = 1.0
-        
-        chanceButtonBackground.alpha = 1.0
-        chanceButtonIcon.alpha = 1.0
-        chanceButtonTitle.alpha = 1.0
-        chanceButtonDescription.alpha = 1.0
+        timedButton.gamemodeValue = Gamemode.timed.rawValue
+        endlessButton.alpha = 1
+        chanceButton.alpha = 1
     }
     
     @IBAction func singlePlayerUpOutside(_ sender: AnyObject) {
@@ -130,20 +108,9 @@ class MenuViewController: UIViewController {
         
         singlePlayer = false
         
-        timedButtonIcon.image = #imageLiteral(resourceName: "Race Gamemode")
-        timedButtonIcon.frame = CGRect(x: (timedButtonBackground.frame.size.height - timedButtonIcon.frame.size.height / 1.08108) / 2 + timedButtonBackground.frame.origin.y, y: timedButtonIcon.frame.origin.y, width: timedButtonIcon.frame.size.width, height: timedButtonIcon.frame.size.height / 1.08108)
-        timedButtonTitle.text = "Race"
-        timedButtonDescription.text = "Beat up to three other friends in a race to 100 points."
-        
-        endlessButtonBackground.alpha = 0.0
-        endlessButtonIcon.alpha = 0.0
-        endlessButtonTitle.alpha = 0.0
-        endlessButtonDescription.alpha = 0.0
-        
-        chanceButtonBackground.alpha = 0.0
-        chanceButtonIcon.alpha = 0.0
-        chanceButtonTitle.alpha = 0.0
-        chanceButtonDescription.alpha = 0.0
+        timedButton.gamemodeValue = Gamemode.race.rawValue
+        endlessButton.alpha = 0
+        chanceButton.alpha = 0
     }
     
     @IBAction func multiPlayerUpOutside(_ sender: AnyObject) {

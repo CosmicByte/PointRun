@@ -383,13 +383,13 @@
                     <navigationItem key="navigationItem" id="2pg-Ph-K5n"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="chanceButtonBackground" destination="tBU-ND-dLb" id="mSQ-fp-F4P"/>
-                        <outlet property="endlessButtonBackground" destination="F2x-m9-7Rn" id="dPf-eF-3rc"/>
+                        <outlet property="chanceButton" destination="tBU-ND-dLb" id="oai-mn-PwQ"/>
+                        <outlet property="endlessButton" destination="F2x-m9-7Rn" id="csJ-gN-MGc"/>
                         <outlet property="multiPlayerButton" destination="dkh-XK-2Em" id="vkL-xJ-J1X"/>
                         <outlet property="multiPlayerImage" destination="8cI-gG-bbo" id="DNp-hS-wDd"/>
                         <outlet property="singlePlayerButton" destination="fAS-T5-ows" id="rKO-lQ-XmZ"/>
                         <outlet property="singlePlayerImage" destination="Sc6-4k-Oiu" id="BKN-Rm-3J6"/>
-                        <outlet property="timedButtonBackground" destination="Y7N-DC-LCG" id="qgj-kI-hoO"/>
+                        <outlet property="timedButton" destination="Y7N-DC-LCG" id="Gev-GZ-JPb"/>
                         <segue destination="Rb1-WD-pbh" kind="show" identifier="gameSegue" id="NdJ-7E-LT1"/>
                         <segue destination="PRE-kl-byY" kind="show" identifier="multiplayerSegue" id="ZMt-bE-P0k"/>
                     </connections>
