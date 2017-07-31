@@ -19,7 +19,7 @@ class GamemodeButton: UIButton {
     override var isHighlighted: Bool {
         didSet {
             backgroundColor = isHighlighted ? UIColor.greenHighlightedButton : UIColor.greenButton
-            layer.shadowColor = isHighlighted ? UIColor.greenHighlightedButtonShadow.cgColor : UIColor.greenButtonShadow.cgColor
+            layer.shadowColor = (isHighlighted ? UIColor.greenHighlightedButtonShadow : UIColor.greenButtonShadow).cgColor
         }
     }
     

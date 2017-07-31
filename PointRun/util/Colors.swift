@@ -29,4 +29,8 @@ extension UIColor {
     static var greenButtonText: UIColor {
         return UIColor(red: 20/255, green: 99/255, blue: 82/255, alpha: 1)
     }
+    
+    static var whiteButtonShadow: UIColor {
+        return UIColor(red: 211/255, green: 216/255, blue: 217/255, alpha: 1)
+    }
 }

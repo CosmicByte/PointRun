@@ -12,10 +12,8 @@ import UIKit
 
 class MenuViewController: UIViewController {
 
-    @IBOutlet var singlePlayerButton: UIButton!
-    @IBOutlet var multiPlayerButton: UIButton!
-    @IBOutlet var singlePlayerImage: UIImageView!
-    @IBOutlet var multiPlayerImage: UIImageView!
+    @IBOutlet var singlePlayerButton: PlayerNumberButton!
+    @IBOutlet var multiPlayerButton: PlayerNumberButton!
     
     @IBOutlet var timedButton: GamemodeButton!
     @IBOutlet var endlessButton: GamemodeButton!
@@ -42,93 +40,26 @@ class MenuViewController: UIViewController {
         menuView.show()
     }
     
-    @IBAction func singlePlayerDown(_ sender: AnyObject) {
-        if !singlePlayer {
-            singlePlayerButton.setImage(#imageLiteral(resourceName: "Element19"), for: .normal)
-        } else {
-            singlePlayerButton.setImage(#imageLiteral(resourceName: "Element18"), for: .normal)
-        }
-        
-        singlePlayerButton.setImage(#imageLiteral(resourceName: "Element07"), for: .highlighted)
-        
-        singlePlayerImage.image = #imageLiteral(resourceName: "Singleplayer White")
-    }
-    
-    @IBAction func singlePlayerUp(_ sender: AnyObject) {
-        singlePlayerButton.setImage(#imageLiteral(resourceName: "Element18"), for: .normal)
-        
-        multiPlayerButton.setImage(#imageLiteral(resourceName: "Element19"), for: .normal)
-        multiPlayerButton.setImage(#imageLiteral(resourceName: "Element07"), for: .highlighted)
-        
-        multiPlayerImage.image = #imageLiteral(resourceName: "Multiplayer Green")
-        
+    @IBAction func singlePlayerPressed(_ sender: Any) {
         singlePlayer = true
         
         timedButton.gamemodeValue = Gamemode.timed.rawValue
         endlessButton.alpha = 1
         chanceButton.alpha = 1
-    }
-    
-    @IBAction func singlePlayerUpOutside(_ sender: AnyObject) {
-        if singlePlayer {
-            singlePlayerButton.setImage(#imageLiteral(resourceName: "Element18"), for: .normal)
-            singlePlayerImage.image = #imageLiteral(resourceName: "Singleplayer White")
-        } else {
-            singlePlayerButton.setImage(#imageLiteral(resourceName: "Element19"), for: .normal)
-            singlePlayerImage.image = #imageLiteral(resourceName: "Singleplayer Green")
-        }
-    }
-    
-    @IBAction func singlePlayerDragEnter(_ sender: AnyObject) {
-        singlePlayerImage.image = #imageLiteral(resourceName: "Singleplayer White")
-    }
-    
-    @IBAction func singlePlayerDragExit(_ sender: AnyObject) {
-        if singlePlayer {
-            singlePlayerImage.image = #imageLiteral(resourceName: "Singleplayer White")
-        } else {
-            singlePlayerImage.image = #imageLiteral(resourceName: "Singleplayer Green")
-        }
-    }
-    
-    @IBAction func multiPlayerDown(_ sender: AnyObject) {
-        multiPlayerButton.setImage(#imageLiteral(resourceName: "Element19"), for: .normal)
-        multiPlayerButton.setImage(#imageLiteral(resourceName: "Element07"), for: .highlighted)
         
-        multiPlayerImage.image = #imageLiteral(resourceName: "Multiplayer White")
+        singlePlayerButton.isSelected = true
+        multiPlayerButton.isSelected = false
     }
     
-    @IBAction func multiPlayerUp(_ sender: AnyObject) {
-        multiPlayerButton.setImage(#imageLiteral(resourceName: "Element18"), for: .normal)
-        
-        singlePlayerButton.setImage(#imageLiteral(resourceName: "Element19"), for: .normal)
-        singlePlayerButton.setImage(#imageLiteral(resourceName: "Element07"), for: .highlighted)
-        
-        singlePlayerImage.image = #imageLiteral(resourceName: "Singleplayer Green")
-        
+    @IBAction func multiPlayerPressed(_ sender: Any) {
         singlePlayer = false
         
         timedButton.gamemodeValue = Gamemode.race.rawValue
         endlessButton.alpha = 0
         chanceButton.alpha = 0
-    }
-    
-    @IBAction func multiPlayerUpOutside(_ sender: AnyObject) {
-        if singlePlayer {
-            multiPlayerButton.setImage(#imageLiteral(resourceName: "Element19"), for: .normal)
-            multiPlayerImage.image = #imageLiteral(resourceName: "Multiplayer Green")
-        } else {
-            multiPlayerButton.setImage(#imageLiteral(resourceName: "Element18"), for: .normal)
-            multiPlayerImage.image = #imageLiteral(resourceName: "Multiplayer White")
-        }
-    }
-    
-    @IBAction func multiPlayerDragEnter(_ sender: AnyObject) {
-        multiPlayerImage.image = #imageLiteral(resourceName: "Multiplayer White")
-    }
-    
-    @IBAction func multiPlayerDragExit(_ sender: AnyObject) {
-        multiPlayerImage.image = #imageLiteral(resourceName: "Multiplayer Green")
+        
+        singlePlayerButton.isSelected = false
+        multiPlayerButton.isSelected = true
     }
     
     func menuTab(_ note: Notification) {
