@@ -21,7 +21,7 @@ class Message: NSObject {
         latitude = lat
         longitude = lon
         points = pts
-        type = .PlayerData
+        type = .playerData
     }
     
     init(pointLocationWithLatitude lat: Double, longitude lon: Double, points pts: Int, uuid uid: String) {
@@ -29,54 +29,54 @@ class Message: NSObject {
         longitude = lon
         points = pts
         uuid = uid
-        type = .PointLocation
+        type = .pointLocation
     }
     
     init(pointCapturedWithUUID uid: String) {
         uuid = uid
-        type = .PointCaptured
+        type = .pointCaptured
     }
     
     required init(coder aDecoder: NSCoder) {
-        latitude = aDecoder.decodeDoubleForKey("latitude")
-        longitude = aDecoder.decodeDoubleForKey("longitude")
-        points = aDecoder.decodeIntegerForKey("points")
-        uuid = aDecoder.decodeObjectForKey("uuid") as! String
+        latitude = aDecoder.decodeDouble(forKey: "latitude")
+        longitude = aDecoder.decodeDouble(forKey: "longitude")
+        points = aDecoder.decodeInteger(forKey: "points")
+        uuid = aDecoder.decodeObject(forKey: "uuid") as! String
         
-        let typeValue = aDecoder.decodeIntegerForKey("type")
+        let typeValue = aDecoder.decodeInteger(forKey: "type")
         
         switch typeValue {
         case 0:
-            type = .PlayerData
+            type = .playerData
         case 1:
-            type = .PointLocation
+            type = .pointLocation
         case 2:
-            type = .PointCaptured
+            type = .pointCaptured
         default:
             break
         }
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeDouble(latitude, forKey: "latitude")
-        aCoder.encodeDouble(longitude, forKey: "longitude")
-        aCoder.encodeInteger(points, forKey: "points")
-        aCoder.encodeObject(uuid, forKey: "uuid")
-        aCoder.encodeInteger(type.rawValue, forKey: "type")
+    func encodeWithCoder(_ aCoder: NSCoder) {
+        aCoder.encode(latitude, forKey: "latitude")
+        aCoder.encode(longitude, forKey: "longitude")
+        aCoder.encode(points, forKey: "points")
+        aCoder.encode(uuid, forKey: "uuid")
+        aCoder.encode(type.rawValue, forKey: "type")
     }
     
-    func intToMessageType(int: Int) -> PRMessageType {
+    func intToMessageType(_ int: Int) -> PRMessageType {
         switch int {
         case 0:
-            return .PlayerData
+            return .playerData
         case 1:
-            return .PointLocation
+            return .pointLocation
         case 2:
-            return .PointCaptured
+            return .pointCaptured
         default:
             break
         }
         
-        return .PlayerData
+        return .playerData
     }
 }

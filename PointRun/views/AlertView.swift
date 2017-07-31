@@ -13,50 +13,50 @@ class AlertView: UIView {
     var opacityView: UIView!
     var alertView: UIView!
     
-    var device = UIScreen.mainScreen().bounds.size
+    var device = UIScreen.main.bounds.size
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     override init(frame: CGRect) {
-        super.init(frame: CGRectMake(0, 0, device.width, device.height))
+        super.init(frame: CGRect(x: 0, y: 0, width: device.width, height: device.height))
         
-        opacityView = UIView(frame: CGRectMake(0, 0, device.width, device.height))
-        opacityView.backgroundColor = UIColor.blackColor()
+        opacityView = UIView(frame: CGRect(x: 0, y: 0, width: device.width, height: device.height))
+        opacityView.backgroundColor = UIColor.black
         opacityView.alpha = 0.0
         
-        let tgr = UITapGestureRecognizer(target: self, action: Selector("hide"))
+        let tgr = UITapGestureRecognizer(target: self, action: #selector(AlertView.hide))
         opacityView.addGestureRecognizer(tgr)
         
         
-        alertView = UIView(frame: CGRectMake((device.width - alertWidth) / 2, (device.height - alertHeight) / 2, alertWidth, alertHeight))
+        alertView = UIView(frame: CGRect(x: (device.width - alertWidth) / 2, y: (device.height - alertHeight) / 2, width: alertWidth, height: alertHeight))
         alertView.alpha = 0.0
         
-        let alertBackground = UIImageView(frame: CGRectMake(0, 0, alertWidth, alertHeight))
+        let alertBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: alertWidth, height: alertHeight))
         alertBackground.image = UIImage(named: "element11.png")
         
-        let alertIcon = UIImageView(frame: CGRectMake((alertWidth - 29) / 2, 6, 29, 24))
+        let alertIcon = UIImageView(frame: CGRect(x: (alertWidth - 29) / 2, y: 6, width: 29, height: 24))
         alertIcon.image = UIImage(named: "warning.png")
         
-        let alertText = UILabel(frame: CGRectMake(18, 58, alertWidth - 36, 48))
+        let alertText = UILabel(frame: CGRect(x: 18, y: 58, width: alertWidth - 36, height: 48))
         alertText.text = "Be mindful of traffic, obstructions, and other hazards while playing PointRun!"
         alertText.font = UIFont(name: "Open Sans", size: 13.0)
         alertText.textColor = UIColor(red: 0.36, green: 0.36, blue: 0.36, alpha: 1.00)
         alertText.numberOfLines = 0
-        alertText.textAlignment = NSTextAlignment.Center
+        alertText.textAlignment = NSTextAlignment.center
         
-        let alertButton = UIButton(frame: CGRectMake(8, alertHeight - 49, alertWidth - 16, 40))
-        alertButton.setImage(UIImage(named: "element08.png"), forState: .Normal)
-        alertButton.setImage(UIImage(named: "element20.png"), forState: .Highlighted)
-        alertButton.addTarget(self, action: Selector("hide"), forControlEvents: .TouchUpInside)
+        let alertButton = UIButton(frame: CGRect(x: 8, y: alertHeight - 49, width: alertWidth - 16, height: 40))
+        alertButton.setImage(UIImage(named: "element08.png"), for: UIControlState())
+        alertButton.setImage(UIImage(named: "element20.png"), for: .highlighted)
+        alertButton.addTarget(self, action: #selector(AlertView.hide), for: .touchUpInside)
         
         let buttonText = UILabel()
         buttonText.text = "Start game"
         buttonText.font = UIFont(name: "Open Sans", size: 14.0)
-        buttonText.textColor = UIColor.whiteColor()
+        buttonText.textColor = UIColor.white
         buttonText.sizeToFit()
-        buttonText.frame = CGRectMake((alertButton.frame.size.width - buttonText.frame.size.width) / 2, (alertButton.frame.size.height - buttonText.frame.size.height) / 2, buttonText.frame.size.width, buttonText.frame.size.height)
+        buttonText.frame = CGRect(x: (alertButton.frame.size.width - buttonText.frame.size.width) / 2, y: (alertButton.frame.size.height - buttonText.frame.size.height) / 2, width: buttonText.frame.size.width, height: buttonText.frame.size.height)
         
         alertButton.addSubview(buttonText)
         
@@ -70,17 +70,17 @@ class AlertView: UIView {
     }
     
     func show() {
-        UIView.animateWithDuration(0.5) { () -> Void in
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
             self.opacityView.alpha = 0.5
             self.alertView.alpha = 1.0
-        }
+        }) 
     }
     
     func hide() {
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
             self.alpha = 0.0
-        }) { (Bool) -> Void in
+        }, completion: { (Bool) -> Void in
             self.removeFromSuperview()
-        }
+        }) 
     }
 }

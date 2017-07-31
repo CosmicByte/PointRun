@@ -18,7 +18,7 @@ class MenuView: UIView {
     var indicator: UIImageView!
     var checkImage: UIImageView!
     
-    var device = UIScreen.mainScreen().bounds.size
+    var device = UIScreen.main.bounds.size
     var statisticsShown = false
     
     var viewController: UIViewController!
@@ -28,49 +28,49 @@ class MenuView: UIView {
     }
     
     override init(frame: CGRect) {
-        super.init(frame: CGRectMake(0, 0, device.width, device.height))
+        super.init(frame: CGRect(x: 0, y: 0, width: device.width, height: device.height))
         
-        opacityView = UIView(frame: CGRectMake(0, 0, device.width, device.height))
-        opacityView.backgroundColor = UIColor.blackColor()
+        opacityView = UIView(frame: CGRect(x: 0, y: 0, width: device.width, height: device.height))
+        opacityView.backgroundColor = UIColor.black
         opacityView.alpha = 0.0
         
-        let tgr = UITapGestureRecognizer(target: self, action: Selector("hide"))
+        let tgr = UITapGestureRecognizer(target: self, action: #selector(MenuView.hide))
         opacityView.addGestureRecognizer(tgr)
         
         
-        statusbarView = UIView(frame: CGRectMake(-device.width, 0, device.width, 20))
+        statusbarView = UIView(frame: CGRect(x: -device.width, y: 0, width: device.width, height: 20))
         statusbarView.backgroundColor = UIColor(red: 0.09, green: 0.6, blue: 0.47, alpha: 1.00)
         
         
-        menuView = UIView(frame: CGRectMake(-menuWidth, 20, menuWidth, device.height))
-        menuView.backgroundColor = UIColor.whiteColor()
+        menuView = UIView(frame: CGRect(x: -menuWidth, y: 20, width: menuWidth, height: device.height))
+        menuView.backgroundColor = UIColor.white
         
-        statisticsButton = UIButton(frame: CGRectMake(0, 0, 87, 64))
-        statisticsButton.setImage(UIImage(named: "element06.png"), forState: .Normal)
-        statisticsButton.setImage(UIImage(named: "element07.png"), forState: .Highlighted)
-        statisticsButton.addTarget(self, action: Selector("statisticsButtonEvent"), forControlEvents: .TouchDown)
-        statisticsButton.addTarget(self, action: Selector("showStatistics"), forControlEvents: .AllTouchEvents)
+        statisticsButton = UIButton(frame: CGRect(x: 0, y: 0, width: 87, height: 64))
+        statisticsButton.setImage(UIImage(named: "element06.png"), for: UIControlState())
+        statisticsButton.setImage(UIImage(named: "element07.png"), for: .highlighted)
+        statisticsButton.addTarget(self, action: #selector(MenuView.statisticsButtonEvent), for: .touchDown)
+        statisticsButton.addTarget(self, action: #selector(MenuView.showStatistics), for: .allTouchEvents)
         
-        let statisticsImage = UIImageView(frame: CGRectMake(30, 21, 27, 22))
+        let statisticsImage = UIImageView(frame: CGRect(x: 30, y: 21, width: 27, height: 22))
         statisticsImage.image = UIImage(named: "statistics.png")
         
-        let achievementsButton = UIButton(frame: CGRectMake(87, 0, 86, 64))
-        achievementsButton.setImage(UIImage(named: "element07.png"), forState: .Normal)
-        achievementsButton.setImage(UIImage(named: "element06.png"), forState: .Highlighted)
-        achievementsButton.addTarget(self, action: Selector("showAchievements"), forControlEvents: .TouchUpInside)
+        let achievementsButton = UIButton(frame: CGRect(x: 87, y: 0, width: 86, height: 64))
+        achievementsButton.setImage(UIImage(named: "element07.png"), for: UIControlState())
+        achievementsButton.setImage(UIImage(named: "element06.png"), for: .highlighted)
+        achievementsButton.addTarget(self, action: #selector(MenuView.showAchievements), for: .touchUpInside)
         
-        let achievementsImage = UIImageView(frame: CGRectMake(35.5, 21, 15, 22))
+        let achievementsImage = UIImageView(frame: CGRect(x: 35.5, y: 21, width: 15, height: 22))
         achievementsImage.image = UIImage(named: "medal.png")
         
-        let leaderboardButton = UIButton(frame: CGRectMake(173, 0, 87, 64))
-        leaderboardButton.setImage(UIImage(named: "element06.png"), forState: .Normal)
-        leaderboardButton.setImage(UIImage(named: "element07.png"), forState: .Highlighted)
-        leaderboardButton.addTarget(self, action: Selector("showLeaderboards"), forControlEvents: .TouchUpInside)
+        let leaderboardButton = UIButton(frame: CGRect(x: 173, y: 0, width: 87, height: 64))
+        leaderboardButton.setImage(UIImage(named: "element06.png"), for: UIControlState())
+        leaderboardButton.setImage(UIImage(named: "element07.png"), for: .highlighted)
+        leaderboardButton.addTarget(self, action: #selector(MenuView.showLeaderboards), for: .touchUpInside)
         
-        let leaderboardImage = UIImageView(frame: CGRectMake(28.5, 21, 30, 22))
+        let leaderboardImage = UIImageView(frame: CGRect(x: 28.5, y: 21, width: 30, height: 22))
         leaderboardImage.image = UIImage(named: "list.png")
         
-        indicator = UIImageView(frame: CGRectMake(33, 62.5, 21, 8))
+        indicator = UIImageView(frame: CGRect(x: 33, y: 62.5, width: 21, height: 8))
         indicator.image = UIImage(named: "element03.png")
         
         statisticsButton.addSubview(statisticsImage)
@@ -87,26 +87,26 @@ class MenuView: UIView {
     }
     
     func show() {
-        UIView.animateWithDuration(0.5) { () -> Void in
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
             self.opacityView.alpha = 0.5
-            self.statusbarView.frame = CGRectMake(0, 0, self.device.width, 20)
-            self.menuView.frame = CGRectMake(0, 20, menuWidth, self.menuView.frame.height - 20)
-        }
+            self.statusbarView.frame = CGRect(x: 0, y: 0, width: self.device.width, height: 20)
+            self.menuView.frame = CGRect(x: 0, y: 20, width: menuWidth, height: self.menuView.frame.height - 20)
+        }) 
     }
     
     func hide() {
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
             self.opacityView.alpha = 0.0
-            self.statusbarView.frame = CGRectMake(-self.device.width, 0, self.device.width, 20)
-            self.menuView.frame = CGRectMake(-menuWidth, 20, menuWidth, self.menuView.frame.height - 20)
-        }) { (Bool) -> Void in
+            self.statusbarView.frame = CGRect(x: -self.device.width, y: 0, width: self.device.width, height: 20)
+            self.menuView.frame = CGRect(x: -menuWidth, y: 20, width: menuWidth, height: self.menuView.frame.height - 20)
+        }, completion: { (Bool) -> Void in
             self.removeFromSuperview()
-        }
+        }) 
     }
     
     func statisticsButtonEvent() {
         switch statisticsButton.state {
-        case UIControlState.Highlighted:
+        case UIControlState.highlighted:
             indicator.image = UIImage(named: "element21.png")
         default:
             indicator.image = UIImage(named: "element03.png")
@@ -115,29 +115,29 @@ class MenuView: UIView {
     
     func showSettings() {
         let backHeight: CGFloat = 64
-        let backImage = UIImageView(frame: CGRectMake(0, 64, menuWidth, backHeight))
+        let backImage = UIImageView(frame: CGRect(x: 0, y: 64, width: menuWidth, height: backHeight))
         backImage.image = UIImage(named: "element13.png")
         
-        let backButton = UIButton(frame: CGRectMake(10, 74, menuWidth - 20, backHeight - 20))
-        backButton.setImage(UIImage(named: "element08.png"), forState: .Normal)
-        backButton.setImage(UIImage(named: "element20.png"), forState: .Highlighted)
-        backButton.addTarget(self, action: Selector("backButton"), forControlEvents: .TouchUpInside)
+        let backButton = UIButton(frame: CGRect(x: 10, y: 74, width: menuWidth - 20, height: backHeight - 20))
+        backButton.setImage(UIImage(named: "element08.png"), for: UIControlState())
+        backButton.setImage(UIImage(named: "element20.png"), for: .highlighted)
+        backButton.addTarget(self, action: #selector(MenuView.backButton), for: .touchUpInside)
         
         let iconHeight: CGFloat = 18
-        let backIcon = UIImageView(frame: CGRectMake(16, (backButton.frame.size.height - iconHeight) / 2, 21, iconHeight))
+        let backIcon = UIImageView(frame: CGRect(x: 16, y: (backButton.frame.size.height - iconHeight) / 2, width: 21, height: iconHeight))
         backIcon.image = UIImage(named: "back.png")
         
         let backText = UILabel()
         backText.text = "Return to mode select"
         backText.font = UIFont(name: "Open Sans", size: 14.0)
-        backText.textColor = UIColor.whiteColor()
+        backText.textColor = UIColor.white
         backText.sizeToFit()
-        backText.frame = CGRectMake(backIcon.frame.origin.x + backIcon.frame.size.width + 10, (backButton.frame.size.height - backText.frame.size.height) / 2, backText.frame.size.width, backText.frame.size.height)
+        backText.frame = CGRect(x: backIcon.frame.origin.x + backIcon.frame.size.width + 10, y: (backButton.frame.size.height - backText.frame.size.height) / 2, width: backText.frame.size.width, height: backText.frame.size.height)
         
         backButton.addSubview(backIcon)
         backButton.addSubview(backText)
         
-        let optionImage = UIImageView(frame: CGRectMake(0, 128, menuWidth, 64))
+        let optionImage = UIImageView(frame: CGRect(x: 0, y: 128, width: menuWidth, height: 64))
         optionImage.image = UIImage(named: "element13.png")
         
         let optionLabel = UILabel()
@@ -145,70 +145,70 @@ class MenuView: UIView {
         optionLabel.font = UIFont(name: "Open Sans", size: 14.0)
         optionLabel.textColor = UIColor(red: 0.36, green: 0.36, blue: 0.36, alpha: 1.00)
         optionLabel.sizeToFit()
-        optionLabel.frame = CGRectMake(12, 142, 128, optionLabel.frame.size.height)
+        optionLabel.frame = CGRect(x: 12, y: 142, width: 128, height: optionLabel.frame.size.height)
         
-        let streetsButton = UIButton(frame: CGRectMake(10, 174, menuWidth - 20, 42))
-        streetsButton.setImage(UIImage(named: "element22.png"), forState: .Normal)
-        streetsButton.setImage(UIImage(named: "element23.png"), forState: .Highlighted)
-        streetsButton.addTarget(self, action: Selector("streetsButton"), forControlEvents: .TouchUpInside)
+        let streetsButton = UIButton(frame: CGRect(x: 10, y: 174, width: menuWidth - 20, height: 42))
+        streetsButton.setImage(UIImage(named: "element22.png"), for: UIControlState())
+        streetsButton.setImage(UIImage(named: "element23.png"), for: .highlighted)
+        streetsButton.addTarget(self, action: #selector(MenuView.streetsButton), for: .touchUpInside)
         
         let streetsLabel = UILabel()
         streetsLabel.text = "Streets"
         streetsLabel.font = UIFont(name: "Open Sans", size: 14.0)
         streetsLabel.textColor = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 1.00)
         streetsLabel.sizeToFit()
-        streetsLabel.frame = CGRectMake(56, (streetsButton.frame.size.height - streetsLabel.frame.size.height) / 2, streetsLabel.frame.size.width, streetsLabel.frame.size.height)
+        streetsLabel.frame = CGRect(x: 56, y: (streetsButton.frame.size.height - streetsLabel.frame.size.height) / 2, width: streetsLabel.frame.size.width, height: streetsLabel.frame.size.height)
         
         streetsButton.addSubview(streetsLabel)
         
-        let satelliteButton = UIButton(frame: CGRectMake(10, 228, menuWidth - 20, 42))
-        satelliteButton.setImage(UIImage(named: "element22.png"), forState: .Normal)
-        satelliteButton.setImage(UIImage(named: "element23.png"), forState: .Highlighted)
-        satelliteButton.addTarget(self, action: Selector("satelliteButton"), forControlEvents: .TouchUpInside)
+        let satelliteButton = UIButton(frame: CGRect(x: 10, y: 228, width: menuWidth - 20, height: 42))
+        satelliteButton.setImage(UIImage(named: "element22.png"), for: UIControlState())
+        satelliteButton.setImage(UIImage(named: "element23.png"), for: .highlighted)
+        satelliteButton.addTarget(self, action: #selector(MenuView.satelliteButton), for: .touchUpInside)
         
         let satelliteLabel = UILabel()
         satelliteLabel.text = "Satellite"
         satelliteLabel.font = UIFont(name: "Open Sans", size: 14.0)
         satelliteLabel.textColor = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 1.00)
         satelliteLabel.sizeToFit()
-        satelliteLabel.frame = CGRectMake(56, (satelliteButton.frame.size.height - satelliteLabel.frame.size.height) / 2, satelliteLabel.frame.size.width, satelliteLabel.frame.size.height)
+        satelliteLabel.frame = CGRect(x: 56, y: (satelliteButton.frame.size.height - satelliteLabel.frame.size.height) / 2, width: satelliteLabel.frame.size.width, height: satelliteLabel.frame.size.height)
         
         satelliteButton.addSubview(satelliteLabel)
         
-        let hybridButton = UIButton(frame: CGRectMake(10, 282, menuWidth - 20, 42))
-        hybridButton.setImage(UIImage(named: "element22.png"), forState: .Normal)
-        hybridButton.setImage(UIImage(named: "element23.png"), forState: .Highlighted)
-        hybridButton.addTarget(self, action: Selector("hybridButton"), forControlEvents: .TouchUpInside)
+        let hybridButton = UIButton(frame: CGRect(x: 10, y: 282, width: menuWidth - 20, height: 42))
+        hybridButton.setImage(UIImage(named: "element22.png"), for: UIControlState())
+        hybridButton.setImage(UIImage(named: "element23.png"), for: .highlighted)
+        hybridButton.addTarget(self, action: #selector(MenuView.hybridButton), for: .touchUpInside)
         
         let hybridLabel = UILabel()
         hybridLabel.text = "Hybrid"
         hybridLabel.font = UIFont(name: "Open Sans", size: 14.0)
         hybridLabel.textColor = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 1.00)
         hybridLabel.sizeToFit()
-        hybridLabel.frame = CGRectMake(56, (hybridButton.frame.size.height - hybridLabel.frame.size.height) / 2, hybridLabel.frame.size.width, hybridLabel.frame.size.height)
+        hybridLabel.frame = CGRect(x: 56, y: (hybridButton.frame.size.height - hybridLabel.frame.size.height) / 2, width: hybridLabel.frame.size.width, height: hybridLabel.frame.size.height)
         
         hybridButton.addSubview(hybridLabel)
         
-        let terrainButton = UIButton(frame: CGRectMake(10, 336, menuWidth - 20, 42))
-        terrainButton.setImage(UIImage(named: "element22.png"), forState: .Normal)
-        terrainButton.setImage(UIImage(named: "element23.png"), forState: .Highlighted)
-        terrainButton.addTarget(self, action: Selector("terrainButton"), forControlEvents: .TouchUpInside)
+        let terrainButton = UIButton(frame: CGRect(x: 10, y: 336, width: menuWidth - 20, height: 42))
+        terrainButton.setImage(UIImage(named: "element22.png"), for: UIControlState())
+        terrainButton.setImage(UIImage(named: "element23.png"), for: .highlighted)
+        terrainButton.addTarget(self, action: #selector(MenuView.terrainButton), for: .touchUpInside)
         
         let terrainLabel = UILabel()
         terrainLabel.text = "Terrain"
         terrainLabel.font = UIFont(name: "Open Sans", size: 14.0)
         terrainLabel.textColor = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 1.00)
         terrainLabel.sizeToFit()
-        terrainLabel.frame = CGRectMake(56, (terrainButton.frame.size.height - terrainLabel.frame.size.height) / 2, terrainLabel.frame.size.width, terrainLabel.frame.size.height)
+        terrainLabel.frame = CGRect(x: 56, y: (terrainButton.frame.size.height - terrainLabel.frame.size.height) / 2, width: terrainLabel.frame.size.width, height: terrainLabel.frame.size.height)
         
         terrainButton.addSubview(terrainLabel)
         
-        let checkY = CGFloat(174 + (54 * defaults.doubleForKey("mapType")))
+        let checkY = CGFloat(174 + (54 * defaults.double(forKey: "mapType")))
         checkImage = UIImageView()
         checkImage.image = UIImage(named: "element24.png")
-        checkImage.frame = CGRectMake(10, checkY, 42, 42)
+        checkImage.frame = CGRect(x: 10, y: checkY, width: 42, height: 42)
         
-        let checkIcon = UIImageView(frame: CGRectMake((checkImage.frame.size.width - 19) / 2, (checkImage.frame.size.height - 16) / 2, 19, 16))
+        let checkIcon = UIImageView(frame: CGRect(x: (checkImage.frame.size.width - 19) / 2, y: (checkImage.frame.size.height - 16) / 2, width: 19, height: 16))
         checkIcon.image = UIImage(named: "checkmark.png")
         
         checkImage.addSubview(checkIcon)
@@ -225,35 +225,35 @@ class MenuView: UIView {
     }
     
     func backButton() {
-        nc.postNotificationName(backNotification, object: nil)
+        nc.post(name: backNotification, object: nil)
     }
     
     func streetsButton() {
-        defaults.setDouble(0, forKey: "mapType")
-        let checkY = CGFloat(174 + (54 * defaults.doubleForKey("mapType")))
-        checkImage.frame = CGRectMake(10, checkY, 42, 42)
-        nc.postNotificationName(mapChangedNotification, object: nil)
+        defaults.set(0, forKey: "mapType")
+        let checkY = CGFloat(174 + (54 * defaults.double(forKey: "mapType")))
+        checkImage.frame = CGRect(x: 10, y: checkY, width: 42, height: 42)
+        nc.post(name: mapChangedNotification, object: nil)
     }
     
     func satelliteButton() {
-        defaults.setDouble(1, forKey: "mapType")
-        let checkY = CGFloat(174 + (54 * defaults.doubleForKey("mapType")))
-        checkImage.frame = CGRectMake(10, checkY, 42, 42)
-        nc.postNotificationName(mapChangedNotification, object: nil)
+        defaults.set(1, forKey: "mapType")
+        let checkY = CGFloat(174 + (54 * defaults.double(forKey: "mapType")))
+        checkImage.frame = CGRect(x: 10, y: checkY, width: 42, height: 42)
+        nc.post(name: mapChangedNotification, object: nil)
     }
     
     func hybridButton() {
-        defaults.setDouble(2, forKey: "mapType")
-        let checkY = CGFloat(174 + (54 * defaults.doubleForKey("mapType")))
-        checkImage.frame = CGRectMake(10, checkY, 42, 42)
-        nc.postNotificationName(mapChangedNotification, object: nil)
+        defaults.set(2, forKey: "mapType")
+        let checkY = CGFloat(174 + (54 * defaults.double(forKey: "mapType")))
+        checkImage.frame = CGRect(x: 10, y: checkY, width: 42, height: 42)
+        nc.post(name: mapChangedNotification, object: nil)
     }
     
     func terrainButton() {
-        defaults.setDouble(3, forKey: "mapType")
-        let checkY = CGFloat(174 + (54 * defaults.doubleForKey("mapType")))
-        checkImage.frame = CGRectMake(10, checkY, 42, 42)
-        nc.postNotificationName(mapChangedNotification, object: nil)
+        defaults.set(3, forKey: "mapType")
+        let checkY = CGFloat(174 + (54 * defaults.double(forKey: "mapType")))
+        checkImage.frame = CGRect(x: 10, y: checkY, width: 42, height: 42)
+        nc.post(name: mapChangedNotification, object: nil)
     }
     
     func showStatistics() {
@@ -265,7 +265,7 @@ class MenuView: UIView {
         
         let height = 46
         for i in 0...6 {
-            let statisticCell = UIImageView(frame: CGRectMake(0, CGFloat(64 + (i * height)), menuWidth, CGFloat(height)))
+            let statisticCell = UIImageView(frame: CGRect(x: 0, y: CGFloat(64 + (i * height)), width: menuWidth, height: CGFloat(height)))
             statisticCell.image = UIImage(named: "element13.png")
             menuView.insertSubview(statisticCell, belowSubview: indicator)
             
@@ -279,13 +279,13 @@ class MenuView: UIView {
                 heading.font = UIFont(name: "Open Sans", size: 18.0)
                 heading.textColor = UIColor(red: 0.1, green: 0.71, blue: 0.56, alpha: 1.00)
                 heading.sizeToFit()
-                heading.frame = CGRectMake(16, (statisticCell.frame.size.height - heading.frame.size.height) / 2, heading.frame.size.width, heading.frame.size.height)
+                heading.frame = CGRect(x: 16, y: (statisticCell.frame.size.height - heading.frame.size.height) / 2, width: heading.frame.size.width, height: heading.frame.size.height)
                 statisticCell.addSubview(heading)
             case 1:
                 name.text = "Game wins"
-                score.text = defaults.doubleForKey(gameWinsStatistic).toString()
+                score.text = defaults.double(forKey: gameWinsStatistic).toString()
             case 2:
-                let time = defaults.doubleForKey(timePlayedStatistic)
+                let time = defaults.double(forKey: timePlayedStatistic)
                 if time < 60 {
                     name.text = "Seconds played"
                     score.text = time.toString()
@@ -298,16 +298,16 @@ class MenuView: UIView {
                 }
             case 3:
                 name.text = "Meters travelled"
-                score.text = defaults.doubleForKey(metersTravelledStatistic).toString()
+                score.text = defaults.double(forKey: metersTravelledStatistic).toString()
             case 4:
                 name.text = "Pins collected"
-                score.text = defaults.doubleForKey(pinsCollectedStatistic).toString()
+                score.text = defaults.double(forKey: pinsCollectedStatistic).toString()
             case 5:
                 name.text = "Points earned"
-                score.text = defaults.doubleForKey(pointsEarnedStatistic).toString()
+                score.text = defaults.double(forKey: pointsEarnedStatistic).toString()
             case 6:
                 name.text = "Poison pins"
-                score.text = defaults.doubleForKey(poisonPinsStatistic).toString()
+                score.text = defaults.double(forKey: poisonPinsStatistic).toString()
             default:
                 break
             }
@@ -316,33 +316,33 @@ class MenuView: UIView {
                 name.font = UIFont(name: "Open Sans", size: 14.0)
                 name.textColor = UIColor(red: 0.36, green: 0.36, blue: 0.36, alpha: 1.00)
                 name.sizeToFit()
-                name.frame = CGRectMake(16, (statisticCell.frame.size.height - name.frame.size.height) / 2, name.frame.size.width, name.frame.size.height)
+                name.frame = CGRect(x: 16, y: (statisticCell.frame.size.height - name.frame.size.height) / 2, width: name.frame.size.width, height: name.frame.size.height)
                 statisticCell.addSubview(name)
                 
                 score.font = UIFont(name: "Open Sans", size: 15.0)
                 score.textColor = UIColor(red: 0.1, green: 0.7, blue: 0.57, alpha: 1.00)
-                score.textAlignment = NSTextAlignment.Right
+                score.textAlignment = NSTextAlignment.right
                 score.sizeToFit()
-                score.frame = CGRectMake(menuWidth / 2, (statisticCell.frame.size.height - score.frame.size.height) / 2, (menuWidth / 2) - 16, score.frame.size.height)
+                score.frame = CGRect(x: menuWidth / 2, y: (statisticCell.frame.size.height - score.frame.size.height) / 2, width: (menuWidth / 2) - 16, height: score.frame.size.height)
                 statisticCell.addSubview(score)
             }
         }
         
         let resetHeight: CGFloat = 64
-        let resetImage = UIImageView(frame: CGRectMake(0, device.height - 20 - resetHeight, menuWidth, resetHeight))
+        let resetImage = UIImageView(frame: CGRect(x: 0, y: device.height - 20 - resetHeight, width: menuWidth, height: resetHeight))
         resetImage.image = UIImage(named: "element13.png")
         
-        let resetButton = UIButton(frame: CGRectMake(10, device.height - 20 - resetHeight + 10, menuWidth - 20, resetHeight - 20))
-        resetButton.setImage(UIImage(named: "element08.png"), forState: .Normal)
-        resetButton.setImage(UIImage(named: "element20.png"), forState: .Highlighted)
-        resetButton.addTarget(self, action: Selector("resetStatistics"), forControlEvents: .TouchUpInside)
+        let resetButton = UIButton(frame: CGRect(x: 10, y: device.height - 20 - resetHeight + 10, width: menuWidth - 20, height: resetHeight - 20))
+        resetButton.setImage(UIImage(named: "element08.png"), for: UIControlState())
+        resetButton.setImage(UIImage(named: "element20.png"), for: .highlighted)
+        resetButton.addTarget(self, action: #selector(MenuView.resetStatistics), for: .touchUpInside)
         
         let resetText = UILabel()
         resetText.text = "Reset all stats"
         resetText.font = UIFont(name: "Open Sans", size: 14.0)
-        resetText.textColor = UIColor.whiteColor()
+        resetText.textColor = UIColor.white
         resetText.sizeToFit()
-        resetText.frame = CGRectMake((resetButton.frame.size.width - resetText.frame.size.width) / 2, (resetButton.frame.size.height - resetText.frame.size.height) / 2, resetText.frame.size.width, resetText.frame.size.height)
+        resetText.frame = CGRect(x: (resetButton.frame.size.width - resetText.frame.size.width) / 2, y: (resetButton.frame.size.height - resetText.frame.size.height) / 2, width: resetText.frame.size.width, height: resetText.frame.size.height)
         
         resetButton.addSubview(resetText)
         
@@ -351,23 +351,23 @@ class MenuView: UIView {
     }
     
     func showAchievements() {
-        nc.postNotificationName(achievementNotification, object: nil)
+        nc.post(name: achievementNotification, object: nil)
     }
     
     func showLeaderboards() {
-        nc.postNotificationName(leaderboardNotification, object: nil)
+        nc.post(name: leaderboardNotification, object: nil)
     }
     
     func resetStatistics() {
-        let alert = UIAlertController(title: "Reset", message: "Are you sure you want to reset your statistics?", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "No", style: .Default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { (alertAction) -> Void in
-            defaults.setDouble(0, forKey: gameWinsStatistic)
-            defaults.setDouble(0, forKey: timePlayedStatistic)
-            defaults.setDouble(0, forKey: metersTravelledStatistic)
-            defaults.setDouble(0, forKey: pinsCollectedStatistic)
-            defaults.setDouble(0, forKey: pointsEarnedStatistic)
-            defaults.setDouble(0, forKey: poisonPinsStatistic)
+        let alert = UIAlertController(title: "Reset", message: "Are you sure you want to reset your statistics?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (alertAction) -> Void in
+            defaults.set(0, forKey: gameWinsStatistic)
+            defaults.set(0, forKey: timePlayedStatistic)
+            defaults.set(0, forKey: metersTravelledStatistic)
+            defaults.set(0, forKey: pinsCollectedStatistic)
+            defaults.set(0, forKey: pointsEarnedStatistic)
+            defaults.set(0, forKey: poisonPinsStatistic)
             
             for view in self.menuView.subviews {
                 if view is UIImageView {
@@ -383,6 +383,6 @@ class MenuView: UIView {
             }
         }))
         
-        viewController.presentViewController(alert, animated: true, completion: nil)
+        viewController.present(alert, animated: true, completion: nil)
     }
 }

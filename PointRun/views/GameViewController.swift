@@ -18,7 +18,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     @IBOutlet var timerLabel: UILabel!
     
     var multiplayer = false
-    var gameMode = PRGameMode.Timed
+    var gameMode = PRGameMode.timed
     var menuView: MenuView!
     
     var lastLocation: CLLocation!
@@ -30,7 +30,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     
     var min = 5
     var sec = 0
-    var timer: NSTimer!
+    var timer: Timer!
     
     var manager = CLLocationManager()
     var location = CLLocation()
@@ -42,15 +42,15 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nc.addObserver(self, selector: Selector("backButton"), name: backNotification, object: nil)
-        nc.addObserver(self, selector: Selector("mapChanged"), name: mapChangedNotification, object: nil)
+        nc.addObserver(self, selector: #selector(backButton), name: backNotification, object: nil)
+        nc.addObserver(self, selector: #selector(mapChanged), name: mapChangedNotification, object: nil)
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("decreaseTime"), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(GameViewController.decreaseTime), userInfo: nil, repeats: true)
         
         if CLLocationManager.locationServicesEnabled() {
-            mapView = GMSMapView(frame: CGRectMake(0, 84, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height - 84))
+            mapView = GMSMapView(frame: CGRect(x: 0, y: 84, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height - 84))
             mapView.delegate = self
-            mapView.myLocationEnabled = true
+            mapView.isMyLocationEnabled = true
             self.view.addSubview(mapView)
             mapChanged()
         } else {
@@ -68,17 +68,17 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     }
     
     override func viewDidLayoutSubviews() {
-        if gameMode != .Timed && !multiplayer {
+        if gameMode != .timed && !multiplayer {
             timerImage.removeFromSuperview()
             timerLabel.removeFromSuperview()
         }
     }
     
     func decreaseTime() {
-        defaults.setDouble(defaults.doubleForKey(PRAchievement.Addicted.rawValue) + 1, forKey: PRAchievement.Addicted.rawValue)
-        defaults.setDouble(defaults.doubleForKey(timePlayedStatistic) + 1, forKey: timePlayedStatistic)
+        defaults.set(defaults.double(forKey: PRAchievement.Addicted.rawValue) + 1, forKey: PRAchievement.Addicted.rawValue)
+        defaults.set(defaults.double(forKey: timePlayedStatistic) + 1, forKey: timePlayedStatistic)
         
-        if gameMode == .Timed {
+        if gameMode == .timed {
             let ssec = NSString(format: "%@%d", (sec > 9 ? "" : "0"), sec)
             timerLabel.text = NSString(format: "%d:%@", min, ssec) as String
             if sec > 0 {
@@ -88,7 +88,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                     sec = 59
                     min -= 1
                 } else {
-                    self.endGame(.TimerDone)
+                    self.endGame(.timerDone)
                     timer.invalidate()
                 }
             }
@@ -96,26 +96,26 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
     }
     
     func backButton() {
-        self.endGame(.MenuExit)
+        self.endGame(.menuExit)
     }
     
     func mapChanged() {
-        let mapType = defaults.doubleForKey("mapType")
+        let mapType = defaults.double(forKey: "mapType")
         switch mapType {
         case 0:
-            mapView.mapType = kGMSTypeNormal
+            mapView.mapType = .normal
         case 1:
-            mapView.mapType = kGMSTypeSatellite
+            mapView.mapType = .satellite
         case 2:
-            mapView.mapType = kGMSTypeHybrid
+            mapView.mapType = .hybrid
         case 3:
-            mapView.mapType = kGMSTypeTerrain
+            mapView.mapType = .terrain
         default:
             break
         }
     }
     
-    @IBAction func menuButton(sender: AnyObject) {
+    @IBAction func menuButton(_ sender: AnyObject) {
         menuView = MenuView()
         menuView.viewController = self
         menuView.showSettings()
@@ -127,14 +127,14 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         gameMode = gameType
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = locations.last!
         
         if lastLocation != nil {
-            let distance = location.distanceFromLocation(lastLocation)
-            defaults.setDouble(distance + defaults.doubleForKey(PRAchievement.MarathonMan.rawValue), forKey: PRAchievement.MarathonMan.rawValue)
+            let distance = location.distance(from: lastLocation)
+            defaults.set(distance + defaults.double(forKey: PRAchievement.MarathonMan.rawValue), forKey: PRAchievement.MarathonMan.rawValue)
             checkAchievement(.MarathonMan)
-            defaults.setDouble(defaults.doubleForKey(metersTravelledStatistic) + distance, forKey: metersTravelledStatistic)
+            defaults.set(defaults.double(forKey: metersTravelledStatistic) + distance, forKey: metersTravelledStatistic)
         }
         
         lastLocation = location
@@ -142,13 +142,13 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         if firstLocUpdate && !multiplayer {
             firstLocUpdate = false
             
-            mapView.camera = GMSCameraPosition.cameraWithTarget(location.coordinate, zoom: 17.5)
+            mapView.camera = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 17.5)
             
             for _ in 0...39 {
                 let lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                 let lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                 let value = Int(arc4random_uniform(10) + 1)
-                let uuid = NSUUID().UUIDString
+                let uuid = UUID().uuidString
                 
                 addPoint(mapView, latitude: lat, longitude: lon, value: value, uuid: uuid)
             }
@@ -157,24 +157,24 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                 let pointCoords = point.position
                 let pointLoc = CLLocation(latitude: pointCoords.latitude, longitude: pointCoords.longitude)
                 let userLoc = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                if userLoc.distanceFromLocation(pointLoc) <= 7 {
-                    if gameMode == .Chance {
+                if userLoc.distance(from: pointLoc) <= 7 {
+                    if gameMode == .chance {
                         if arc4random_uniform(10) == 0 {
-                            self.endGame(.PoisonPin)
+                            self.endGame(.poisonPin)
                             
-                            defaults.setDouble(defaults.doubleForKey(PRAchievement.BadLuck.rawValue) + 1, forKey: PRAchievement.BadLuck.rawValue)
+                            defaults.set(defaults.double(forKey: PRAchievement.BadLuck.rawValue) + 1, forKey: PRAchievement.BadLuck.rawValue)
                             checkAchievement(PRAchievement.BadLuck)
                             
-                            defaults.setDouble(defaults.doubleForKey(poisonPinsStatistic) + 1, forKey: poisonPinsStatistic)
+                            defaults.set(defaults.double(forKey: poisonPinsStatistic) + 1, forKey: poisonPinsStatistic)
                             
                             return
                         } else {
-                            defaults.setDouble(Double(points), forKey: PRAchievement.Evader.rawValue)
+                            defaults.set(Double(points), forKey: PRAchievement.Evader.rawValue)
                             checkAchievement(PRAchievement.Evader)
                         }
                     }
                     
-                    let pointsInAnnotation = Int((point.snippet.componentsSeparatedByString(" ")[0] as String))
+                    let pointsInAnnotation = Int((point.snippet!.components(separatedBy: " ")[0] as String))
                     self.points += pointsInAnnotation!
                     pointLabel.text = NSString(format: "%d %@", self.points, (self.points == 1 ? "Point" : "Points")) as String
                     removePoint(point.userData as! String, thisdevice: true)
@@ -182,47 +182,47 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
                     let lat = location.coordinate.latitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                     let lon = location.coordinate.longitude + CLLocationDegrees(Double(arc4random_uniform(20)) / 10000.0 - 0.001)
                     let value = Double(arc4random_uniform(10) + 1)
-                    let uuid = NSUUID().UUIDString
+                    let uuid = UUID().uuidString
                     
                     addPoint(mapView, latitude: lat, longitude: lon, value: Int(value), uuid: uuid)
                     
                     if value == 10 {
-                        defaults.setDouble(defaults.doubleForKey(PRAchievement.HatTrick.rawValue) + 1, forKey: PRAchievement.HatTrick.rawValue)
+                        defaults.set(defaults.double(forKey: PRAchievement.HatTrick.rawValue) + 1, forKey: PRAchievement.HatTrick.rawValue)
                         checkAchievement(PRAchievement.HatTrick)
                     } else {
-                        defaults.setDouble(0, forKey: PRAchievement.HatTrick.rawValue)
+                        defaults.set(0, forKey: PRAchievement.HatTrick.rawValue)
                     }
                     
-                    defaults.setDouble(defaults.doubleForKey(pinsCollectedStatistic) + 1, forKey: pinsCollectedStatistic)
-                    defaults.setDouble(defaults.doubleForKey(pointsEarnedStatistic) + value, forKey: pointsEarnedStatistic)
+                    defaults.set(defaults.double(forKey: pinsCollectedStatistic) + 1, forKey: pinsCollectedStatistic)
+                    defaults.set(defaults.double(forKey: pointsEarnedStatistic) + value, forKey: pointsEarnedStatistic)
                 }
             }
         }
     }
     
-    func addPoint(map: GMSMapView, latitude lat: Double, longitude lon: Double, value: Int, uuid: String) {
+    func addPoint(_ map: GMSMapView, latitude lat: Double, longitude lon: Double, value: Int, uuid: String) {
         let coordinates = CLLocationCoordinate2DMake(lat, lon)
         let point = GMSMarker(position: coordinates)
-        point.appearAnimation = kGMSMarkerAnimationPop
+        point.appearAnimation = .pop
         let s = value == 1 ? "" : "s"
         point.snippet = "\(value) Point\(s)"
         point.map = map
         point.userData = uuid
         
         let colors = [UIColor(red: 0.88, green: 0.22, blue: 0.18, alpha: 1.00), UIColor(red: 0.88, green: 0.22, blue: 0.18, alpha: 1.00), UIColor(red: 0.88, green: 0.22, blue: 0.18, alpha: 1.00), UIColor(red: 0.92, green: 0.60, blue: 0.10, alpha: 1.00), UIColor(red: 0.92, green: 0.60, blue: 0.10, alpha: 1.00), UIColor(red: 0.92, green: 0.60, blue: 0.10, alpha: 1.00), UIColor(red: 0.92, green: 0.60, blue: 0.10, alpha: 1.00), UIColor(red: 0.19, green: 0.78, blue: 0.41, alpha: 1.00), UIColor(red: 0.19, green: 0.78, blue: 0.41, alpha: 1.00), UIColor(red: 0.19, green: 0.78, blue: 0.41, alpha: 1.00)]
-        point.icon = GMSMarker.markerImageWithColor(colors[value - 1])
+        point.icon = GMSMarker.markerImage(with: colors[value - 1])
         
         markers.append(point)
         
         print("Created \(value) points at \(lat), \(lon) with a UUID of \(uuid)")
     }
     
-    func removePoint(uuid: String, thisdevice: Bool) {
+    func removePoint(_ uuid: String, thisdevice: Bool) {
         var i = 0
         for point in markers {
             if point.userData as! String == uuid {
                 point.map = nil
-                markers.removeAtIndex(i)
+                markers.remove(at: i)
                 
                 if thisdevice {
                     vibrate()
@@ -232,41 +232,41 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         }
     }
     
-    func endGame(reason: PRGameEnd) {
+    func endGame(_ reason: PRGameEnd) {
         manager.stopUpdatingLocation()
         timer.invalidate()
         
-        let alert = UIAlertController(title: "Game Over!", message: "", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (alertAction) -> Void in
+        let alert = UIAlertController(title: "Game Over!", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alertAction) -> Void in
             self.pop()
         }))
         
         switch reason {
-        case .MenuExit:
-            self.navigationController?.popViewControllerAnimated(true)
-        case .TimerDone:
+        case .menuExit:
+            self.navigationController?.popViewController(animated: true)
+        case .timerDone:
             alert.message = "You have run out of time!"
             GCHelper.sharedInstance.reportLeaderboardIdentifier("mosttimedpoints", score: self.points)
-        case .PoisonPin:
+        case .poisonPin:
             alert.message = "That pin was poisonous!"
-        case .Disconnect:
+        case .disconnect:
             alert.message = "Another player has been disconnected."
-            alert.addAction(UIAlertAction(title: "Continue", style: .Destructive, handler: { (alertAction) -> Void in
+            alert.addAction(UIAlertAction(title: "Continue", style: .destructive, handler: { (alertAction) -> Void in
                 self.manager.startUpdatingLocation()
             }))
-        case .Error:
+        case .error:
             alert.message = "An error has unexpectedly occured."
-        case .MultiplayerWin:
+        case .multiplayerWin:
             alert.message = "You won!"
-        case .MultiplayerLoss:
+        case .multiplayerLoss:
             alert.message = "You lost."
         }
         
         alert.message? += "\nYour Score: \(points)"
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func pop() {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
 }

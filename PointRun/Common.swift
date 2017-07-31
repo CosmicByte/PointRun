@@ -9,8 +9,8 @@
 import AudioToolbox
 import GoogleMaps
 
-let defaults = NSUserDefaults.standardUserDefaults()
-let nc = NSNotificationCenter.defaultCenter()
+let defaults = UserDefaults.standard
+let nc = NotificationCenter.default
 
 let gameWinsStatistic = "GameWins"
 let timePlayedStatistic = "TimePlayed"
@@ -19,37 +19,37 @@ let pinsCollectedStatistic = "PinsCollected"
 let pointsEarnedStatistic = "PointsEarned"
 let poisonPinsStatistic = "PoisonPins"
 
-let statisticNotification = "Statistic"
-let achievementNotification = "Achievement"
-let leaderboardNotification = "Leaderboard"
-let backNotification = "Back"
-let mapChangedNotification = "MapChanged"
+let statisticNotification = Notification.Name("Statistic")
+let achievementNotification = Notification.Name("Achievement")
+let leaderboardNotification = Notification.Name("Leaderboard")
+let backNotification = Notification.Name("Back")
+let mapChangedNotification = Notification.Name("MapChanged")
 
 let menuWidth: CGFloat = 260
 let alertWidth: CGFloat = 280
 let alertHeight: CGFloat = 175
 
 enum PRGameMode: Int {
-    case Timed = 0
-    case Endless = 1
-    case Chance = 2
-    case Race = 3
+    case timed = 0
+    case endless = 1
+    case chance = 2
+    case race = 3
 }
 
 enum PRMessageType: Int {
-    case PlayerData = 0
-    case PointLocation = 1
-    case PointCaptured = 2
+    case playerData = 0
+    case pointLocation = 1
+    case pointCaptured = 2
 }
 
 enum PRGameEnd: Int {
-    case MenuExit = 0
-    case TimerDone = 1
-    case PoisonPin = 2
-    case Disconnect = 3
-    case Error = 4
-    case MultiplayerWin = 5
-    case MultiplayerLoss = 6
+    case menuExit = 0
+    case timerDone = 1
+    case poisonPin = 2
+    case disconnect = 3
+    case error = 4
+    case multiplayerWin = 5
+    case multiplayerLoss = 6
 }
 
 func vibrate() {

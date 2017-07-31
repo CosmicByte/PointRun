@@ -35,17 +35,17 @@ class MenuViewController: UIViewController {
     var menuView: MenuView!
     
     var singlePlayer = true
-    var gameMode = PRGameMode.Timed
+    var gameMode = PRGameMode.timed
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nc.addObserver(self, selector: Selector("menuTab:"), name: statisticNotification, object: nil)
-        nc.addObserver(self, selector: Selector("menuTab:"), name: achievementNotification, object: nil)
-        nc.addObserver(self, selector: Selector("menuTab:"), name: leaderboardNotification, object: nil)
+        nc.addObserver(self, selector: #selector(menuTab(_:)), name: statisticNotification, object: nil)
+        nc.addObserver(self, selector: #selector(menuTab(_:)), name: achievementNotification, object: nil)
+        nc.addObserver(self, selector: #selector(menuTab(_:)), name: leaderboardNotification, object: nil)
     }
     
-    @IBAction func menuButton(sender: AnyObject) {
+    @IBAction func menuButton(_ sender: AnyObject) {
         menuView = MenuView()
         menuView.viewController = self
         menuView.showStatistics()
@@ -53,30 +53,30 @@ class MenuViewController: UIViewController {
         menuView.show()
     }
     
-    @IBAction func singlePlayerDown(sender: AnyObject) {
+    @IBAction func singlePlayerDown(_ sender: AnyObject) {
         if !singlePlayer {
-            singlePlayerButton.setImage(UIImage(named: "element19.png"), forState: .Normal)
+            singlePlayerButton.setImage(UIImage(named: "element19.png"), for: UIControlState())
         } else {
-            singlePlayerButton.setImage(UIImage(named: "element18.png"), forState: .Normal)
+            singlePlayerButton.setImage(UIImage(named: "element18.png"), for: UIControlState())
         }
         
-        singlePlayerButton.setImage(UIImage(named: "element07.png"), forState: .Highlighted)
+        singlePlayerButton.setImage(UIImage(named: "element07.png"), for: .highlighted)
         
         singlePlayerImage.image = UIImage(named: "singleWhite.png")
     }
     
-    @IBAction func singlePlayerUp(sender: AnyObject) {
-        singlePlayerButton.setImage(UIImage(named: "element18.png"), forState: .Normal)
+    @IBAction func singlePlayerUp(_ sender: AnyObject) {
+        singlePlayerButton.setImage(UIImage(named: "element18.png"), for: UIControlState())
         
-        multiPlayerButton.setImage(UIImage(named: "element19.png"), forState: .Normal)
-        multiPlayerButton.setImage(UIImage(named: "element07.png"), forState: .Highlighted)
+        multiPlayerButton.setImage(UIImage(named: "element19.png"), for: UIControlState())
+        multiPlayerButton.setImage(UIImage(named: "element07.png"), for: .highlighted)
         
         multiPlayerImage.image = UIImage(named: "multiGreen.png")
         
         singlePlayer = true
         
         timedButtonIcon.image = UIImage(named: "gamemodeTimer.png")
-        timedButtonIcon.frame = CGRectMake(42, 183, 39, 36)
+        timedButtonIcon.frame = CGRect(x: 42, y: 183, width: 39, height: 36)
         timedButtonTitle.text = "Timed"
         timedButtonDescription.text = "You will be given 5 minutes to collect as many points as you can."
         
@@ -91,21 +91,21 @@ class MenuViewController: UIViewController {
         chanceButtonDescription.alpha = 1.0
     }
     
-    @IBAction func singlePlayerUpOutside(sender: AnyObject) {
+    @IBAction func singlePlayerUpOutside(_ sender: AnyObject) {
         if singlePlayer {
-            singlePlayerButton.setImage(UIImage(named: "element18.png"), forState: .Normal)
+            singlePlayerButton.setImage(UIImage(named: "element18.png"), for: UIControlState())
             singlePlayerImage.image = UIImage(named: "singleWhite.png")
         } else {
-            singlePlayerButton.setImage(UIImage(named: "element19.png"), forState: .Normal)
+            singlePlayerButton.setImage(UIImage(named: "element19.png"), for: UIControlState())
             singlePlayerImage.image = UIImage(named: "singleGreen.png")
         }
     }
     
-    @IBAction func singlePlayerDragEnter(sender: AnyObject) {
+    @IBAction func singlePlayerDragEnter(_ sender: AnyObject) {
         singlePlayerImage.image = UIImage(named: "singleWhite.png")
     }
     
-    @IBAction func singlePlayerDragExit(sender: AnyObject) {
+    @IBAction func singlePlayerDragExit(_ sender: AnyObject) {
         if singlePlayer {
             singlePlayerImage.image = UIImage(named: "singleWhite.png")
         } else {
@@ -113,25 +113,25 @@ class MenuViewController: UIViewController {
         }
     }
     
-    @IBAction func multiPlayerDown(sender: AnyObject) {
-        multiPlayerButton.setImage(UIImage(named: "element19.png"), forState: .Normal)
-        multiPlayerButton.setImage(UIImage(named: "element07.png"), forState: .Highlighted)
+    @IBAction func multiPlayerDown(_ sender: AnyObject) {
+        multiPlayerButton.setImage(UIImage(named: "element19.png"), for: UIControlState())
+        multiPlayerButton.setImage(UIImage(named: "element07.png"), for: .highlighted)
         
         multiPlayerImage.image = UIImage(named: "multiWhite.png")
     }
     
-    @IBAction func multiPlayerUp(sender: AnyObject) {
-        multiPlayerButton.setImage(UIImage(named: "element18.png"), forState: .Normal)
+    @IBAction func multiPlayerUp(_ sender: AnyObject) {
+        multiPlayerButton.setImage(UIImage(named: "element18.png"), for: UIControlState())
         
-        singlePlayerButton.setImage(UIImage(named: "element19.png"), forState: .Normal)
-        singlePlayerButton.setImage(UIImage(named: "element07.png"), forState: .Highlighted)
+        singlePlayerButton.setImage(UIImage(named: "element19.png"), for: UIControlState())
+        singlePlayerButton.setImage(UIImage(named: "element07.png"), for: .highlighted)
         
         singlePlayerImage.image = UIImage(named: "singleGreen.png")
         
         singlePlayer = false
         
         timedButtonIcon.image = UIImage(named: "gamemodeRace.png")
-        timedButtonIcon.frame = CGRectMake((timedButtonBackground.frame.size.height - timedButtonIcon.frame.size.height / 1.08108) / 2 + timedButtonBackground.frame.origin.y, timedButtonIcon.frame.origin.y, timedButtonIcon.frame.size.width, timedButtonIcon.frame.size.height / 1.08108)
+        timedButtonIcon.frame = CGRect(x: (timedButtonBackground.frame.size.height - timedButtonIcon.frame.size.height / 1.08108) / 2 + timedButtonBackground.frame.origin.y, y: timedButtonIcon.frame.origin.y, width: timedButtonIcon.frame.size.width, height: timedButtonIcon.frame.size.height / 1.08108)
         timedButtonTitle.text = "Race"
         timedButtonDescription.text = "Beat up to three other friends in a race to 100 points."
         
@@ -146,64 +146,64 @@ class MenuViewController: UIViewController {
         chanceButtonDescription.alpha = 0.0
     }
     
-    @IBAction func multiPlayerUpOutside(sender: AnyObject) {
+    @IBAction func multiPlayerUpOutside(_ sender: AnyObject) {
         if singlePlayer {
-            multiPlayerButton.setImage(UIImage(named: "element19.png"), forState: .Normal)
+            multiPlayerButton.setImage(UIImage(named: "element19.png"), for: UIControlState())
             multiPlayerImage.image = UIImage(named: "multiGreen.png")
         } else {
-            multiPlayerButton.setImage(UIImage(named: "element18.png"), forState: .Normal)
+            multiPlayerButton.setImage(UIImage(named: "element18.png"), for: UIControlState())
             multiPlayerImage.image = UIImage(named: "multiWhite.png")
         }
     }
     
-    @IBAction func multiPlayerDragEnter(sender: AnyObject) {
+    @IBAction func multiPlayerDragEnter(_ sender: AnyObject) {
         multiPlayerImage.image = UIImage(named: "multiWhite.png")
     }
     
-    @IBAction func multiPlayerDragExit(sender: AnyObject) {
+    @IBAction func multiPlayerDragExit(_ sender: AnyObject) {
         multiPlayerImage.image = UIImage(named: "multiGreen.png")
     }
     
-    func menuTab(note: NSNotification) {
+    func menuTab(_ note: Notification) {
         if note.name == achievementNotification {
-            GCHelper.sharedInstance.showGameCenter(self, viewState: .Achievements)
+            GCHelper.sharedInstance.showGameCenter(self, viewState: .achievements)
         } else if note.name == leaderboardNotification {
-            GCHelper.sharedInstance.showGameCenter(self, viewState: .Leaderboards)
+            GCHelper.sharedInstance.showGameCenter(self, viewState: .leaderboards)
         }
     }
     
-    @IBAction func timedButton(sender: AnyObject) {
+    @IBAction func timedButton(_ sender: AnyObject) {
         if singlePlayer {
-            gameMode = .Timed
-            self.performSegueWithIdentifier("gameSegue", sender: self)
+            gameMode = .timed
+            self.performSegue(withIdentifier: "gameSegue", sender: self)
         } else {
-            if GKLocalPlayer.localPlayer().authenticated {
-                gameMode = .Race
-                self.performSegueWithIdentifier("multiplayerSegue", sender: self)
+            if GKLocalPlayer.localPlayer().isAuthenticated {
+                gameMode = .race
+                self.performSegue(withIdentifier: "multiplayerSegue", sender: self)
             } else {
-                let alert = UIAlertController(title: "Game Center", message: "You are not signed into Game Center.", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                let alert = UIAlertController(title: "Game Center", message: "You are not signed into Game Center.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
     
-    @IBAction func endlessButton(sender: AnyObject) {
-        gameMode = .Endless
-        self.performSegueWithIdentifier("gameSegue", sender: self)
+    @IBAction func endlessButton(_ sender: AnyObject) {
+        gameMode = .endless
+        self.performSegue(withIdentifier: "gameSegue", sender: self)
     }
     
-    @IBAction func chanceButton(sender: AnyObject) {
-        gameMode = .Chance
-        self.performSegueWithIdentifier("gameSegue", sender: self)
+    @IBAction func chanceButton(_ sender: AnyObject) {
+        gameMode = .chance
+        self.performSegue(withIdentifier: "gameSegue", sender: self)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if segue.identifier == "gameSegue" {
-            let gvc = segue.destinationViewController as! GameViewController
+            let gvc = segue.destination as! GameViewController
             gvc.sendGameMode(gameMode: gameMode)
         } else {
-            let mvc = segue.destinationViewController as! MultiplayerViewController
+            let mvc = segue.destination as! MultiplayerViewController
             mvc.sendGameMode(gameMode: gameMode)
         }
     }

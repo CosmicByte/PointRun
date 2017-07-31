@@ -9,15 +9,15 @@
 import Foundation
 import GCHelper
 
-func checkAchievement(achievement: PRAchievement) {
-    let value = defaults.doubleForKey(achievement.rawValue + "Default")
+func checkAchievement(_ achievement: PRAchievement) {
+    let value = defaults.double(forKey: achievement.rawValue + "Default")
     var percent: Double = 0
     
     switch achievement {
     case PRAchievement.MarathonMan:
         percent = value * 0.002
     case PRAchievement.HatTrick:
-        if defaults.boolForKey(achievement.rawValue + "Completed") {
+        if defaults.bool(forKey: achievement.rawValue + "Completed") {
             return
         }
         
@@ -29,7 +29,7 @@ func checkAchievement(achievement: PRAchievement) {
     case PRAchievement.BadLuck:
         percent = value * 5
     case PRAchievement.Evader:
-        if defaults.boolForKey(achievement.rawValue + "Completed") {
+        if defaults.bool(forKey: achievement.rawValue + "Completed") {
             return
         }
         
@@ -37,7 +37,7 @@ func checkAchievement(achievement: PRAchievement) {
     }
     
     GCHelper.sharedInstance.reportAchievementIdentifier(gameCenterID(achievement), percent: percent)
-    defaults.setBool(percent >= 100, forKey: achievement.rawValue)
+    defaults.set(percent >= 100, forKey: achievement.rawValue)
 }
 
 enum PRAchievement: String {
@@ -49,7 +49,7 @@ enum PRAchievement: String {
     Evader = "Evader"
 }
 
-func gameCenterID(achievement: PRAchievement) -> String {
+func gameCenterID(_ achievement: PRAchievement) -> String {
     switch achievement {
     case .MarathonMan:
         return "marathonman"
