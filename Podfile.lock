@@ -1,13 +1,19 @@
 PODS:
-  - GCHelper (0.2.3)
-  - GoogleMaps (1.10.1)
+  - GCHelper (0.4.2)
+  - GoogleMaps (2.3.1):
+    - GoogleMaps/Maps (= 2.3.1)
+  - GoogleMaps/Base (2.3.1)
+  - GoogleMaps/Maps (2.3.1):
+    - GoogleMaps/Base
 
 DEPENDENCIES:
-  - GCHelper (~> 0.2)
-  - GoogleMaps (~> 1.10)
+  - GCHelper (~> 0.4)
+  - GoogleMaps (~> 2.3)
 
 SPEC CHECKSUMS:
-  GCHelper: 990e2c6968003ea3e98a20c4c22e51a0f6e3c7d9
-  GoogleMaps: ebf08677f181d9c2dcdbd1721d206f02beccc9b1
+  GCHelper: c99d9be64db5f21ffd60567dc1907478fd0edff8
+  GoogleMaps: c66a71058b9b1294bcdd5463a68e357fa50c079f
 
-COCOAPODS: 0.38.2
+PODFILE CHECKSUM: 9e95ad3d29aa3dc5e2e7d08d547453d4bef7d490
+
+COCOAPODS: 1.2.1
