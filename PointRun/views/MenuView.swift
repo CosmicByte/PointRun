@@ -14,7 +14,7 @@ class MenuView: UIView {
     var statusbarView: UIView!
     var menuView: UIView!
     
-    var statisticsButton: UIButton!
+    var statisticsButton: Button!
     var indicator: UIImageView!
     var checkImage: UIImageView!
     
@@ -45,32 +45,37 @@ class MenuView: UIView {
         menuView = UIView(frame: CGRect(x: -menuWidth, y: 20, width: menuWidth, height: device.height))
         menuView.backgroundColor = UIColor.white
         
-        statisticsButton = UIButton(frame: CGRect(x: 0, y: 0, width: 87, height: 64))
-        statisticsButton.setImage(#imageLiteral(resourceName: "Element06"), for: .normal)
-        statisticsButton.setImage(#imageLiteral(resourceName: "Element07"), for: .highlighted)
-        statisticsButton.addTarget(self, action: #selector(MenuView.statisticsButtonEvent), for: .touchDown)
-        statisticsButton.addTarget(self, action: #selector(MenuView.showStatistics), for: .allTouchEvents)
+        statisticsButton = Button()
+        statisticsButton.addTarget(self, action: #selector(updateIndicator), for: .allTouchEvents)
+        statisticsButton.addTarget(self, action: #selector(showStatistics), for: .touchUpInside)
+        statisticsButton.cornerRadius = 0
+        statisticsButton.frame = CGRect(x: 0, y: 0, width: 87, height: 62)
         
         let statisticsImage = UIImageView(frame: CGRect(x: 30, y: 21, width: 27, height: 22))
         statisticsImage.image = #imageLiteral(resourceName: "Statistics")
         
-        let achievementsButton = UIButton(frame: CGRect(x: 87, y: 0, width: 86, height: 64))
-        achievementsButton.setImage(#imageLiteral(resourceName: "Element07"), for: .normal)
-        achievementsButton.setImage(#imageLiteral(resourceName: "Element06"), for: .highlighted)
-        achievementsButton.addTarget(self, action: #selector(MenuView.showAchievements), for: .touchUpInside)
+        let achievementsButton = Button()
+        achievementsButton.addTarget(self, action: #selector(showAchievements), for: .touchUpInside)
+        achievementsButton.cornerRadius = 0
+        achievementsButton.frame = CGRect(x: 87, y: 0, width: 86, height: 62)
+        
+        achievementsButton.normalBackgroundColor = UIColor.greenHighlightedButton
+        achievementsButton.normalShadowColor = UIColor.greenHighlightedButtonShadow
+        achievementsButton.highlightedBackgroundColor = UIColor.greenButton
+        achievementsButton.highlightedShadowColor = UIColor.greenButtonShadow
         
         let achievementsImage = UIImageView(frame: CGRect(x: 35.5, y: 21, width: 15, height: 22))
         achievementsImage.image = #imageLiteral(resourceName: "Medal")
         
-        let leaderboardButton = UIButton(frame: CGRect(x: 173, y: 0, width: 87, height: 64))
-        leaderboardButton.setImage(#imageLiteral(resourceName: "Element06"), for: .normal)
-        leaderboardButton.setImage(#imageLiteral(resourceName: "Element07"), for: .highlighted)
+        let leaderboardButton = Button()
         leaderboardButton.addTarget(self, action: #selector(MenuView.showLeaderboards), for: .touchUpInside)
+        leaderboardButton.cornerRadius = 0
+        leaderboardButton.frame = CGRect(x: 173, y: 0, width: 87, height: 62)
         
         let leaderboardImage = UIImageView(frame: CGRect(x: 28.5, y: 21, width: 30, height: 22))
         leaderboardImage.image = #imageLiteral(resourceName: "List")
         
-        indicator = UIImageView(frame: CGRect(x: 33, y: 62.5, width: 21, height: 8))
+        indicator = UIImageView(frame: CGRect(x: 33, y: 62, width: 21, height: 8))
         indicator.image = #imageLiteral(resourceName: "Element03")
         
         statisticsButton.addSubview(statisticsImage)
@@ -104,99 +109,99 @@ class MenuView: UIView {
         }) 
     }
     
-    func statisticsButtonEvent() {
-        switch statisticsButton.state {
-        case UIControlState.highlighted:
-            indicator.image = #imageLiteral(resourceName: "Element21")
-        default:
-            indicator.image = #imageLiteral(resourceName: "Element03")
-        }
-    }
-    
     func showSettings() {
         let backHeight: CGFloat = 64
         let backImage = UIImageView(frame: CGRect(x: 0, y: 64, width: menuWidth, height: backHeight))
         backImage.image = #imageLiteral(resourceName: "Element13")
         
-        let backButton = UIButton(frame: CGRect(x: 10, y: 74, width: menuWidth - 20, height: backHeight - 20))
-        backButton.setImage(#imageLiteral(resourceName: "Element08"), for: .normal)
-        backButton.setImage(#imageLiteral(resourceName: "Element20"), for: .highlighted)
+        let backButton = Button()
         backButton.addTarget(self, action: #selector(MenuView.backButton), for: .touchUpInside)
+        backButton.setTitle("Return to mode select", for: .normal)
+        
+        backButton.frame = CGRect(x: 10, y: 74, width: menuWidth - 20, height: backHeight - 20)
         
         let iconHeight: CGFloat = 18
         let backIcon = UIImageView(frame: CGRect(x: 16, y: (backButton.frame.size.height - iconHeight) / 2, width: 21, height: iconHeight))
         backIcon.image = #imageLiteral(resourceName: "Back")
         
-        let backText = UILabel()
-        backText.text = "Return to mode select"
-        backText.font = UIFont(name: "Open Sans", size: 14.0)
-        backText.textColor = UIColor.white
-        backText.sizeToFit()
-        backText.frame = CGRect(x: backIcon.frame.origin.x + backIcon.frame.size.width + 10, y: (backButton.frame.size.height - backText.frame.size.height) / 2, width: backText.frame.size.width, height: backText.frame.size.height)
-        
         backButton.addSubview(backIcon)
-        backButton.addSubview(backText)
         
         let optionImage = UIImageView(frame: CGRect(x: 0, y: 128, width: menuWidth, height: 64))
         optionImage.image = #imageLiteral(resourceName: "Element13")
         
         let optionLabel = UILabel()
         optionLabel.text = "Map display"
-        optionLabel.font = UIFont(name: "Open Sans", size: 14.0)
+        optionLabel.font = .systemFont(ofSize: 14)
         optionLabel.textColor = UIColor(red: 0.36, green: 0.36, blue: 0.36, alpha: 1.00)
         optionLabel.sizeToFit()
         optionLabel.frame = CGRect(x: 12, y: 142, width: 128, height: optionLabel.frame.size.height)
         
-        let streetsButton = UIButton(frame: CGRect(x: 10, y: 174, width: menuWidth - 20, height: 42))
-        streetsButton.setImage(#imageLiteral(resourceName: "Element22"), for: .normal)
-        streetsButton.setImage(#imageLiteral(resourceName: "Element23"), for: .highlighted)
+        let streetsButton = Button()
         streetsButton.addTarget(self, action: #selector(MenuView.streetsButton), for: .touchUpInside)
+        streetsButton.frame = CGRect(x: 10, y: 174, width: menuWidth - 20, height: 40)
+        
+        streetsButton.normalBackgroundColor = UIColor.grayButton
+        streetsButton.normalShadowColor = UIColor.grayButtonShadow
+        streetsButton.highlightedBackgroundColor = UIColor.grayButtonShadow
+        streetsButton.highlightedShadowColor = UIColor.grayButtonShadow
         
         let streetsLabel = UILabel()
         streetsLabel.text = "Streets"
-        streetsLabel.font = UIFont(name: "Open Sans", size: 14.0)
+        streetsLabel.font = .systemFont(ofSize: 14)
         streetsLabel.textColor = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 1.00)
         streetsLabel.sizeToFit()
         streetsLabel.frame = CGRect(x: 56, y: (streetsButton.frame.size.height - streetsLabel.frame.size.height) / 2, width: streetsLabel.frame.size.width, height: streetsLabel.frame.size.height)
         
         streetsButton.addSubview(streetsLabel)
         
-        let satelliteButton = UIButton(frame: CGRect(x: 10, y: 228, width: menuWidth - 20, height: 42))
-        satelliteButton.setImage(#imageLiteral(resourceName: "Element22"), for: .normal)
-        satelliteButton.setImage(#imageLiteral(resourceName: "Element23"), for: .highlighted)
+        let satelliteButton = Button()
         satelliteButton.addTarget(self, action: #selector(MenuView.satelliteButton), for: .touchUpInside)
+        satelliteButton.frame = CGRect(x: 10, y: 228, width: menuWidth - 20, height: 40)
+        
+        satelliteButton.normalBackgroundColor = UIColor.grayButton
+        satelliteButton.normalShadowColor = UIColor.grayButtonShadow
+        satelliteButton.highlightedBackgroundColor = UIColor.grayButtonShadow
+        satelliteButton.highlightedShadowColor = UIColor.grayButtonShadow
         
         let satelliteLabel = UILabel()
         satelliteLabel.text = "Satellite"
-        satelliteLabel.font = UIFont(name: "Open Sans", size: 14.0)
+        satelliteLabel.font = .systemFont(ofSize: 14)
         satelliteLabel.textColor = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 1.00)
         satelliteLabel.sizeToFit()
         satelliteLabel.frame = CGRect(x: 56, y: (satelliteButton.frame.size.height - satelliteLabel.frame.size.height) / 2, width: satelliteLabel.frame.size.width, height: satelliteLabel.frame.size.height)
         
         satelliteButton.addSubview(satelliteLabel)
         
-        let hybridButton = UIButton(frame: CGRect(x: 10, y: 282, width: menuWidth - 20, height: 42))
-        hybridButton.setImage(#imageLiteral(resourceName: "Element22"), for: .normal)
-        hybridButton.setImage(#imageLiteral(resourceName: "Element23"), for: .highlighted)
+        let hybridButton = Button()
         hybridButton.addTarget(self, action: #selector(MenuView.hybridButton), for: .touchUpInside)
+        hybridButton.frame = CGRect(x: 10, y: 282, width: menuWidth - 20, height: 40)
+        
+        hybridButton.normalBackgroundColor = UIColor.grayButton
+        hybridButton.normalShadowColor = UIColor.grayButtonShadow
+        hybridButton.highlightedBackgroundColor = UIColor.grayButtonShadow
+        hybridButton.highlightedShadowColor = UIColor.grayButtonShadow
         
         let hybridLabel = UILabel()
         hybridLabel.text = "Hybrid"
-        hybridLabel.font = UIFont(name: "Open Sans", size: 14.0)
+        hybridLabel.font = .systemFont(ofSize: 14)
         hybridLabel.textColor = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 1.00)
         hybridLabel.sizeToFit()
         hybridLabel.frame = CGRect(x: 56, y: (hybridButton.frame.size.height - hybridLabel.frame.size.height) / 2, width: hybridLabel.frame.size.width, height: hybridLabel.frame.size.height)
         
         hybridButton.addSubview(hybridLabel)
         
-        let terrainButton = UIButton(frame: CGRect(x: 10, y: 336, width: menuWidth - 20, height: 42))
-        terrainButton.setImage(#imageLiteral(resourceName: "Element22"), for: .normal)
-        terrainButton.setImage(#imageLiteral(resourceName: "Element23"), for: .highlighted)
+        let terrainButton = Button()
         terrainButton.addTarget(self, action: #selector(MenuView.terrainButton), for: .touchUpInside)
+        terrainButton.frame = CGRect(x: 10, y: 336, width: menuWidth - 20, height: 40)
+        
+        terrainButton.normalBackgroundColor = UIColor.grayButton
+        terrainButton.normalShadowColor = UIColor.grayButtonShadow
+        terrainButton.highlightedBackgroundColor = UIColor.grayButtonShadow
+        terrainButton.highlightedShadowColor = UIColor.grayButtonShadow
         
         let terrainLabel = UILabel()
         terrainLabel.text = "Terrain"
-        terrainLabel.font = UIFont(name: "Open Sans", size: 14.0)
+        terrainLabel.font = .systemFont(ofSize: 14)
         terrainLabel.textColor = UIColor(red: 0.37, green: 0.37, blue: 0.37, alpha: 1.00)
         terrainLabel.sizeToFit()
         terrainLabel.frame = CGRect(x: 56, y: (terrainButton.frame.size.height - terrainLabel.frame.size.height) / 2, width: terrainLabel.frame.size.width, height: terrainLabel.frame.size.height)
@@ -256,6 +261,10 @@ class MenuView: UIView {
         nc.post(name: mapChangedNotification, object: nil)
     }
     
+    func updateIndicator() {
+        indicator.image = statisticsButton.isHighlighted ? #imageLiteral(resourceName: "Element21") : #imageLiteral(resourceName: "Element03")
+    }
+    
     func showStatistics() {
         menuView.addSubview(indicator)
         indicator.image = #imageLiteral(resourceName: "Element03")
@@ -276,7 +285,7 @@ class MenuView: UIView {
             case 0:
                 let heading = UILabel()
                 heading.text = "Statistics"
-                heading.font = UIFont(name: "Open Sans", size: 18.0)
+                heading.font = .systemFont(ofSize: 18)
                 heading.textColor = UIColor(red: 0.1, green: 0.71, blue: 0.56, alpha: 1.00)
                 heading.sizeToFit()
                 heading.frame = CGRect(x: 16, y: (statisticCell.frame.size.height - heading.frame.size.height) / 2, width: heading.frame.size.width, height: heading.frame.size.height)
@@ -313,13 +322,13 @@ class MenuView: UIView {
             }
             
             if i != 0 {
-                name.font = UIFont(name: "Open Sans", size: 14.0)
+                name.font = .systemFont(ofSize: 14)
                 name.textColor = UIColor(red: 0.36, green: 0.36, blue: 0.36, alpha: 1.00)
                 name.sizeToFit()
                 name.frame = CGRect(x: 16, y: (statisticCell.frame.size.height - name.frame.size.height) / 2, width: name.frame.size.width, height: name.frame.size.height)
                 statisticCell.addSubview(name)
                 
-                score.font = UIFont(name: "Open Sans", size: 15.0)
+                score.font = .systemFont(ofSize: 15)
                 score.textColor = UIColor(red: 0.1, green: 0.7, blue: 0.57, alpha: 1.00)
                 score.textAlignment = NSTextAlignment.right
                 score.sizeToFit()
@@ -332,19 +341,11 @@ class MenuView: UIView {
         let resetImage = UIImageView(frame: CGRect(x: 0, y: device.height - 20 - resetHeight, width: menuWidth, height: resetHeight))
         resetImage.image = #imageLiteral(resourceName: "Element13")
         
-        let resetButton = UIButton(frame: CGRect(x: 10, y: device.height - 20 - resetHeight + 10, width: menuWidth - 20, height: resetHeight - 20))
-        resetButton.setImage(#imageLiteral(resourceName: "Element08"), for: .normal)
-        resetButton.setImage(#imageLiteral(resourceName: "Element20"), for: .highlighted)
-        resetButton.addTarget(self, action: #selector(MenuView.resetStatistics), for: .touchUpInside)
+        let resetButton = Button()
+        resetButton.addTarget(self, action: #selector(resetStatistics), for: .touchUpInside)
+        resetButton.setTitle("Reset all stats", for: .normal)
         
-        let resetText = UILabel()
-        resetText.text = "Reset all stats"
-        resetText.font = UIFont(name: "Open Sans", size: 14.0)
-        resetText.textColor = UIColor.white
-        resetText.sizeToFit()
-        resetText.frame = CGRect(x: (resetButton.frame.size.width - resetText.frame.size.width) / 2, y: (resetButton.frame.size.height - resetText.frame.size.height) / 2, width: resetText.frame.size.width, height: resetText.frame.size.height)
-        
-        resetButton.addSubview(resetText)
+        resetButton.frame = CGRect(x: 10, y: device.height - 20 - resetHeight + 10, width: menuWidth - 20, height: resetHeight - 20)
         
         menuView.addSubview(resetImage)
         menuView.addSubview(resetButton)

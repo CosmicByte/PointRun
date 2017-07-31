@@ -8,18 +8,11 @@
 
 import UIKit
 
-class GamemodeButton: UIButton {
+class GamemodeButton: Button {
     
     @IBInspectable var gamemodeValue: Int = Gamemode.timed.rawValue {
         didSet {
             updateContent()
-        }
-    }
-    
-    override var isHighlighted: Bool {
-        didSet {
-            backgroundColor = isHighlighted ? UIColor.greenHighlightedButton : UIColor.greenButton
-            layer.shadowColor = (isHighlighted ? UIColor.greenHighlightedButtonShadow : UIColor.greenButtonShadow).cgColor
         }
     }
     
@@ -68,14 +61,6 @@ class GamemodeButton: UIButton {
     }
     
     fileprivate func updateContent() {
-        backgroundColor = UIColor.greenButton
-        
-        layer.cornerRadius = 4
-        layer.shadowColor = UIColor.greenButtonShadow.cgColor
-        layer.shadowOffset = CGSize(width: 0, height: 2)
-        layer.shadowOpacity = 1
-        layer.shadowRadius = 0
-        
         thumbnailImage.image = gamemode.thumbnail
         addSubview(thumbnailImage)
         

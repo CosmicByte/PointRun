@@ -21,21 +21,9 @@ enum PlayerNumber: Int {
     }
 }
 
-class PlayerNumberButton: UIButton {
+class PlayerNumberButton: Button {
     
     @IBInspectable var players: Int = 1
-    
-    override var isHighlighted: Bool {
-        didSet {
-            updateColors()
-        }
-    }
-    
-    override var isSelected: Bool {
-        didSet {
-            updateColors()
-        }
-    }
     
     fileprivate var playerNumber: PlayerNumber {
         guard let number = PlayerNumber(rawValue: players) else {
@@ -53,6 +41,17 @@ class PlayerNumberButton: UIButton {
         bottomBorder = UIView()
         
         super.init(coder: aDecoder)
+        
+        cornerRadius = 0
+        showsShadow = false
+        
+        normalBackgroundColor = UIColor.white
+        highlightedBackgroundColor = UIColor.greenHighlightedButton
+        selectedBackgroundColor = UIColor.greenButton
+        
+        normalShadowColor = UIColor.whiteButtonShadow
+        highlightedShadowColor = UIColor.greenHighlightedButtonShadow
+        selectedShadowColor = UIColor.greenButtonShadow
     }
     
     override func awakeFromNib() {
@@ -79,10 +78,10 @@ class PlayerNumberButton: UIButton {
         bottomBorder.frame = CGRect(x: 0, y: frame.size.height - bottomBorderHeight, width: frame.size.width, height: bottomBorderHeight)
     }
     
-    fileprivate func updateColors() {
-        backgroundColor = isHighlighted ? UIColor.greenHighlightedButton : (isSelected ? UIColor.greenButton : UIColor.white)
-        layer.shadowColor = (isHighlighted ? UIColor.greenHighlightedButtonShadow : (isSelected ? UIColor.greenButtonShadow : UIColor.whiteButtonShadow)).cgColor
-        thumbnailImage.tintColor = isHighlighted ? UIColor.white : (isSelected ? UIColor.white : UIColor.greenButton)
-        bottomBorder.backgroundColor = isHighlighted ? UIColor.greenHighlightedButtonShadow : (isSelected ? UIColor.greenButtonShadow : UIColor.whiteButtonShadow)
+    override func updateColors() {
+        super.updateColors()
+        
+        thumbnailImage.tintColor = isHighlighted ? normalBackgroundColor : (isSelected ? normalBackgroundColor : selectedBackgroundColor)
+        bottomBorder.backgroundColor = isHighlighted ? highlightedShadowColor : (isSelected ? selectedShadowColor : normalShadowColor)
     }
 }

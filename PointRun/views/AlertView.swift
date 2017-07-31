@@ -41,24 +41,16 @@ class AlertView: UIView {
         
         let alertText = UILabel(frame: CGRect(x: 18, y: 58, width: alertWidth - 36, height: 48))
         alertText.text = "Be mindful of traffic, obstructions, and other hazards while playing PointRun!"
-        alertText.font = UIFont(name: "Open Sans", size: 13.0)
+        alertText.font = .systemFont(ofSize: 13)
         alertText.textColor = UIColor(red: 0.36, green: 0.36, blue: 0.36, alpha: 1.00)
         alertText.numberOfLines = 0
         alertText.textAlignment = NSTextAlignment.center
         
-        let alertButton = UIButton(frame: CGRect(x: 8, y: alertHeight - 49, width: alertWidth - 16, height: 40))
-        alertButton.setImage(#imageLiteral(resourceName: "Element08"), for: .normal)
-        alertButton.setImage(#imageLiteral(resourceName: "Element20"), for: .highlighted)
-        alertButton.addTarget(self, action: #selector(AlertView.hide), for: .touchUpInside)
+        let alertButton = Button()
+        alertButton.addTarget(self, action: #selector(hide), for: .touchUpInside)
+        alertButton.setTitle("Start game", for: .normal)
         
-        let buttonText = UILabel()
-        buttonText.text = "Start game"
-        buttonText.font = UIFont(name: "Open Sans", size: 14.0)
-        buttonText.textColor = UIColor.white
-        buttonText.sizeToFit()
-        buttonText.frame = CGRect(x: (alertButton.frame.size.width - buttonText.frame.size.width) / 2, y: (alertButton.frame.size.height - buttonText.frame.size.height) / 2, width: buttonText.frame.size.width, height: buttonText.frame.size.height)
-        
-        alertButton.addSubview(buttonText)
+        alertButton.frame = CGRect(x: 8, y: alertHeight - 49, width: alertWidth - 16, height: 40)
         
         alertView.addSubview(alertBackground)
         alertView.addSubview(alertIcon)

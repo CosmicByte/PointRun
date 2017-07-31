@@ -33,4 +33,12 @@ extension UIColor {
     static var whiteButtonShadow: UIColor {
         return UIColor(red: 211/255, green: 216/255, blue: 217/255, alpha: 1)
     }
+    
+    static var grayButton: UIColor {
+        return UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
+    }
+    
+    static var grayButtonShadow: UIColor {
+        return UIColor(red: 218/255, green: 218/255, blue: 218/255, alpha: 1)
+    }
 }
