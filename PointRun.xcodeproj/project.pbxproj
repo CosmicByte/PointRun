@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		6D685922C0536B07E12B1D1A /* Pods_PointRun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF86D96A7DC0268CD5A666CD /* Pods_PointRun.framework */; };
 		EB3E3B2919A58F3A00A768DD /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E3B2819A58F3A00A768DD /* Common.swift */; };
-		EB3E3B7B19A58F4500A768DD /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB3E3B2C19A58F4500A768DD /* OpenSans-Regular.ttf */; };
 		EB3E3B7C19A58F4500A768DD /* 100.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E3B2E19A58F4500A768DD /* 100.png */; };
 		EB3E3B7D19A58F4500A768DD /* 1024.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E3B2F19A58F4500A768DD /* 1024.png */; };
 		EB3E3B7E19A58F4500A768DD /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E3B3019A58F4500A768DD /* 114.png */; };
@@ -105,7 +104,6 @@
 		D247E1540296A0A555F8E8D8 /* Pods-PointRun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PointRun.release.xcconfig"; path = "Pods/Target Support Files/Pods-PointRun/Pods-PointRun.release.xcconfig"; sourceTree = "<group>"; };
 		DF86D96A7DC0268CD5A666CD /* Pods_PointRun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PointRun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB3E3B2819A58F3A00A768DD /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
-		EB3E3B2C19A58F4500A768DD /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		EB3E3B2E19A58F4500A768DD /* 100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 100.png; sourceTree = "<group>"; };
 		EB3E3B2F19A58F4500A768DD /* 1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1024.png; sourceTree = "<group>"; };
 		EB3E3B3019A58F4500A768DD /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
@@ -231,20 +229,11 @@
 		EB3E3B2A19A58F4500A768DD /* assets */ = {
 			isa = PBXGroup;
 			children = (
-				EB3E3B2B19A58F4500A768DD /* fonts */,
 				EB3E3B2D19A58F4500A768DD /* icon */,
 				EB3E3B3C19A58F4500A768DD /* images */,
 				EB3E3B6B19A58F4500A768DD /* startup */,
 			);
 			path = assets;
-			sourceTree = "<group>";
-		};
-		EB3E3B2B19A58F4500A768DD /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-				EB3E3B2C19A58F4500A768DD /* OpenSans-Regular.ttf */,
-			);
-			path = fonts;
 			sourceTree = "<group>";
 		};
 		EB3E3B2D19A58F4500A768DD /* icon */ = {
@@ -530,7 +519,6 @@
 				EBF7346D19DCEA0E004859A8 /* 180.png in Resources */,
 				EB3E3B8E19A58F4500A768DD /* element01.png in Resources */,
 				EB3E3B9619A58F4500A768DD /* element09.png in Resources */,
-				EB3E3B7B19A58F4500A768DD /* OpenSans-Regular.ttf in Resources */,
 				EB3E3B8F19A58F4500A768DD /* element02.png in Resources */,
 				EB3E3BA119A58F4500A768DD /* element20.png in Resources */,
 				EB3E3BB319A58F4500A768DD /* singleWhite.png in Resources */,
