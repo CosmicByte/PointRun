@@ -145,7 +145,7 @@ class MultiplayerViewController: GameViewController, GCHelperDelegate {
                     
                     let playerObj = players.last!
                     player.name = playerObj.displayName
-                    print("Opponent name: \(playerObj.displayName)")
+                    print("Opponent name: \(String(describing: playerObj.displayName))")
                     
                     player.mapPoint = GMSMarker(position: CLLocationCoordinate2DMake(message.latitude, message.longitude))
                     player.mapPoint.appearAnimation = .pop

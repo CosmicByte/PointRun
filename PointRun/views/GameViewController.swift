@@ -73,7 +73,7 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         }
     }
     
-    func decreaseTime() {
+    @objc func decreaseTime() {
         defaults.set(defaults.double(forKey: PRAchievement.Addicted.rawValue) + 1, forKey: PRAchievement.Addicted.rawValue)
         defaults.set(defaults.double(forKey: timePlayedStatistic) + 1, forKey: timePlayedStatistic)
         
@@ -94,11 +94,11 @@ class GameViewController: UIViewController, CLLocationManagerDelegate, GMSMapVie
         }
     }
     
-    func backButton() {
+    @objc func backButton() {
         self.endGame(.menuExit)
     }
     
-    func mapChanged() {
+    @objc func mapChanged() {
         let mapType = defaults.double(forKey: "mapType")
         switch mapType {
         case 0:

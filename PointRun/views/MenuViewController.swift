@@ -62,7 +62,7 @@ class MenuViewController: UIViewController {
         multiPlayerButton.isSelected = true
     }
     
-    func menuTab(_ note: Notification) {
+    @objc func menuTab(_ note: Notification) {
         if note.name == achievementNotification {
             GCHelper.sharedInstance.showGameCenter(self, viewState: .achievements)
         } else if note.name == leaderboardNotification {

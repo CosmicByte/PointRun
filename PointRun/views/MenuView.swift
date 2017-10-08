@@ -99,7 +99,7 @@ class MenuView: UIView {
         }) 
     }
     
-    func hide() {
+    @objc func hide() {
         UIView.animate(withDuration: 0.5, animations: { () -> Void in
             self.opacityView.alpha = 0.0
             self.statusbarView.frame = CGRect(x: -self.device.width, y: 0, width: self.device.width, height: 20)
@@ -229,43 +229,43 @@ class MenuView: UIView {
         menuView.addSubview(checkImage)
     }
     
-    func backButton() {
+    @objc func backButton() {
         nc.post(name: backNotification, object: nil)
     }
     
-    func streetsButton() {
+    @objc func streetsButton() {
         defaults.set(0, forKey: "mapType")
         let checkY = CGFloat(174 + (54 * defaults.double(forKey: "mapType")))
         checkImage.frame = CGRect(x: 10, y: checkY, width: 42, height: 42)
         nc.post(name: mapChangedNotification, object: nil)
     }
     
-    func satelliteButton() {
+    @objc func satelliteButton() {
         defaults.set(1, forKey: "mapType")
         let checkY = CGFloat(174 + (54 * defaults.double(forKey: "mapType")))
         checkImage.frame = CGRect(x: 10, y: checkY, width: 42, height: 42)
         nc.post(name: mapChangedNotification, object: nil)
     }
     
-    func hybridButton() {
+    @objc func hybridButton() {
         defaults.set(2, forKey: "mapType")
         let checkY = CGFloat(174 + (54 * defaults.double(forKey: "mapType")))
         checkImage.frame = CGRect(x: 10, y: checkY, width: 42, height: 42)
         nc.post(name: mapChangedNotification, object: nil)
     }
     
-    func terrainButton() {
+    @objc func terrainButton() {
         defaults.set(3, forKey: "mapType")
         let checkY = CGFloat(174 + (54 * defaults.double(forKey: "mapType")))
         checkImage.frame = CGRect(x: 10, y: checkY, width: 42, height: 42)
         nc.post(name: mapChangedNotification, object: nil)
     }
     
-    func updateIndicator() {
+    @objc func updateIndicator() {
         indicator.image = statisticsButton.isHighlighted ? #imageLiteral(resourceName: "Element21") : #imageLiteral(resourceName: "Element03")
     }
     
-    func showStatistics() {
+    @objc func showStatistics() {
         menuView.addSubview(indicator)
         indicator.image = #imageLiteral(resourceName: "Element03")
         
@@ -351,15 +351,15 @@ class MenuView: UIView {
         menuView.addSubview(resetButton)
     }
     
-    func showAchievements() {
+    @objc func showAchievements() {
         nc.post(name: achievementNotification, object: nil)
     }
     
-    func showLeaderboards() {
+    @objc func showLeaderboards() {
         nc.post(name: leaderboardNotification, object: nil)
     }
     
-    func resetStatistics() {
+    @objc func resetStatistics() {
         let alert = UIAlertController(title: "Reset", message: "Are you sure you want to reset your statistics?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (alertAction) -> Void in
